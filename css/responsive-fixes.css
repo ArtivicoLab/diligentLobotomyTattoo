@@ -4,11 +4,18 @@
 .contact-info {
   max-width: 100%;
   overflow: hidden;
+  padding: 0 15px;
 }
 
 .info-title {
   width: auto;
   max-width: 80%;
+}
+
+/* Prevent horizontal scrolling on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .contact-grid {
@@ -108,5 +115,49 @@
 @media (min-width: 768px) {
   .contact-card .phone-number {
     font-size: 1.8rem;
+  }
+}
+
+/* Additional mobile fixes */
+@media (max-width: 767px) {
+  .business-card {
+    padding: 20px 15px;
+    margin-bottom: 15px;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .day-row {
+    margin-bottom: 6px;
+  }
+  
+  .day, .time {
+    font-size: 0.95rem;
+  }
+  
+  .hours-note {
+    font-size: 0.8rem;
+  }
+  
+  .directions-btn .btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .social-links {
+    gap: 10px;
+  }
+  
+  .social-link {
+    width: 38px;
+    height: 38px;
   }
 }
