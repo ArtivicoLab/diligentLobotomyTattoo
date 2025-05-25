@@ -1,0 +1,202 @@
+/* Button and Responsive Fixes */
+
+/* Fix for the CTA buttons on larger screens */
+@media (min-width: 768px) {
+  .contact-cta-container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .contact-cta {
+    flex: 1;
+    text-align: left;
+    align-items: flex-start;
+    padding-right: var(--space-lg);
+  }
+  
+  .contact-buttons {
+    flex-direction: row;
+    width: auto;
+    max-width: none;
+    gap: var(--space-md);
+  }
+  
+  .contact-buttons .btn {
+    min-width: 180px;
+    flex-grow: 0;
+  }
+}
+
+/* Fix for the business information cards on wide screens */
+@media (min-width: 992px) {
+  .contact-details {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .contact-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-icon {
+    margin: 0 auto var(--space-md);
+  }
+  
+  .contact-text {
+    text-align: center;
+  }
+  
+  .day-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Fix for calculator button contrast */
+.calculator-result .btn {
+  background-color: var(--accent-red);
+  color: white;
+  border: none;
+  font-weight: 600;
+  margin-top: var(--space-md);
+}
+
+.calculator-result .btn:hover {
+  background-color: var(--accent-red-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(213, 0, 50, 0.3);
+}
+
+/* Footer Fixes */
+.site-footer {
+  background: linear-gradient(to bottom, var(--grey-900) 0%, #000 100%);
+  color: var(--grey-300);
+  position: relative;
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.footer-logo-text {
+  margin-left: var(--space-md);
+}
+
+.logo-title {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.logo-tagline {
+  color: var(--accent-red);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.footer-slogan {
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--accent-red);
+  transform: translateY(-3px);
+}
+
+.footer-links h4, .footer-contact h4 {
+  color: white;
+  position: relative;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+  display: inline-block;
+}
+
+.footer-links h4::after, .footer-contact h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-red);
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-nav a {
+  color: var(--grey-300);
+  transition: var(--transition-normal);
+}
+
+.footer-nav a:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.contact-info-item i {
+  color: var(--accent-red);
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--grey-500);
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
