@@ -1,4 +1,70 @@
 /* Text Animation Styles */
+
+/* Phone icon shake animation */
+
+.phone-number-highlight {
+  animation: highlight-pulse 1s ease-in-out infinite;
+}
+
+@keyframes highlight-pulse {
+  0%, 100% {
+    color: var(--primary-light);
+  }
+  50% {
+    color: var(--accent-red);
+    text-shadow: 0 0 10px rgba(213, 0, 50, 0.7);
+  }
+}
+.phone-icon-shake {
+  animation: phone-shake 1s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  display: inline-block;
+}
+
+@keyframes phone-shake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  5%, 15%, 25% {
+    transform: rotate(-15deg);
+  }
+  10%, 20%, 30% {
+    transform: rotate(15deg);
+  }
+  35% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(15deg);
+  }
+  45% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  55% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(15deg);
+  }
+  65% {
+    transform: rotate(-10deg);
+  }
+  70% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  85%, 90%, 95% {
+    transform: rotate(0deg);
+  }
+}
 .animated-text {
   position: relative;
   display: inline-block;
