@@ -71,6 +71,38 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.contact-buttons .btn-primary {
+  background-color: var(--accent-red);
+  color: white;
+  border: none;
+}
+
+.contact-buttons .btn-primary:hover {
+  background-color: var(--accent-red-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(213, 0, 50, 0.3);
+}
+
+.contact-buttons .btn-outline {
+  background-color: transparent;
+  color: var(--grey-900);
+  border: 1px solid var(--grey-900);
+}
+
+.contact-buttons .btn-outline:hover {
+  background-color: var(--grey-900);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact-buttons .btn i {
