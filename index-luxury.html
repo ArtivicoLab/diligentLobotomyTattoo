@@ -246,92 +246,6 @@
       </div>
     </section>
 
-    <section id="calculator" class="calculator">
-      <div class="container">
-        <div class="section-title">
-          <h2>PRICE CALCULATOR</h2>
-        </div>
-        <p class="section-subtitle">Get an estimate for your custom tattoo using our interactive price calculator</p>
-        
-        <div class="calculator-container" id="tattoo-calculator">
-          <div class="calculator-form">
-            <div class="calc-group">
-              <label for="tattoo-size">Size (square inches)</label>
-              <div class="size-input-container">
-                <input type="number" id="tattoo-size" min="1" max="100" step="1" value="5">
-                <div class="slider-container">
-                  <input type="range" id="size-slider" min="1" max="100" step="1" value="5">
-                  <div class="size-labels">
-                    <span>Small</span>
-                    <span>Medium</span>
-                    <span>Large</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="calc-group">
-              <label>Design Complexity</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="complexity-low" name="complexity" value="low" checked>
-                  <label for="complexity-low">Simple</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="complexity-medium" name="complexity" value="medium">
-                  <label for="complexity-medium">Moderate</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="complexity-high" name="complexity" value="high">
-                  <label for="complexity-high">Complex</label>
-                </div>
-              </div>
-            </div>
-            
-            <div class="calc-group">
-              <label for="tattoo-placement">Placement</label>
-              <select id="tattoo-placement">
-                <option value="arm">Arm / Shoulder</option>
-                <option value="leg">Leg / Thigh</option>
-                <option value="back">Back</option>
-                <option value="chest">Chest</option>
-                <option value="ribs">Ribs / Side</option>
-                <option value="hand">Hand / Wrist</option>
-                <option value="foot">Foot / Ankle</option>
-                <option value="face">Face / Neck</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div class="calc-group">
-              <label for="tattoo-color">Color</label>
-              <select id="tattoo-color">
-                <option value="blackgray">Black & Gray</option>
-                <option value="color">Color</option>
-                <option value="custom">Custom / Specialty Ink</option>
-              </select>
-            </div>
-            
-            <div class="calc-submit">
-              <button id="calculate-price" class="btn btn-primary">Calculate Price</button>
-            </div>
-          </div>
-          
-          <div class="calculator-result" id="calculator-result">
-            <h3>Estimated Price</h3>
-            <div class="price-display">
-              <span id="estimated-price">$0</span>
-            </div>
-            <p class="price-range-text">Price range: <span id="price-range">$0 - $0</span></p>
-            <p class="price-disclaimer">*Actual prices may vary based on consultation</p>
-            <a href="#contact" class="btn btn-outline">Book Consultation</a>
-          </div>
-          
-          <div class="calculator-error" id="calculator-error"></div>
-        </div>
-      </div>
-    </section>
-
     <section id="featured" class="featured-work">
       <div class="container">
         <div class="section-title">
@@ -636,44 +550,6 @@
         </div>
         <p class="section-subtitle">Visit our shop or get in touch to book your appointment</p>
         <div class="contact-content">
-          <div class="contact-form-container">
-            <form id="contact-form" class="contact-form">
-              <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required>
-                <div class="error-message"></div>
-              </div>
-              <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required>
-                <div class="error-message"></div>
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone">
-                <div class="error-message"></div>
-              </div>
-              <div class="form-group">
-                <label for="service-type">Service Type</label>
-                <select id="service-type" name="service-type">
-                  <option value="">Select service</option>
-                  <option value="Tattoo">Tattoo</option>
-                  <option value="Cover-up">Cover-up</option>
-                  <option value="Piercing">Piercing</option>
-                  <option value="Merchandise">Merchandise</option>
-                  <option value="Consultation">Consultation</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                <div class="error-message"></div>
-              </div>
-              <div class="form-submit">
-                <button type="submit" class="btn btn-send">SEND MESSAGE</button>
-              </div>
-            </form>
-          </div>
           <div class="contact-info">
             <div class="contact-details">
               <div class="contact-item">
