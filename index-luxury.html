@@ -47,106 +47,171 @@
 
   <main>
     <section id="home" class="hero">
-      <div class="hero-grid">
+      <div class="hero-carousel-container">
+        <div class="hero-carousel">
+          <div class="carousel-slide active" style="background-image: url('https://pixabay.com/get/gca0b279a6e54fd0dbbd0d4d6f7bd6877f3641e942211e37961eadc328bbbbbf769df24a35a11609d0b2e2cd20122bcb74682a6802f0a225a12221d22ac273f49_1280.jpg');"></div>
+          <div class="carousel-slide" style="background-image: url('https://pixabay.com/get/g11705ef7d36dcc5be450756f31c8bfa6988718bf13340007bc42002c0b502a646e675daf69b584921f54fd545e91cb77a70d15111840d1e776777a7239f32d7d_1280.jpg');"></div>
+          <div class="carousel-slide" style="background-image: url('https://pixabay.com/get/g97bf3d03f8219b9075d64fa6902f5fa5577f36238ad0ab0153dc14f07b45dec5983292a2a212b68faf6cd3ae3019956c4c7673f49df707e362cfe5a3d9d027cc_1280.jpg');"></div>
+          <div class="carousel-slide" style="background-image: url('https://pixabay.com/get/g3104dd54986f6faa3e730877f8533b9d26b4541484e267d568b127e8e4e835756e5740f67ec8045ee948317da462009ebb54b391f7301f16e667db7cd717a6f6_1280.jpg');"></div>
+          <div class="carousel-slide" style="background-image: url('https://pixabay.com/get/g6dd3397500e379189d4724fa55acc28dacc063a812e4488abb7ec0604b16d0da9e21e2001196546f18232fb2bed33113187cf37a43292992b6363de12f4c4e07_1280.jpg');"></div>
+          
+          <div class="carousel-controls">
+            <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          
+          <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+          </div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
           <div class="hero-text">
             <h1>PROFESSIONAL <span class="accent">TATTOOS</span> & PIERCINGS</h1>
             <p class="tagline">Quality artistry and exceptional service in Stonecrest, GA</p>
             
-            <!-- Google Reviews Rating Card -->
-            <div class="google-reviews">
-              <div class="rating-card">
-                <div class="rating-header">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="google-logo">
-                  <span class="rating-text">Google Reviews</span>
+            <div class="hero-cta-container">
+              <!-- Google Reviews Rating Card -->
+              <div class="google-reviews">
+                <div class="rating-card">
+                  <div class="rating-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="google-logo">
+                    <span class="rating-text">Google Reviews</span>
+                  </div>
+                  <div class="rating-stars">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-value">4.6</span>
+                  </div>
+                  <div class="rating-count">Based on 254 reviews</div>
                 </div>
-                <div class="rating-stars">
-                  <span class="stars">★★★★★</span>
-                  <span class="rating-value">4.6</span>
-                </div>
-                <div class="rating-count">Based on 254 reviews</div>
               </div>
+              
+              <div class="hero-contact-info">
+                <div class="hero-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>2980 Stonecrest Pass, Stonecrest, GA</span>
+                </div>
+                <div class="hero-phone">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>(770) 613-3051</span>
+                </div>
+              </div>
+              
+              <a href="#contact" class="btn btn-primary btn-lg">Book Your Appointment</a>
             </div>
-            
-            <a href="#contact" class="btn btn-primary btn-lg">Book Your Appointment</a>
           </div>
-        </div>
-        <div class="hero-image" style="background-image: url('https://pixabay.com/get/g03ca94628a8f8ad9cb50f9623e8532dd353e48a7192f5a7b249c7ee559c8e18a36a5e2ba426fc61d6fd306fe2e58b2f0fb28ed6a85fb5602ce0006ec4235264d_1280.jpg');">
-          <div class="hero-overlay"></div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="artist">
+    <section id="services" class="services">
       <div class="container">
         <div class="section-title">
           <h2>OUR SERVICES</h2>
         </div>
         <p class="section-subtitle">Professional tattoo and piercing services with competitive pricing</p>
-        <div class="artist-content">
-          <div class="artist-image">
-            <div class="artist-frame">
-              <img src="https://pixabay.com/get/g03ca94628a8f8ad9cb50f9623e8532dd353e48a7192f5a7b249c7ee559c8e18a36a5e2ba426fc61d6fd306fe2e58b2f0fb28ed6a85fb5602ce0006ec4235264d_1280.jpg" alt="Tattoo artist at work" loading="lazy">
+        
+        <div class="services-cards">
+          <div class="service-card tattoo-card">
+            <div class="service-card-header">
+              <i class="fas fa-pen-fancy"></i>
+              <h3>Tattoo Services</h3>
+            </div>
+            <div class="service-card-content">
+              <p>Our skilled artists specialize in custom designs, color work, black & gray tattoos, and cover-ups. Every piece is created with the highest attention to detail and quality.</p>
+              
+              <div class="service-pricing">
+                <div class="pricing-row">
+                  <span class="service-name">Color Ink Tattoos</span>
+                  <span class="service-price">From $60.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Regular Tattoos</span>
+                  <span class="service-price">From $50.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Cover-ups & Reworkings</span>
+                  <span class="service-price">From $100.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Custom Design</span>
+                  <span class="service-price">Consultation Required</span>
+                </div>
+              </div>
+              
+              <a href="#contact" class="btn btn-outline">Book Consultation</a>
             </div>
           </div>
-          <div class="artist-text">
-            <h3>Tattoo & Piercing Services</h3>
-            <p>At Ink 102, we offer a full range of professional tattoo and body piercing services. Our skilled artists specialize in custom designs, color work, black & gray tattoos, and cover-ups. We also provide a variety of piercing options in a clean, sterile environment.</p>
-            <p>Our shop also features a selection of apparel and accessories for those looking to take home some Ink 102 merchandise.</p>
-            
-            <div class="services-pricing">
-              <div class="pricing-row">
-                <span class="service-name">Color Ink Tattoos</span>
-                <span class="service-price">From $60.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Regular Tattoos</span>
-                <span class="service-price">From $50.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Tattoo Cover-ups & Reworkings</span>
-                <span class="service-price">From $100.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Custom Tattoo Design</span>
-                <span class="service-price">Consultation Required</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Piercings</span>
-                <span class="service-price">From $40.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Septum Piercings</span>
-                <span class="service-price">$40.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Exotic Piercings</span>
-                <span class="service-price">$50.00</span>
-              </div>
-              <div class="pricing-row">
-                <span class="service-name">Nose Piercing</span>
-                <span class="service-price">From $40.00</span>
-              </div>
+          
+          <div class="service-card piercing-card">
+            <div class="service-card-header">
+              <i class="fas fa-gem"></i>
+              <h3>Piercing Services</h3>
             </div>
-            
-            <div class="artist-details">
-              <div class="detail-item">
-                <span class="detail-icon"><i class="fas fa-check"></i></span>
-                <span class="detail-text">Custom Designs</span>
+            <div class="service-card-content">
+              <p>We provide a variety of piercing options in a clean, sterile environment. Our experienced piercers ensure safety and precision for a comfortable experience.</p>
+              
+              <div class="service-pricing">
+                <div class="pricing-row">
+                  <span class="service-name">Basic Piercings</span>
+                  <span class="service-price">From $40.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Septum Piercings</span>
+                  <span class="service-price">$40.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Exotic Piercings</span>
+                  <span class="service-price">$50.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Nose Piercing</span>
+                  <span class="service-price">From $40.00</span>
+                </div>
               </div>
-              <div class="detail-item">
-                <span class="detail-icon"><i class="fas fa-check"></i></span>
-                <span class="detail-text">Sterile Environment</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-icon"><i class="fas fa-check"></i></span>
-                <span class="detail-text">Professional Artists</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-icon"><i class="fas fa-check"></i></span>
-                <span class="detail-text">Walk-ins Welcome</span>
-              </div>
+              
+              <a href="#contact" class="btn btn-outline">Book Appointment</a>
             </div>
+          </div>
+        </div>
+        
+        <div class="services-features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h4>Custom Designs</h4>
+            <p>Personalized artwork created just for you</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Sterile Environment</h4>
+            <p>Safety and cleanliness are our top priorities</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>Professional Artists</h4>
+            <p>Experienced and skilled tattoo artists</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-door-open"></i>
+            </div>
+            <h4>Walk-ins Welcome</h4>
+            <p>No appointment necessary for many services</p>
           </div>
         </div>
       </div>
@@ -486,35 +551,94 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <svg viewBox="0 0 100 100" width="80" height="80">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#d50032" stroke-width="2" />
-            <path d="M30,30 L70,70 M30,70 L70,30" stroke="#d50032" stroke-width="3" />
-            <circle cx="50" cy="50" r="10" fill="#d50032" />
-          </svg>
-          <span class="logo-text">INK 102</span>
-        </div>
-        <div class="footer-nav">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#merchandise">Shop</a>
-          <a href="#testimonials">Reviews</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="shop-info">
-          <div class="address-info">
-            <p>2980 Stonecrest Pass, Stonecrest, GA 30038</p>
-            <p>(770) 613-3051</p>
+    <div class="footer-wave-top"></div>
+    
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-columns">
+            <div class="footer-column footer-brand">
+              <div class="footer-logo">
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#d50032" stroke-width="2" />
+                  <path d="M30,30 L70,70 M30,70 L70,30" stroke="#d50032" stroke-width="3" />
+                  <circle cx="50" cy="50" r="10" fill="#d50032" />
+                </svg>
+                <div class="footer-logo-text">
+                  <h3 class="logo-title">INK 102</h3>
+                  <p class="logo-tagline">Tattoos & Piercings</p>
+                </div>
+              </div>
+              <p class="footer-slogan">Quality artistry and exceptional service since 2015</p>
+              <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
+            </div>
+            
+            <div class="footer-column footer-links">
+              <h4>Quick Links</h4>
+              <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#merchandise">Shop</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer-column footer-hours">
+              <h4>Hours</h4>
+              <div class="hours-grid">
+                <div class="day">Monday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Tuesday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Wednesday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Thursday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Friday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Saturday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Sunday</div>
+                <div class="time">1PM - 6PM</div>
+              </div>
+            </div>
+            
+            <div class="footer-column footer-contact">
+              <h4>Contact Us</h4>
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>2980 Stonecrest Pass<br>Stonecrest, GA 30038</p>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <p>(770) 613-3051</p>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <p>info@ink102.com</p>
+                </div>
+                <a href="#contact" class="btn btn-outline-light">Get Directions</a>
+              </div>
+            </div>
           </div>
-          <div class="hours-info">
-            <p>Mon-Sat: 11AM-8PM | Sun: 1PM-6PM</p>
-          </div>
         </div>
-        <div class="footer-info">
-          <p>&copy; <span id="current-year"></span> Ink 102 Tattoos and Piercings. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; <span id="current-year"></span> Ink 102 Tattoos and Piercings. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
         </div>
       </div>
     </div>
