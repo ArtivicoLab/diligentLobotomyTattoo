@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize calculator functionality
   initializeCalculator();
 });
 
@@ -31,6 +30,12 @@ function initializeCalculator() {
   
   // Calculate price when button is clicked
   calculateBtn.addEventListener('click', calculatePrice);
+  
+  // Also calculate automatically when any input changes
+  const allInputs = document.querySelectorAll('#calculator input, #calculator select');
+  allInputs.forEach(input => {
+    input.addEventListener('change', calculatePrice);
+  });
   
   // Initialize with a default calculation
   calculatePrice();

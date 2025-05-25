@@ -205,6 +205,17 @@
   border-left: 4px solid var(--accent-red);
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 768px) {
   .calculator-container {
     grid-template-columns: 2fr 1fr;
