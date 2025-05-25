@@ -30,9 +30,9 @@
   <link rel="stylesheet" href="css/map-styles.css">
   <link rel="stylesheet" href="css/service-cards.css">
   <link rel="stylesheet" href="css/calculator-fix.css">
-  <link rel="stylesheet" href="css/business-info-fix.css">
+  <link rel="stylesheet" href="css/business-info-new.css">
   <link rel="stylesheet" href="css/button-fixes.css">
-  <link rel="stylesheet" href="css/footer-fix.css">
+  <link rel="stylesheet" href="css/footer-new.css">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -562,7 +562,6 @@
             <p>Connect with us directly to discuss your custom design. We're here to help bring your vision to life!</p>
             <div class="contact-buttons">
               <a href="tel:7706133051" class="btn btn-primary"><i class="fas fa-phone-alt phone-shake"></i> CALL NOW</a>
-              <a href="https://instagram.com/" class="btn btn-outline"><i class="fab fa-instagram"></i> MESSAGE ON INSTAGRAM</a>
             </div>
           </div>
           <div class="contact-image">
@@ -574,60 +573,83 @@
         <div class="contact-info">
           <h3 class="info-title">Business Information</h3>
           
-          <div class="contact-details">
-            <!-- Location -->
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
+          <div class="contact-grid">
+            <!-- Location Card -->
+            <div class="business-card address-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="card-title">Location</h3>
               </div>
-              <div class="contact-text">
-                <h4>Location</h4>
-                <p>2980 Stonecrest Pass<br>Stonecrest, GA 30038<br>Floor 1</p>
-                <a href="https://maps.google.com/?q=2980+Stonecrest+Pass+Stonecrest+GA+30038" class="info-link" target="_blank">Get Directions</a>
+              <div class="card-content">
+                <div class="address-info">
+                  <p class="address-line">2980 Stonecrest Pass</p>
+                  <p class="address-line">Stonecrest, GA 30038</p>
+                </div>
+                <div class="directions-btn">
+                  <a href="https://maps.google.com/?q=2980+Stonecrest+Pass+Stonecrest+GA+30038" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-directions"></i> Get Directions
+                  </a>
+                </div>
               </div>
             </div>
             
-            <!-- Hours -->
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-clock"></i>
+            <!-- Hours Card -->
+            <div class="business-card hours-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="card-title">Hours</h3>
               </div>
-              <div class="contact-text">
-                <h4>Hours</h4>
-                <div class="business-hours">
-                  <div class="day-row">
-                    <div class="day">Monday - Saturday</div>
+              <div class="card-content">
+                <div class="hours-container">
+                  <div class="hours-grid">
+                    <div class="day">Monday</div>
                     <div class="time"><span class="highlight">11AM</span>-8PM</div>
-                  </div>
-                  <div class="day-row">
+                    <div class="day">Tuesday</div>
+                    <div class="time"><span class="highlight">11AM</span>-8PM</div>
+                    <div class="day">Wednesday</div>
+                    <div class="time"><span class="highlight">11AM</span>-8PM</div>
+                    <div class="day">Thursday</div>
+                    <div class="time"><span class="highlight">11AM</span>-8PM</div>
+                    <div class="day">Friday</div>
+                    <div class="time"><span class="highlight">11AM</span>-8PM</div>
+                    <div class="day">Saturday</div>
+                    <div class="time"><span class="highlight">11AM</span>-8PM</div>
                     <div class="day">Sunday</div>
                     <div class="time"><span class="highlight">1PM</span>-6PM</div>
                   </div>
+                  <small class="hours-note">(Hours may differ on holidays)</small>
                 </div>
-                <small class="hours-note">(Hours may differ on holidays)</small>
               </div>
             </div>
             
-            <!-- Contact Info -->
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-phone-alt"></i>
+            <!-- Contact Card -->
+            <div class="business-card contact-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3 class="card-title">Contact</h3>
               </div>
-              <div class="contact-text">
-                <h4>Contact</h4>
-                <p class="phone-number"><a href="tel:7706133051">(770) 613-3051</a></p>
-                <p class="social-info">Find us on <a href="https://instagram.com/" class="info-link">Instagram</a></p>
-                
-                <div class="social-links">
-                  <a href="#" class="social-link" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                  <a href="#" class="social-link" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" class="social-link" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                  </a>
+              <div class="card-content">
+                <div class="contact-content">
+                  <p class="phone-number"><a href="tel:7706133051">(770) 613-3051</a></p>
+                  <p class="email-info">info@ink102.com</p>
+                  
+                  <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="TikTok">
+                      <i class="fab fa-tiktok"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
