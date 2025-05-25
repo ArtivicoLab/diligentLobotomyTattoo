@@ -658,8 +658,8 @@ header.scrolled {
 
 .services-cards {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
   margin-bottom: var(--space-lg);
 }
 
@@ -681,7 +681,7 @@ header.scrolled {
 .service-card-header {
   background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-hover) 100%);
   color: white;
-  padding: var(--space-md) var(--space-sm);
+  padding: var(--space-xs) var(--space-xs);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -689,33 +689,33 @@ header.scrolled {
 }
 
 .service-card-header i {
-  font-size: 2rem;
-  margin-bottom: var(--space-sm);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-xs);
 }
 
 .service-card-header h3 {
   margin-bottom: 0;
   font-weight: 600;
   letter-spacing: 0.05em;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .service-card-content {
-  padding: var(--space-md) var(--space-sm);
+  padding: var(--space-xs) var(--space-xs);
 }
 
 .service-card-content p {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
   color: var(--grey-700);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 .service-pricing {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
   background-color: var(--grey-100);
-  border-radius: var(--border-radius-md);
-  padding: var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  padding: var(--space-xs);
   box-shadow: var(--shadow-sm);
 }
 
@@ -723,9 +723,9 @@ header.scrolled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-xs) 0;
+  padding: 4px 0;
   border-bottom: 1px solid var(--grey-200);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .pricing-row:last-child {
@@ -745,6 +745,10 @@ header.scrolled {
 .service-card .btn {
   width: 100%;
   text-align: center;
+  padding: var(--space-xs) var(--space-sm);
+  height: auto;
+  min-height: 36px;
+  font-size: 0.85rem;
 }
 
 .services-features {
