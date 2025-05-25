@@ -659,8 +659,8 @@ header.scrolled {
 .services-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .service-card {
@@ -681,7 +681,7 @@ header.scrolled {
 .service-card-header {
   background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-hover) 100%);
   color: white;
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -689,30 +689,33 @@ header.scrolled {
 }
 
 .service-card-header i {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-md);
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
 }
 
 .service-card-header h3 {
   margin-bottom: 0;
   font-weight: 600;
   letter-spacing: 0.05em;
+  font-size: 1.3rem;
 }
 
 .service-card-content {
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-sm);
 }
 
 .service-card-content p {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   color: var(--grey-700);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .service-pricing {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   background-color: var(--grey-100);
   border-radius: var(--border-radius-md);
-  padding: var(--space-md);
+  padding: var(--space-sm);
   box-shadow: var(--shadow-sm);
 }
 
@@ -720,8 +723,9 @@ header.scrolled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-sm) 0;
+  padding: var(--space-xs) 0;
   border-bottom: 1px solid var(--grey-200);
+  font-size: 0.9rem;
 }
 
 .pricing-row:last-child {

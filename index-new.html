@@ -3,27 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crimson Ink Tattoos | Dark Artistry in Ink</title>
-  <meta name="description" content="Crimson Ink Tattoos - Premium tattoo studio specializing in dark imagery with vibrant red accents, custom designs, and professional tattooing.">
-  <link rel="stylesheet" href="css/new-styles.css">
+  <title>Ink 102 Tattoos and Piercings | Professional Tattoo Shop in Stonecrest, GA</title>
+  <meta name="description" content="Ink 102 Tattoos and Piercings - Professional tattoo and piercing shop in Stonecrest, GA offering custom designs, color work, piercings, and tattoo cover-ups.">
+  <meta name="keywords" content="tattoo shop, piercings, Stonecrest, GA, custom tattoos, cover-ups, color tattoos, black and gray tattoos">
+  <meta name="author" content="Ink 102 Tattoos and Piercings">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ink102tattoos.com/">
+  <meta property="og:title" content="Ink 102 Tattoos and Piercings | Professional Tattoo Shop">
+  <meta property="og:description" content="Professional tattoo and piercing shop in Stonecrest, GA offering custom designs, color work, piercings, and tattoo cover-ups.">
+  <meta property="og:image" content="/images/tattoos/IMG_8684.jpeg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ink102tattoos.com/">
+  <meta property="twitter:title" content="Ink 102 Tattoos and Piercings | Professional Tattoo Shop">
+  <meta property="twitter:description" content="Professional tattoo and piercing shop in Stonecrest, GA offering custom designs, color work, piercings, and tattoo cover-ups.">
+  <meta property="twitter:image" content="/images/tattoos/IMG_8684.jpeg">
+  
+  <link rel="stylesheet" href="css/luxury-styles.css">
+  <link rel="stylesheet" href="css/featured-work.css">
+  <link rel="stylesheet" href="css/text-animation.css">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ink102tattoos.com/">
 </head>
 <body>
   <header id="header">
     <nav class="main-nav">
       <div class="logo">
-        <a href="#" aria-label="Crimson Ink Tattoos Home">
-          <svg class="logo-svg" viewBox="0 0 100 100" width="50" height="50">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#b30000" stroke-width="2" />
-            <path d="M30,30 L70,70 M30,70 L70,30" stroke="#b30000" stroke-width="4" />
-            <circle cx="50" cy="50" r="10" fill="#b30000" />
+        <a href="#" aria-label="Ink 102 Tattoos and Piercings Home">
+          <svg class="logo-img" viewBox="0 0 100 100" width="40" height="40">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#d50032" stroke-width="2" />
+            <path d="M30,30 L70,70 M30,70 L70,30" stroke="#d50032" stroke-width="3" />
+            <circle cx="50" cy="50" r="10" fill="#d50032" />
           </svg>
-          <span class="logo-text">Crimson Ink</span>
+          <div class="logo-text">
+            <span class="main">INK 102</span>
+            <span class="tagline">Tattoos and Piercings</span>
+          </div>
         </a>
       </div>
       <button class="menu-toggle" aria-label="Toggle navigation menu">
@@ -33,10 +61,10 @@
       </button>
       <ul class="nav-links">
         <li style="--item-index: 0"><a href="#home">Home</a></li>
-        <li style="--item-index: 1"><a href="#artist">Artist</a></li>
+        <li style="--item-index: 1"><a href="#services">Services</a></li>
         <li style="--item-index: 2"><a href="#gallery">Gallery</a></li>
-        <li style="--item-index: 3"><a href="#merchandise">Merch</a></li>
-        <li style="--item-index: 4"><a href="#testimonials">Testimonials</a></li>
+        <li style="--item-index: 3"><a href="#merchandise">Shop</a></li>
+        <li style="--item-index: 4"><a href="#testimonials">Reviews</a></li>
         <li style="--item-index: 5"><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -44,65 +72,281 @@
 
   <main>
     <section id="home" class="hero">
-      <div class="hero-content">
-        <h1 class="ink-text">Crimson Ink Tattoos</h1>
-        <p class="tagline">Dark artistry etched in blood and shadow</p>
-        <a href="#contact" class="btn btn-primary">Book Your Session</a>
-      </div>
-      <div class="hero-image">
-        <div class="hero-decoration">
-          <svg viewBox="0 0 200 200" class="hero-svg">
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-            <circle cx="100" cy="100" r="80" fill="none" stroke="#b30000" stroke-width="2" filter="url(#glow)" />
-            <path d="M50,100 A50,50 0 1,1 150,100 A50,50 0 1,1 50,100 Z" fill="none" stroke="#b30000" stroke-width="1" />
-            <path d="M100,30 L100,170" stroke="#b30000" stroke-width="1" stroke-dasharray="5,5" />
-            <path d="M30,100 L170,100" stroke="#b30000" stroke-width="1" stroke-dasharray="5,5" />
-            <path d="M60,60 L140,140" stroke="#b30000" stroke-width="1" stroke-dasharray="3,3" />
-            <path d="M60,140 L140,60" stroke="#b30000" stroke-width="1" stroke-dasharray="3,3" />
-          </svg>
+      <div class="hero-carousel-container">
+        <div class="hero-carousel">
+          <div class="carousel-slide active">
+            <img src="/images/tattoos/IMG_8684.jpeg" alt="Professional tattoo art by Ink 102 studio - detailed color work" class="carousel-image">
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/tattoos/IMG_8685.jpeg" alt="Custom tattoo design by Ink 102 artists - artistic black and gray work" class="carousel-image">
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/tattoos/IMG_8686.jpeg" alt="Ink 102 tattoo studio masterpiece - vibrant color tattoo" class="carousel-image">
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/tattoos/IMG_8687.jpeg" alt="Professional tattoo by Ink 102 - detailed line work and shading" class="carousel-image">
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/tattoos/IMG_8688.jpeg" alt="Expert tattoo craftsmanship from Ink 102 - custom design" class="carousel-image">
+          </div>
+          
+          <div class="carousel-controls">
+            <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          
+          <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+          </div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>PROFESSIONAL <span class="animated-text accent">
+              <span class="letter-glow">T</span>
+              <span class="letter-glow">A</span>
+              <span class="letter-glow">T</span>
+              <span class="letter-glow">T</span>
+              <span class="letter-glow">O</span>
+              <span class="letter-glow">O</span>
+              <span class="letter-glow">S</span>
+            </span> & PIERCINGS</h1>
+            <p class="tagline">Quality artistry and exceptional service in Stonecrest, GA</p>
+            
+            <div class="hero-cta-container">
+              <div class="hero-contact-info">
+                <div class="hero-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>2980 Stonecrest Pass, Stonecrest, GA</span>
+                </div>
+                <div class="hero-phone">
+                  <i class="fas fa-phone-alt phone-shake"></i>
+                  <span>(770) 613-3051</span>
+                </div>
+              </div>
+              
+              <a href="#contact" class="btn btn-primary btn-lg">Book Your Appointment</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="artist" class="artist">
+    <section id="services" class="services">
       <div class="container">
         <div class="section-title">
-          <h2 class="ink-text">The Artist</h2>
+          <h2>OUR SERVICES</h2>
         </div>
-        <div class="artist-content">
-          <div class="artist-image">
-            <div class="artist-frame">
-              <img src="https://pixabay.com/get/g03ca94628a8f8ad9cb50f9623e8532dd353e48a7192f5a7b249c7ee559c8e18a36a5e2ba426fc61d6fd306fe2e58b2f0fb28ed6a85fb5602ce0006ec4235264d_1280.jpg" alt="Tattoo artist at work" loading="lazy">
+        <p class="section-subtitle">Professional tattoo and piercing services with competitive pricing</p>
+        
+        <div class="services-cards">
+          <div class="service-card tattoo-card">
+            <div class="service-card-header">
+              <i class="fas fa-pen-fancy"></i>
+              <h3>Tattoo Services</h3>
+            </div>
+            <div class="service-card-content">
+              <p>Our skilled artists specialize in custom designs, color work, black & gray tattoos, and cover-ups. Every piece is created with the highest attention to detail and quality.</p>
+              
+              <div class="service-pricing">
+                <div class="pricing-row">
+                  <span class="service-name">Color Ink Tattoos</span>
+                  <span class="service-price">From $60.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Regular Tattoos</span>
+                  <span class="service-price">From $50.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Cover-ups & Reworkings</span>
+                  <span class="service-price">From $100.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Custom Design</span>
+                  <span class="service-price">Consultation Required</span>
+                </div>
+              </div>
+              
+              <a href="#contact" class="btn btn-outline">Book Consultation</a>
             </div>
           </div>
-          <div class="artist-text">
-            <h3>Alex Crimson</h3>
-            <p>With over 15 years mastering the dark art of tattooing, Alex Crimson creates haunting designs that merge gothic imagery with vibrant crimson accents. Each piece tells a story through the canvas of skin and the permanence of ink.</p>
-            <p>Specializing in macabre realism and neo-traditional horror, Alex's portfolio features skulls, timepieces, roses dripping with blood-red ink, and symbols from the darker side of symbolism and mythology.</p>
-            <p>Featured in international tattoo publications and a recipient of multiple convention awards, Alex's waiting list speaks to the demand for these distinctive pieces that blur the line between art and nightmare.</p>
-            <div class="artist-details">
-              <div class="detail-item">
-                <span class="detail-icon">✓</span>
-                <span class="detail-text">Custom Designs</span>
+          
+          <div class="service-card piercing-card">
+            <div class="service-card-header">
+              <i class="fas fa-gem"></i>
+              <h3>Piercing Services</h3>
+            </div>
+            <div class="service-card-content">
+              <p>We provide a variety of piercing options in a clean, sterile environment. Our experienced piercers ensure safety and precision for a comfortable experience.</p>
+              
+              <div class="service-pricing">
+                <div class="pricing-row">
+                  <span class="service-name">Basic Piercings</span>
+                  <span class="service-price">From $40.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Septum Piercings</span>
+                  <span class="service-price">$40.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Exotic Piercings</span>
+                  <span class="service-price">$50.00</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Nose Piercing</span>
+                  <span class="service-price">From $40.00</span>
+                </div>
               </div>
-              <div class="detail-item">
-                <span class="detail-icon">✓</span>
-                <span class="detail-text">Sterile Environment</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-icon">✓</span>
-                <span class="detail-text">Award-Winning</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-icon">✓</span>
-                <span class="detail-text">Free Consultations</span>
+              
+              <a href="#contact" class="btn btn-outline">Book Appointment</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="services-features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h4>Custom Designs</h4>
+            <p>Personalized artwork created just for you</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Sterile Environment</h4>
+            <p>Safety and cleanliness are our top priorities</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>Professional Artists</h4>
+            <p>Experienced and skilled tattoo artists</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-door-open"></i>
+            </div>
+            <h4>Walk-ins Welcome</h4>
+            <p>No appointment necessary for many services</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="calculator">
+      <div class="container">
+        <div class="section-title">
+          <h2>PRICE CALCULATOR</h2>
+        </div>
+        <p class="section-subtitle">Get an estimate for your custom tattoo using our interactive price calculator</p>
+        
+        <div class="calculator-container" id="tattoo-calculator">
+          <div class="calculator-form">
+            <div class="calc-group">
+              <label for="tattoo-size">Size (square inches)</label>
+              <div class="size-input-container">
+                <input type="number" id="tattoo-size" min="1" max="100" step="1" value="5">
+                <div class="slider-container">
+                  <input type="range" id="size-slider" min="1" max="100" step="1" value="5">
+                  <div class="size-labels">
+                    <span>Small</span>
+                    <span>Medium</span>
+                    <span>Large</span>
+                  </div>
+                </div>
               </div>
             </div>
+            
+            <div class="calc-group">
+              <label>Design Complexity</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="complexity-low" name="complexity" value="low" checked>
+                  <label for="complexity-low">Simple</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="complexity-medium" name="complexity" value="medium">
+                  <label for="complexity-medium">Moderate</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="complexity-high" name="complexity" value="high">
+                  <label for="complexity-high">Complex</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="calc-group">
+              <label for="tattoo-placement">Placement</label>
+              <select id="tattoo-placement">
+                <option value="arm">Arm / Shoulder</option>
+                <option value="leg">Leg / Thigh</option>
+                <option value="back">Back</option>
+                <option value="chest">Chest</option>
+                <option value="ribs">Ribs / Side</option>
+                <option value="hand">Hand / Wrist</option>
+                <option value="foot">Foot / Ankle</option>
+                <option value="face">Face / Neck</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="calc-group">
+              <label for="tattoo-color">Color</label>
+              <select id="tattoo-color">
+                <option value="blackgray">Black & Gray</option>
+                <option value="color">Color</option>
+                <option value="custom">Custom / Specialty Ink</option>
+              </select>
+            </div>
+            
+            <div class="calc-submit">
+              <button id="calculate-price" class="btn btn-primary">Calculate Price</button>
+            </div>
+          </div>
+          
+          <div class="calculator-result" id="calculator-result">
+            <h3>Estimated Price</h3>
+            <div class="price-display">
+              <span id="estimated-price">$0</span>
+            </div>
+            <p class="price-range-text">Price range: <span id="price-range">$0 - $0</span></p>
+            <p class="price-disclaimer">*Actual prices may vary based on consultation</p>
+            <a href="#contact" class="btn btn-outline">Book Consultation</a>
+          </div>
+          
+          <div class="calculator-error" id="calculator-error"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured" class="featured-work">
+      <div class="container">
+        <div class="section-title">
+          <h2>FEATURED WORK</h2>
+        </div>
+        <p class="section-subtitle">Showcasing our exceptional tattoo artistry and craftsmanship</p>
+        
+        <div class="featured-container">
+          <div class="featured-image-container">
+            <img src="/images/tattoos/IMG_8692.jpeg" alt="Ink 102 Featured Tattoo - Premium studio masterpiece" class="featured-image">
+          </div>
+          <div class="featured-content">
+            <h3>CUSTOM DESIGNS</h3>
+            <p>At Ink 102, we specialize in creating unique, personalized tattoo designs that tell your story. Our featured work showcases the exceptional artistry and precision that goes into every piece we create.</p>
+            <p>Whether you're looking for vibrant color work, detailed black and gray, or bold neo-traditional designs, our talented artists bring your vision to life with unparalleled skill and creativity.</p>
+            <a href="#contact" class="btn btn-primary">Book Your Session</a>
           </div>
         </div>
       </div>
@@ -111,8 +355,9 @@
     <section id="gallery" class="gallery">
       <div class="container">
         <div class="section-title">
-          <h2 class="ink-text">Tattoo Gallery</h2>
+          <h2>GALLERY</h2>
         </div>
+        <p class="section-subtitle">Explore our portfolio of premium tattoo artistry and find inspiration for your next piece</p>
         <div class="gallery-filter">
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="black-gray">Black & Gray</button>
@@ -122,42 +367,42 @@
         <div class="gallery-grid">
           <div class="gallery-item" style="--item-index: 0" data-category="color">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/gca0b279a6e54fd0dbbd0d4d6f7bd6877f3641e942211e37961eadc328bbbbbf769df24a35a11609d0b2e2cd20122bcb74682a6802f0a225a12221d22ac273f49_1280.jpg" alt="Colorful tattoo artwork" loading="lazy">
+              <img src="/images/tattoos/IMG_8684.jpeg" alt="Vibrant color tattoo by Ink 102 - professional artistic work" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 1" data-category="black-gray">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g11705ef7d36dcc5be450756f31c8bfa6988718bf13340007bc42002c0b502a646e675daf69b584921f54fd545e91cb77a70d15111840d1e776777a7239f32d7d_1280.jpg" alt="Black and gray tattoo artwork" loading="lazy">
+              <img src="/images/tattoos/IMG_8685.jpeg" alt="Detailed black and gray tattoo by Ink 102 - professional shading technique" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 2" data-category="neo-traditional">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g97bf3d03f8219b9075d64fa6902f5fa5577f36238ad0ab0153dc14f07b45dec5983292a2a212b68faf6cd3ae3019956c4c7673f49df707e362cfe5a3d9d027cc_1280.jpg" alt="Neo-traditional tattoo artwork" loading="lazy">
+              <img src="/images/tattoos/IMG_8686.jpeg" alt="Neo-traditional style tattoo by Ink 102 - artistic design with bold lines" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 3" data-category="color">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g3104dd54986f6faa3e730877f8533b9d26b4541484e267d568b127e8e4e835756e5740f67ec8045ee948317da462009ebb54b391f7301f16e667db7cd717a6f6_1280.jpg" alt="Colorful tattoo design" loading="lazy">
+              <img src="/images/tattoos/IMG_8687.jpeg" alt="Colorful tattoo design by Ink 102 - vibrant custom artwork" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 4" data-category="black-gray">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g6dd3397500e379189d4724fa55acc28dacc063a812e4488abb7ec0604b16d0da9e21e2001196546f18232fb2bed33113187cf37a43292992b6363de12f4c4e07_1280.jpg" alt="Black and gray tattoo design" loading="lazy">
+              <img src="/images/tattoos/IMG_8688.jpeg" alt="Black and gray realism tattoo by Ink 102 - premium shading work" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 5" data-category="neo-traditional">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g456254f43f290f9991a526c726da783a41e534361d870b489c23c43425d57cb283b39944b3eca37714fc14850fd7311a1524c1b14fa3da7cdd14973fc89829a4_1280.jpg" alt="Neo-traditional tattoo design" loading="lazy">
+              <img src="/images/tattoos/IMG_8689.jpeg" alt="Neo-traditional tattoo design by Ink 102 - artistic expression" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 6" data-category="color">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/ge8a7dc57636e7d155edb4b57577c5c02ec2aeaad55d34fdbd0063a28d9372d8a49810837a7187d80d8dba398cb03975197d9ea8fbe5c6666ba6736ce51b165fd_1280.jpg" alt="Colorful arm tattoo" loading="lazy">
+              <img src="/images/tattoos/IMG_8690.jpeg" alt="Colorful arm tattoo by Ink 102 - custom sleeve design" loading="lazy">
             </div>
           </div>
           <div class="gallery-item" style="--item-index: 7" data-category="black-gray">
             <div class="gallery-image">
-              <img src="https://pixabay.com/get/g1399dbd0a3ea89b3ea68bdb0916464e76fe3323580f1f8dce21b3751132666569d144e91588fc96b868efd3a6d2b715ec2f56744669c05119a5e4f3a958480d8_1280.jpg" alt="Black and gray detailed tattoo" loading="lazy">
+              <img src="/images/tattoos/IMG_8691.jpeg" alt="Detailed black and gray tattoo by Ink 102 - fine line work" loading="lazy">
             </div>
           </div>
         </div>
@@ -167,19 +412,20 @@
     <section id="merchandise" class="merchandise">
       <div class="container">
         <div class="section-title">
-          <h2 class="ink-text">Merchandise</h2>
+          <h2>SHOP</h2>
         </div>
+        <p class="section-subtitle">Exclusive merchandise featuring our signature designs and premium quality apparel</p>
         <div class="merch-grid">
           <div class="merch-item" style="--item-index: 0">
             <div class="merch-image">
               <img src="https://pixabay.com/get/g80add2037a91ed7881ed0e29532dfce0b9be1fd66147db9d7dc40d97ba8a1694c46b69c32e9350afec3c6a55f6cb694c72a9b6be85f9d97621d3bf4f3d0dafbc_1280.jpg" alt="Crimson Ink T-Shirt" loading="lazy">
             </div>
             <div class="merch-content">
-              <h3>Crimson Skull T-Shirt</h3>
-              <div class="merch-price">$29.99</div>
-              <p>Limited edition design featuring our signature skull and rose artwork</p>
+              <h3>Signature T-Shirt</h3>
+              <div class="merch-price">$39.99</div>
+              <p class="merch-description">Premium cotton t-shirt featuring our signature skull design</p>
               <div class="merch-actions">
-                <a href="#contact" class="btn btn-primary">Order Now</a>
+                <a href="#contact" class="btn btn-primary">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -189,11 +435,11 @@
               <img src="https://pixabay.com/get/g7af01a6a8fb5da17252b89c1e89b7be6bb1584d90a4e0acbcc4f0b8e1b62da2a9d841d0aa3dec0dd3c4e9e0d90b46ab30c8b0f46e8d1f2e63cc4dc76f4edf5f1_1280.jpg" alt="Crimson Ink Hoodie" loading="lazy">
             </div>
             <div class="merch-content">
-              <h3>Gothic Raven Hoodie</h3>
-              <div class="merch-price">$49.99</div>
-              <p>Premium black hoodie with embroidered raven and blood moon design</p>
+              <h3>Premium Hoodie</h3>
+              <div class="merch-price">$79.99</div>
+              <p class="merch-description">Heavyweight hoodie with embroidered logo and minimalist design</p>
               <div class="merch-actions">
-                <a href="#contact" class="btn btn-primary">Order Now</a>
+                <a href="#contact" class="btn btn-primary">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -203,11 +449,11 @@
               <img src="https://pixabay.com/get/gf6eed54eb1ff91c3747b1cc0cf6c59d99ff52ab5f62e87e03ab06f8a32e48a8e1b242ed08bba73b6f5a7f5b2bde0de36a4c0b38a8a31ff90b58faeb69429fd7a_1280.jpg" alt="Crimson Ink Cap" loading="lazy">
             </div>
             <div class="merch-content">
-              <h3>Crimson Logo Cap</h3>
-              <div class="merch-price">$24.99</div>
-              <p>Embroidered black cap with our signature Crimson Ink logo</p>
+              <h3>Studio Cap</h3>
+              <div class="merch-price">$32.99</div>
+              <p class="merch-description">Structured cap with embroidered Crimson Ink logo</p>
               <div class="merch-actions">
-                <a href="#contact" class="btn btn-primary">Order Now</a>
+                <a href="#contact" class="btn btn-primary">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -217,11 +463,11 @@
               <img src="https://pixabay.com/get/gceda27fc2ec6d4c7c1eb29b2e6f0ed8bc3e1a32b97ed16e6cc452a7d7a2fa7d2bcfe3ad4c35ace37f73e2301e24ba4ddb0c99bca7f1c0fa2c24ad63cad52a8bf_1280.jpg" alt="Crimson Ink Art Book" loading="lazy">
             </div>
             <div class="merch-content">
-              <h3>Artistry in Blood</h3>
-              <div class="merch-price">$39.99</div>
-              <p>Hardcover art book featuring Alex Crimson's most iconic tattoo designs</p>
+              <h3>Portfolio Book</h3>
+              <div class="merch-price">$59.99</div>
+              <p class="merch-description">Limited edition hardcover featuring our premium tattoo designs</p>
               <div class="merch-actions">
-                <a href="#contact" class="btn btn-primary">Order Now</a>
+                <a href="#contact" class="btn btn-primary">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -232,16 +478,15 @@
     <section id="testimonials" class="testimonials">
       <div class="container">
         <div class="section-title">
-          <h2 class="ink-text">Client Testimonials</h2>
+          <h2>CLIENT REVIEWS</h2>
         </div>
+        <p class="section-subtitle">Hear what our clients say about their Crimson Ink experience</p>
         <div class="testimonials-slider">
           <div class="testimonial-slide active">
             <div class="testimonial-content">
               <div class="testimonial-text">
-                <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" fill="#b30000"/>
-                </svg>
-                <p>Alex created a sleeve for me that perfectly captured my vision of darkness and beauty. The level of detail in the skull and clock design is mind-blowing, and the red accents make it truly unique. Worth every second of pain.</p>
+                <i class="fas fa-quote-left quote-icon"></i>
+                <p>I came to Crimson Ink for my first tattoo and was blown away by the professionalism and artistry. Alex took my concept and elevated it beyond what I could have imagined. The attention to detail and line work is impeccable. Worth every penny.</p>
                 <div class="testimonial-author">
                   <strong>Marcus T.</strong>
                   <div class="testimonial-stars">
@@ -254,10 +499,8 @@
           <div class="testimonial-slide">
             <div class="testimonial-content">
               <div class="testimonial-text">
-                <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" fill="#b30000"/>
-                </svg>
-                <p>I was nervous about getting my first tattoo, especially something with dark imagery, but Alex made the entire experience incredible. The gothic cathedral piece on my back exceeded all expectations, and the shadowing technique is phenomenal.</p>
+                <i class="fas fa-quote-left quote-icon"></i>
+                <p>After researching every studio in the city, I chose Crimson Ink for my sleeve and couldn't be happier. The studio is immaculate, the artists are incredible, and the final result exceeded all my expectations. Their attention to detail is unmatched.</p>
                 <div class="testimonial-author">
                   <strong>Jamie K.</strong>
                   <div class="testimonial-stars">
@@ -270,10 +513,8 @@
           <div class="testimonial-slide">
             <div class="testimonial-content">
               <div class="testimonial-text">
-                <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" fill="#b30000"/>
-                </svg>
-                <p>Alex transformed my faded, old tattoo into a breathtaking piece of dark art. The way the raven emerges from shadows with those blood-red eyes is pure genius. The studio atmosphere matches the gothic aesthetic perfectly, making the whole experience immersive.</p>
+                <i class="fas fa-quote-left quote-icon"></i>
+                <p>Crimson Ink transformed my outdated tattoo into a piece of art that I'm proud to display. Their cover-up work is nothing short of magical. The consultation process was thorough and the execution was flawless. I've already booked my next session.</p>
                 <div class="testimonial-author">
                   <strong>Dana M.</strong>
                   <div class="testimonial-stars">
@@ -285,9 +526,7 @@
           </div>
           <div class="testimonial-controls">
             <button class="prev-testimonial" aria-label="Previous testimonial">
-              <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" fill="#b30000"/>
-              </svg>
+              <i class="fas fa-chevron-left"></i>
             </button>
             <div class="testimonial-dots">
               <span class="dot active" data-slide="0"></span>
@@ -295,9 +534,7 @@
               <span class="dot" data-slide="2"></span>
             </div>
             <button class="next-testimonial" aria-label="Next testimonial">
-              <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" fill="#b30000"/>
-              </svg>
+              <i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
@@ -307,8 +544,9 @@
     <section id="contact" class="contact">
       <div class="container">
         <div class="section-title">
-          <h2 class="ink-text">Get In Touch</h2>
+          <h2>CONTACT & HOURS</h2>
         </div>
+        <p class="section-subtitle">Visit our shop or get in touch to book your appointment</p>
         <div class="contact-content">
           <div class="contact-form-container">
             <form id="contact-form" class="contact-form">
@@ -328,12 +566,12 @@
                 <div class="error-message"></div>
               </div>
               <div class="form-group">
-                <label for="tattoo-type">Inquiry Type</label>
-                <select id="tattoo-type" name="tattoo-type">
-                  <option value="">Select type</option>
-                  <option value="New Tattoo">New Tattoo</option>
+                <label for="service-type">Service Type</label>
+                <select id="service-type" name="service-type">
+                  <option value="">Select service</option>
+                  <option value="Tattoo">Tattoo</option>
                   <option value="Cover-up">Cover-up</option>
-                  <option value="Touch-up">Touch-up</option>
+                  <option value="Piercing">Piercing</option>
                   <option value="Merchandise">Merchandise</option>
                   <option value="Consultation">Consultation</option>
                 </select>
@@ -344,7 +582,7 @@
                 <div class="error-message"></div>
               </div>
               <div class="form-submit">
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-send">SEND MESSAGE</button>
               </div>
             </form>
           </div>
@@ -356,7 +594,7 @@
                 </div>
                 <div>
                   <h4>Location</h4>
-                  <p>666 Shadow Lane<br>Gothic District, GD 13666</p>
+                  <p>2980 Stonecrest Pass<br>Stonecrest, GA 30038<br>Floor 1</p>
                 </div>
               </div>
               <div class="contact-item">
@@ -365,7 +603,9 @@
                 </div>
                 <div>
                   <h4>Hours</h4>
-                  <p>Tuesday - Saturday<br>1:00 PM - 10:00 PM</p>
+                  <p>Monday - Saturday: 11AM-8PM<br>
+                     Sunday: 1PM-6PM<br>
+                     <small>(Hours may differ on holidays)</small></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -374,19 +614,54 @@
                 </div>
                 <div>
                   <h4>Phone</h4>
-                  <p>(555) 666-7777</p>
+                  <p>(770) 613-3051</p>
                 </div>
               </div>
               <div class="contact-item">
                 <div class="contact-icon">
-                  <i class="fas fa-envelope"></i>
+                  <i class="fas fa-globe"></i>
                 </div>
                 <div>
-                  <h4>Email</h4>
-                  <p>ink@crimsonink.com</p>
+                  <h4>Website</h4>
+                  <p>instagram.com</p>
                 </div>
               </div>
             </div>
+            
+            <div class="shop-features">
+              <h4>Shop Features</h4>
+              <div class="features-grid">
+                <div class="feature-item">
+                  <i class="fas fa-store"></i>
+                  <span>In-store shopping</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-concierge-bell"></i>
+                  <span>Onsite services</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-wheelchair"></i>
+                  <span>Wheelchair accessible</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-wifi"></i>
+                  <span>Free Wi-Fi</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-money-bill-wave"></i>
+                  <span>Cash accepted</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-credit-card"></i>
+                  <span>Credit cards accepted</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>NFC payments accepted</span>
+                </div>
+              </div>
+            </div>
+            
             <div class="social-links">
               <a href="#" class="social-link" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
@@ -394,43 +669,111 @@
               <a href="#" class="social-link" aria-label="Facebook">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="social-link" aria-label="TikTok">
-                <i class="fab fa-tiktok"></i>
+              <a href="#" class="social-link" aria-label="Call">
+                <i class="fas fa-phone"></i>
               </a>
-              <a href="#" class="social-link" aria-label="Pinterest">
-                <i class="fab fa-pinterest-p"></i>
+              <a href="#" class="social-link" aria-label="Directions">
+                <i class="fas fa-directions"></i>
               </a>
             </div>
           </div>
         </div>
         <div class="map-container">
-          <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6175968467977!2d-73.98784492439173!3d40.748438471388945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9aeb1c6b5%3A0x35b1cfbc7c6a5c0c!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1685016675958!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3317.2334922650835!2d-84.0975538!3d33.6906299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5a0549b2eccf1%3A0x1e25d9a5d6fbb3a8!2s2980%20Stonecrest%20Pass%2C%20Stonecrest%2C%20GA%2030038!5e0!3m2!1sen!2sus!4v1685016675958!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <svg class="logo-svg" viewBox="0 0 100 100" width="40" height="40">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#b30000" stroke-width="2" />
-            <path d="M30,30 L70,70 M30,70 L70,30" stroke="#b30000" stroke-width="4" />
-            <circle cx="50" cy="50" r="10" fill="#b30000" />
-          </svg>
-          <span class="logo-text">Crimson Ink</span>
+    <div class="footer-wave-top"></div>
+    
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-columns">
+            <div class="footer-column footer-brand">
+              <div class="footer-logo">
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#d50032" stroke-width="2" />
+                  <path d="M30,30 L70,70 M30,70 L70,30" stroke="#d50032" stroke-width="3" />
+                  <circle cx="50" cy="50" r="10" fill="#d50032" />
+                </svg>
+                <div class="footer-logo-text">
+                  <h3 class="logo-title">INK 102</h3>
+                  <p class="logo-tagline">Tattoos & Piercings</p>
+                </div>
+              </div>
+              <p class="footer-slogan">Quality artistry and exceptional service since 2015</p>
+              <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
+            </div>
+            
+            <div class="footer-column footer-links">
+              <h4>Quick Links</h4>
+              <ul class="footer-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#merchandise">Shop</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer-column footer-hours">
+              <h4>Hours</h4>
+              <div class="hours-grid">
+                <div class="day">Monday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Tuesday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Wednesday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Thursday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Friday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Saturday</div>
+                <div class="time">11AM - 8PM</div>
+                <div class="day">Sunday</div>
+                <div class="time">1PM - 6PM</div>
+              </div>
+            </div>
+            
+            <div class="footer-column footer-contact">
+              <h4>Contact Us</h4>
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>2980 Stonecrest Pass<br>Stonecrest, GA 30038</p>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <p>(770) 613-3051</p>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <p>info@ink102.com</p>
+                </div>
+                <a href="#contact" class="btn btn-outline-light">Get Directions</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer-nav">
-          <a href="#home">Home</a>
-          <a href="#artist">Artist</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#merchandise">Merch</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-info">
-          <p>&copy; <span id="current-year"></span> Crimson Ink Tattoos. All rights reserved. | Designed with blood and shadows</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; <span id="current-year"></span> Ink 102 Tattoos and Piercings. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -453,14 +796,16 @@
           <i class="fas fa-check-circle"></i>
         </div>
         <h3>Message Sent!</h3>
-        <p>Thank you for contacting Crimson Ink Tattoos. We'll get back to you shortly to discuss your tattoo journey or merchandise order.</p>
+        <p>Thank you for contacting Crimson Ink. We'll get back to you shortly to discuss your inquiry.</p>
         <button class="btn btn-primary close-success">Close</button>
       </div>
     </div>
   </div>
 
   <!-- JavaScript files -->
-  <script src="js/new-main.js"></script>
-  <script src="js/new-modal.js"></script>
+  <script src="js/luxury-main.js"></script>
+  <script src="js/luxury-modal.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/text-animation.js"></script>
 </body>
 </html>
