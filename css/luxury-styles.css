@@ -4,8 +4,8 @@
  */
  
 /* Import Component Styles */
-@import url('google-reviews.css');
-@import url('shop-info.css');
+@import url('/css/google-reviews.css');
+@import url('/css/shop-info.css');
 
 /* CSS Custom Properties */
 :root {
@@ -1188,12 +1188,13 @@ header.scrolled {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: var(--space-sm);
+  padding: var(--space-md);
   border: 1px solid var(--grey-300);
   border-radius: var(--border-radius-sm);
-  background-color: var(--grey-100);
+  background-color: white;
   color: var(--grey-900);
   transition: var(--transition-normal);
+  font-size: 16px;
 }
 
 .form-group input:focus,
@@ -1201,6 +1202,7 @@ header.scrolled {
 .form-group textarea:focus {
   border-color: var(--accent-red);
   box-shadow: 0 0 0 3px rgba(213, 0, 50, 0.1);
+  outline: none;
 }
 
 .error-message {
@@ -1213,6 +1215,27 @@ header.scrolled {
 .form-submit {
   text-align: center;
   margin-top: var(--space-lg);
+}
+
+.btn-send {
+  background-color: var(--accent-red);
+  color: white;
+  font-weight: 700;
+  padding: 15px 20px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-send:hover {
+  background-color: var(--accent-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .contact-info {
