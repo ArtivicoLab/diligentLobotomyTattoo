@@ -1,0 +1,85 @@
+/* Prevent horizontal scrolling - targeted fixes */
+
+/* Global fixes */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Meta viewport fix */
+@-ms-viewport {
+  width: device-width;
+}
+
+/* Section-specific fixes */
+section {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+/* Fix for map container that may cause overflow */
+.map-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  max-width: 100%;
+}
+
+/* Fix for business cards */
+.contact-grid {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .business-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Fix any image overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Fix for calculator */
+  .calculator-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  /* Fix any tables or wide elements */
+  table, div, section {
+    max-width: 100%;
+    width: auto !important;
+  }
+  
+  /* Gallery/showcase fixes */
+  .showcase-grid {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Fix for navigation and hero section */
+.hero-section {
+  overflow: hidden;
+}
+
+.showcase-grid {
+  overflow: visible;
+}
+
+/* Prevent flex items from causing overflow */
+.flex-container {
+  flex-wrap: wrap;
+}
