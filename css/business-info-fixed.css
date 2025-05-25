@@ -1,0 +1,176 @@
+/* Business Information Section - Matching the Screenshot */
+
+.contact-info {
+  padding: var(--space-xl) 0;
+}
+
+.info-title {
+  text-align: center;
+  color: var(--grey-900);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xl);
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.info-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-red);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.business-card {
+  background-color: #151515;
+  border-radius: 8px;
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.card-icon {
+  color: var(--accent-red);
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.card-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+}
+
+/* Location Card */
+.address-info {
+  margin-bottom: var(--space-lg);
+}
+
+.address-line {
+  color: var(--grey-300);
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.directions-btn .btn {
+  background-color: var(--accent-red);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.directions-btn .btn:hover {
+  background-color: #c0002d;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(213, 0, 50, 0.3);
+}
+
+/* Hours Card */
+.hours-grid {
+  width: 100%;
+  text-align: left;
+  margin-bottom: var(--space-md);
+}
+
+.day-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.day {
+  color: var(--grey-300);
+  font-weight: normal;
+}
+
+.time {
+  color: white;
+  font-weight: normal;
+}
+
+.time .highlight {
+  color: var(--accent-red);
+  font-weight: 600;
+}
+
+.hours-note {
+  color: var(--grey-500);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: var(--space-md);
+}
+
+/* Contact Card */
+.phone-number {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.email-info {
+  color: var(--grey-400);
+  margin-bottom: var(--space-lg);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background-color: var(--accent-red);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .business-card {
+    min-height: 380px;
+  }
+}
