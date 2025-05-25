@@ -243,6 +243,18 @@
   font-weight: 500;
 }
 
+/* Specific hours formatting */
+.hours-list .day::after {
+  content: " -";
+}
+
+.contact-text h4 {
+  margin-bottom: var(--space-sm);
+  color: var(--grey-900);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
 .hours-note {
   color: var(--grey-700);
   font-style: italic;
