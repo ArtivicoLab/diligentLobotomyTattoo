@@ -3,11 +3,8 @@
  * Interactive calculator to estimate tattoo prices based on size, complexity, and placement
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-  initializeCalculator();
-});
-
-function initializeCalculator() {
+// Execute when the page is fully loaded
+window.onload = function() {
   // Get all the calculator elements
   const sizeInput = document.getElementById('tattoo-size');
   const sizeSlider = document.getElementById('size-slider');
@@ -15,6 +12,11 @@ function initializeCalculator() {
   const result = document.getElementById('calculator-result');
   const priceDisplay = document.getElementById('price-display');
   const errorDisplay = document.getElementById('calc-error');
+  
+  if (!sizeInput || !sizeSlider || !calculateBtn || !result || !priceDisplay) {
+    console.error("Calculator elements not found in the DOM");
+    return;
+  }
   
   // Sync the input field and slider
   sizeInput.addEventListener('input', function() {
@@ -30,12 +32,6 @@ function initializeCalculator() {
   
   // Calculate price when button is clicked
   calculateBtn.addEventListener('click', calculatePrice);
-  
-  // Also calculate automatically when any input changes
-  const allInputs = document.querySelectorAll('#calculator input, #calculator select');
-  allInputs.forEach(input => {
-    input.addEventListener('change', calculatePrice);
-  });
   
   // Initialize with a default calculation
   calculatePrice();
