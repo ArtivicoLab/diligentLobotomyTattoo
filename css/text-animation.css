@@ -2,6 +2,43 @@
 .animated-text {
   position: relative;
   display: inline-block;
+  animation: shake 1s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  5%, 15%, 25% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  10%, 20%, 30% {
+    transform: translateX(4px) rotate(1deg);
+  }
+  35% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(4px) rotate(1deg);
+  }
+  45% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(4px) rotate(1deg);
+  }
+  55% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  60% {
+    transform: translateX(4px) rotate(1deg);
+  }
+  65%, 75%, 85% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  70%, 80%, 90% {
+    transform: translateX(4px) rotate(1deg);
+  }
 }
 
 .animated-text span {
