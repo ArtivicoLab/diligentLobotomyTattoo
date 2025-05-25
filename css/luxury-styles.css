@@ -3,8 +3,9 @@
  * Premium, Nike-store inspired design for tattoo artist landing page
  */
  
-/* Import Google Reviews Component Styles */
+/* Import Component Styles */
 @import url('google-reviews.css');
+@import url('shop-info.css');
 
 /* CSS Custom Properties */
 :root {
