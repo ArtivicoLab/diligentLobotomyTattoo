@@ -86,13 +86,12 @@
 
 .hero-title .accent {
     display: block;
-    font-size: clamp(0.7em, 12vw, 1.2em);
+    font-size: 75%;
     margin: var(--space-sm) 0;
     color: var(--accent-gold);
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     white-space: nowrap;
     letter-spacing: clamp(0.02em, 2vw, 0.15em);
-    overflow: hidden;
 }
 
 .hero-tagline {
@@ -1054,4 +1053,204 @@
     .gallery-grid {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+
+/* New About Section Styles */
+.about {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1a1a 100%) !important;
+  color: var(--primary-light);
+}
+
+.about .section-title h2 {
+  color: var(--primary-light);
+}
+
+.about .section-subtitle {
+  color: var(--grey-300);
+}
+
+.about-content {
+  text-align: center;
+}
+
+.about-hero {
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+
+.about-hero-image {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  height: 400px;
+  margin-bottom: var(--space-lg);
+}
+
+.about-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-hero-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(212, 175, 55, 0.3), rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+
+.about-intro {
+  background: rgba(255, 255, 255, 0.05);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  margin-bottom: var(--space-xl);
+}
+
+.about-intro h3 {
+  font-family: var(--font-accent);
+  font-size: 1.8rem;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+}
+
+.about-intro p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--grey-300);
+  margin-bottom: var(--space-md);
+}
+
+.about-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  display: block;
+  font-family: var(--font-primary);
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--grey-300);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.value-item:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateX(10px);
+}
+
+.value-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--accent-gold), #f4d03f);
+  border-radius: 50%;
+  color: var(--primary-dark);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.value-content h4 {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-xs);
+  color: var(--primary-light);
+  font-weight: 600;
+}
+
+.value-content p {
+  font-size: 1rem;
+  color: var(--grey-300);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Responsive updates for new about section */
+@media (min-width: 768px) {
+  .about-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .about-values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .about-hero-image {
+    height: 300px;
+  }
+  
+  .about-intro {
+    padding: var(--space-md);
+  }
+  
+  .about-intro h3 {
+    font-size: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
 }
