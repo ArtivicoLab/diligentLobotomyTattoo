@@ -1135,7 +1135,7 @@
 
 .about-stats {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-lg);
   margin: var(--space-xl) 0;
 }
@@ -1175,7 +1175,7 @@
 
 .about-values {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
