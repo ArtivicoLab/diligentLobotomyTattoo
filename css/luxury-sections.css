@@ -9,6 +9,29 @@
     box-sizing: border-box;
 }
 
+/* Global Container for consistent content width and padding */
+/* IMPORTANT: Ensure your HTML wraps section content with <div class="container"> */
+.container {
+    max-width: 1200px; /* Adjust as needed for your design */
+    margin: 0 auto; /* Center the container */
+    padding: 0 var(--space-lg); /* Default horizontal padding */
+    width: 100%; /* Ensures it takes full width up to max-width */
+    min-width: 0; /* Allows content to shrink */
+}
+
+/* Adjust container padding for smaller screens */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+@media (max-width: 575px) {
+    .container {
+        padding: 0 var(--space-sm); /* Even tighter for very small screens */
+    }
+}
+
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -19,7 +42,7 @@
     color: var(--primary-light);
     background-color: var(--primary-dark);
     overflow: hidden;
-    padding: 0;
+    padding: 0; /* Horizontal padding handled by .container */
 }
 
 .hero-slider {
@@ -72,9 +95,10 @@
     max-width: 900px;
     margin: 0 auto;
     text-align: center;
-    padding: 0 var(--space-lg);
-    width: 100%; /* Ensure content adapts to padding */
-    min-width: 0; /* Allow content to shrink */
+    /* Padding handled by the global .container now, or if this is the only section without it, keep its padding */
+    padding: 0; /* Assuming .container will wrap this or its parent */
+    width: 100%;
+    min-width: 0;
 }
 
 .hero-title {
@@ -82,6 +106,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     line-height: 1.1;
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* Fluid font size */
 }
 
 .hero-title .accent {
@@ -104,7 +129,7 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    word-wrap: break-word; /* Ensure tagline can wrap */
+    word-wrap: break-word;
 }
 
 .hero-cta {
@@ -113,7 +138,8 @@
     align-items: center;
     gap: var(--space-md);
     margin-top: var(--space-lg);
-    width: 100%; /* Ensure CTA container takes full width */
+    width: 100%;
+    min-width: 0;
 }
 
 .hero-contact-info {
@@ -127,8 +153,8 @@
     backdrop-filter: blur(5px);
     margin: var(--space-md) 0;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    width: 100%; /* Ensure contact info box takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .hero-contact-item {
@@ -136,15 +162,15 @@
     align-items: center;
     gap: var(--space-sm);
     color: var(--primary-light);
-    width: 100%; /* Ensure each item takes full width */
-    min-width: 0; /* Allow item to shrink */
-    justify-content: center; /* Center content within item */
-    text-align: center; /* Ensure text aligns */
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero-contact-item i {
     color: var(--accent-gold);
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
 }
 
 .hero-controls {
@@ -172,15 +198,6 @@
     transform: scale(1.2);
 }
 
-/* About Section */
-.about {
-    position: relative;
-    background-color: var(--grey-100);
-    overflow: hidden;
-    padding: var(--space-xxl) 0;
-}
-
-.about::before {
     content: '';
     position: absolute;
     top: 0;
@@ -192,123 +209,194 @@
     pointer-events: none;
 }
 
-.about-content {
+    color: var(--primary-light);
+}
+
+    color: var(--grey-300);
+}
+
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    width: 100%; /* Ensure about content takes full width */
-    min-width: 0; /* Allow it to shrink */
+    grid-template-columns: 1fr; /* Default: stack content vertically */
+    gap: var(--space-lg); /* Reduced from --space-xl */
+    text-align: center; /* Centers text within this container */
+    width: 100%;
+    min-width: 0;
 }
 
-.about-text h2 {
-    text-align: left;
-    margin-bottom: var(--space-lg);
-    word-wrap: break-word; /* Ensure title can wrap */
+    position: relative;
+    margin-bottom: var(--space-lg); /* Reduced from --space-xl */
 }
 
-.about-text h2::after {
-    left: 0;
-    transform: none;
-}
-
-.about-text p {
-    margin-bottom: var(--space-md);
-    color: var(--grey-700);
-    word-wrap: break-word; /* Ensure paragraphs can wrap */
-}
-
-.about-image {
     position: relative;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    aspect-ratio: 4/3;
-    width: 100%; /* Ensure image container adapts */
-    min-width: 0; /* Allow image container to shrink */
+    /* Replaced fixed height with aspect-ratio for better responsiveness */
+    aspect-ratio: 16/9; /* Common aspect ratio for images */
+    width: 100%;
+    margin-bottom: var(--space-lg);
 }
 
-.about-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
-.about-image::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom right, rgba(212, 175, 55, 0.2), transparent);
+    background: linear-gradient(45deg, rgba(212, 175, 55, 0.3), rgba(0, 0, 0, 0.4));
     pointer-events: none;
 }
 
-.about-features {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    margin-bottom: var(--space-lg); /* Reduced from --space-xl */
+    width: 100%; /* Ensure it takes full width of its grid cell */
+    min-width: 0; /* Allow content to shrink */
+}
+
+    font-family: var(--font-accent);
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: var(--space-md);
+    font-style: italic;
+    word-wrap: break-word; /* Ensure text wraps */
+    min-width: 0; /* Allow text to shrink */
+}
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--grey-300);
+    margin-bottom: var(--space-md);
+    word-wrap: break-word; /* Ensure text wraps */
+    min-width: 0; /* Allow text to shrink */
+}
+
+    margin-bottom: 0;
+}
+
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    /* Using auto-fit with minmax for flexible column count across all sizes */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted min width */
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0; /* Reduced from --space-xl */
+    width: 100%;
+    min-width: 0;
+}
+
+    text-align: center;
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s ease;
+    width: 100%; /* Ensure item takes full width of its grid cell */
+    min-width: 0; /* Allow content to shrink */
+}
+
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    display: block;
+    font-family: var(--font-primary);
+    margin-bottom: var(--space-xs);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+    font-size: 1rem;
+    color: var(--grey-300);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    word-wrap: break-word; /* Ensure text wraps */
+    min-width: 0; /* Allow text to shrink */
+}
+
+    display: grid;
+    /* Using auto-fit with minmax for flexible column count across all sizes */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min width */
     gap: var(--space-md);
-    margin-top: var(--space-lg);
-    width: 100%; /* Ensure features grid takes full width */
-    min-width: 0; /* Allow grid to shrink */
+    margin-top: var(--space-lg); /* Reduced from --space-xl */
+    width: 100%;
+    min-width: 0;
 }
 
-.feature-item {
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-sm);
-    width: 100%; /* Ensure each feature item takes full width */
-    min-width: 0; /* Allow item to shrink */
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%; /* Ensure item takes full width of its grid cell */
+    min-width: 0; /* Allow content to shrink */
 }
 
-.feature-icon {
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateX(10px);
+}
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: var(--accent-gold-light);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent-gold), #f4d03f);
     border-radius: 50%;
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
-.feature-text {
-    flex-grow: 1; /* Allow text to take remaining space */
-    min-width: 0; /* Crucial: allow text content to shrink */
-}
-
-.feature-text h4 {
     font-family: var(--font-primary);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: var(--space-xs);
-    color: var(--grey-900);
-    word-wrap: break-word; /* Ensure title can wrap */
+    color: var(--primary-light);
+    font-weight: 600;
+    word-wrap: break-word; /* Ensure text wraps */
+    min-width: 0; /* Allow text to shrink */
 }
 
-.feature-text p {
-    font-size: 0.9rem;
-    color: var(--grey-700);
+    font-size: 1rem;
+    color: var(--grey-300);
     margin-bottom: 0;
-    word-wrap: break-word; /* Ensure paragraph can wrap */
+    line-height: 1.6;
+    word-wrap: break-word; /* Ensure text wraps */
+    min-width: 0; /* Allow text to shrink */
 }
+
 
 /* Featured Work Section */
 .featured-work {
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xl) 0; /* Reduced from --space-xxl */
     background-color: var(--primary-light);
 }
 
 .featured-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    grid-template-columns: 1fr; /* Default: stack content vertically */
+    gap: var(--space-lg); /* Reduced from --space-xl */
     align-items: center;
-    width: 100%; /* Ensure container takes full width */
-    min-width: 0; /* Allow container to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .featured-image {
@@ -316,13 +404,15 @@
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    width: 100%; /* Ensure image container adapts */
-    min-width: 0; /* Allow image container to shrink */
+    aspect-ratio: 4/3; /* Maintain aspect ratio */
+    width: 100%;
+    min-width: 0;
 }
 
 .featured-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
 }
@@ -332,8 +422,8 @@
 }
 
 .featured-content {
-    width: 100%; /* Ensure content block adapts */
-    min-width: 0; /* Allow content block to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .featured-content h2 {
@@ -356,7 +446,7 @@
 .services {
     background-color: var(--primary-dark);
     color: var(--primary-light);
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xl) 0; /* Reduced from --space-xxl */
     position: relative;
     overflow: hidden;
 }
@@ -385,10 +475,10 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* Default: single column */
     gap: var(--space-lg);
-    width: 100%; /* Ensure grid takes full width */
-    min-width: 0; /* Allows grid to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .service-card {
@@ -399,9 +489,8 @@
     border: 1px solid rgba(212, 175, 55, 0.1);
     display: flex;
     flex-direction: column;
-    width: 100%; /* CRUCIAL: Ensure card takes 100% of its grid cell */
-    min-width: 0; /* CRUCIAL: Allow card to shrink below content size */
-    /* REMOVED: max-width: 450px; for smaller screens */
+    width: 100%;
+    min-width: 0;
 }
 
 .service-card:hover {
@@ -414,8 +503,8 @@
     padding: var(--space-md);
     text-align: center;
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    width: 100%; /* Ensure header takes full width */
-    min-width: 0; /* Allow header to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .service-icon {
@@ -429,7 +518,7 @@
     border-radius: 50%;
     font-size: 1.5rem;
     color: var(--accent-gold);
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
 }
 
 .service-title {
@@ -438,8 +527,8 @@
     margin-bottom: 0;
     color: var(--primary-light);
     font-weight: 600;
-    word-wrap: break-word; /* Ensure title can wrap */
-    min-width: 0; /* Allow title to shrink */
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .service-content {
@@ -447,16 +536,16 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    width: 100%; /* Ensure content takes full width */
-    min-width: 0; /* Allow content to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .service-description {
     color: var(--grey-300);
     margin-bottom: var(--space-md);
     font-size: 0.95rem;
-    word-wrap: break-word; /* Ensure description can wrap */
-    min-width: 0; /* Allow text to shrink */
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .service-pricing {
@@ -464,8 +553,8 @@
     border-radius: var(--border-radius-md);
     padding: var(--space-sm);
     margin-bottom: var(--space-md);
-    width: 100%; /* Ensure pricing section takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .pricing-row {
@@ -474,8 +563,8 @@
     padding: var(--space-xs) 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
-    width: 100%; /* Ensure row takes full width */
-    min-width: 0; /* Allows row to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .pricing-row:last-child {
@@ -484,32 +573,32 @@
 
 .service-name {
     color: var(--grey-300);
-    word-wrap: break-word; /* Ensure name can wrap */
-    min-width: 0; /* Allow text to shrink */
-    flex-basis: 70%; /* Give more space to name */
+    word-wrap: break-word;
+    min-width: 0;
+    flex-basis: 70%;
     flex-shrink: 1;
 }
 
 .service-price {
     color: var(--accent-gold);
     font-weight: 500;
-    word-wrap: break-word; /* Ensure price can wrap */
-    min-width: 0; /* Allow text to shrink */
-    flex-basis: 30%; /* Less space for price */
+    word-wrap: break-word;
+    min-width: 0;
+    flex-basis: 30%;
     flex-shrink: 1;
-    text-align: right; /* Align price to the right */
+    text-align: right;
 }
 
 .service-footer {
     margin-top: auto;
     padding-top: var(--space-sm);
-    width: 100%; /* Ensure footer takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 /* Gallery Section */
 .gallery {
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xl) 0; /* Reduced from --space-xxl */
     background-color: var(--grey-100);
 }
 
@@ -519,8 +608,8 @@
     gap: var(--space-sm);
     margin-bottom: var(--space-lg);
     flex-wrap: wrap;
-    width: 100%; /* Ensure filter container takes full width */
-    min-width: 0; /* Allows it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .filter-btn {
@@ -532,10 +621,10 @@
     font-size: 0.9rem;
     transition: all 0.3s ease;
     font-weight: 500;
-    flex-shrink: 1; /* Allow button to shrink */
-    min-width: 0; /* Allows button content to shrink */
-    word-wrap: break-word; /* Allow button text to wrap */
-    white-space: normal; /* Override no-wrap if present */
+    flex-shrink: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .filter-btn.active, .filter-btn:hover {
@@ -546,10 +635,10 @@
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* Default: single column */
     gap: var(--space-md);
-    width: 100%; /* Ensure grid takes full width */
-    min-width: 0; /* Allows grid to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .gallery-item {
@@ -558,8 +647,8 @@
     overflow: hidden;
     aspect-ratio: 1/1;
     cursor: pointer;
-    width: 100%; /* Ensure item takes full width */
-    min-width: 0; /* Allows item to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .gallery-image {
@@ -610,7 +699,7 @@
 
 /* Testimonials Section */
 .testimonials {
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xl) 0; /* Reduced from --space-xxl */
     background-color: var(--primary-light);
     position: relative;
     overflow: hidden;
@@ -633,16 +722,16 @@
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
-    width: 100%; /* Ensure slider takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .testimonial-slide {
     display: none;
     padding: var(--space-lg);
     text-align: center;
-    width: 100%; /* Ensure slide takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .testimonial-slide.active {
@@ -668,8 +757,8 @@
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
     margin-bottom: var(--space-lg);
-    width: 100%; /* Ensure content takes full width */
-    min-width: 0; /* Allows content to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .testimonial-content::before {
@@ -690,28 +779,28 @@
     font-size: 1.1rem;
     margin-bottom: 0;
     color: var(--grey-700);
-    word-wrap: break-word; /* Ensure text can wrap */
-    min-width: 0; /* Allows text to shrink */
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .testimonial-author {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Ensure author takes full width */
+    width: 100%;
 }
 
 .author-name {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: var(--space-xs);
-    word-wrap: break-word; /* Ensure name can wrap */
+    word-wrap: break-word;
 }
 
 .author-info {
     font-size: 0.9rem;
     color: var(--grey-700);
-    word-wrap: break-word; /* Ensure info can wrap */
+    word-wrap: break-word;
 }
 
 .testimonial-controls {
@@ -719,7 +808,7 @@
     justify-content: center;
     gap: var(--space-md);
     margin-top: var(--space-lg);
-    width: 100%; /* Ensure controls take full width */
+    width: 100%;
 }
 
 .testimonial-btn {
@@ -733,7 +822,7 @@
     justify-content: center;
     color: var(--grey-700);
     transition: all 0.3s ease;
-    flex-shrink: 0; /* Prevent buttons from shrinking */
+    flex-shrink: 0;
 }
 
 .testimonial-btn:hover {
@@ -744,7 +833,7 @@
 
 /* Contact Section */
 .contact {
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xl) 0; /* Reduced from --space-xxl */
     background-color: var(--primary-dark);
     color: var(--primary-light);
     position: relative;
@@ -755,10 +844,10 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    width: 100%; /* Ensure container takes full width */
-    min-width: 0; /* Allow it to shrink */
+    grid-template-columns: 1fr; /* Default: stack content vertically */
+    gap: var(--space-lg); /* Reduced from --space-xl */
+    width: 100%;
+    min-width: 0;
 }
 
 .contact .section-title h2 {
@@ -773,8 +862,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
-    width: 100%; /* Ensure info container takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .contact-card {
@@ -786,8 +875,8 @@
     gap: var(--space-md);
     border: 1px solid rgba(212, 175, 55, 0.1);
     transition: all 0.3s ease;
-    width: 100%; /* Ensure card takes full width */
-    min-width: 0; /* Allow card to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .contact-card:hover {
@@ -810,8 +899,8 @@
 }
 
 .contact-card-content {
-    flex-grow: 1; /* Allow content to take remaining space */
-    min-width: 0; /* CRUCIAL: Allow content to shrink */
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .contact-card-content h3 {
@@ -819,24 +908,24 @@
     font-size: 1.3rem;
     margin-bottom: var(--space-xs);
     color: var(--primary-light);
-    word-wrap: break-word; /* Ensure title can wrap */
+    word-wrap: break-word;
 }
 
 .contact-card-content p {
     font-size: 1rem;
     color: var(--grey-300);
     margin-bottom: 0;
-    word-wrap: break-word; /* Ensure paragraph can wrap */
+    word-wrap: break-word;
 }
 
 .contact-map {
     position: relative;
-    height: 300px;
+    height: 300px; /* Kept fixed height here as maps often have specific height needs */
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    width: 100%; /* Ensure map takes full width */
-    min-width: 0; /* Allow map to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .contact-map iframe {
@@ -850,8 +939,8 @@
     border-radius: var(--border-radius-md);
     padding: var(--space-lg);
     border: 1px solid rgba(212, 175, 55, 0.1);
-    width: 100%; /* Ensure hours takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .hours-title {
@@ -862,7 +951,7 @@
     position: relative;
     display: inline-block;
     padding-bottom: var(--space-xs);
-    word-wrap: break-word; /* Ensure title can wrap */
+    word-wrap: break-word;
 }
 
 .hours-title::after {
@@ -879,8 +968,8 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xs);
-    width: 100%; /* Ensure list takes full width */
-    min-width: 0; /* Allow it to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .hours-item {
@@ -888,8 +977,8 @@
     justify-content: space-between;
     padding: var(--space-xs) 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%; /* Ensure item takes full width */
-    min-width: 0; /* Allows item to shrink */
+    width: 100%;
+    min-width: 0;
 }
 
 .hours-item:last-child {
@@ -898,15 +987,15 @@
 
 .day {
     color: var(--grey-300);
-    word-wrap: break-word; /* Ensure day can wrap */
-    min-width: 0; /* Allows text to shrink */
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .time {
     color: var(--primary-light);
     font-weight: 500;
-    word-wrap: break-word; /* Ensure time can wrap */
-    min-width: 0; /* Allows text to shrink */
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 /* Responsive styles */
@@ -914,8 +1003,9 @@
 /* For very small screens, e.g., 320px up to 575px */
 @media (max-width: 575px) {
     /* Adjust general section padding for very small screens */
-    .services, .contact, .about, .featured-work, .testimonials, .gallery {
-        padding: var(--space-xl) var(--space-sm); /* Reduced horizontal padding */
+        padding-top: var(--space-lg); /* Reduced from --space-xl */
+        padding-bottom: var(--space-lg); /* Reduced from --space-xl */
+        /* Horizontal padding is now handled by the .container class */
     }
 
     /* Specific adjustments for service cards */
@@ -949,14 +1039,6 @@
         font-size: 0.85rem; /* Smaller contact card text */
     }
 
-    /* Remove the problematic max-width for service-card from the broader 767px media query */
-    /* This rule will override it for very small screens */
-    .service-card {
-        max-width: none; /* Crucial: ensure no fixed max-width is applied here */
-        margin: 0 auto; /* Still center if possible */
-    }
-
-    /* Other small screen adjustments */
     .testimonial-content {
         padding: var(--space-md);
     }
@@ -972,11 +1054,21 @@
     .contact-map {
         height: 200px; /* Make map slightly shorter on very small screens */
     }
+
+    /* About Section specific adjustments for very small screens */
+        aspect-ratio: 4/3; /* Adjust aspect ratio for mobile */
+        /* Removed fixed height: 300px; */
+    }
+        padding: var(--space-md);
+    }
+        font-size: 1.5rem;
+    }
+        font-size: 2.5rem;
+    }
 }
 
 /* Small devices (tablets and larger phones, 576px and up) */
 @media (min-width: 576px) {
-    .about-features {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1017,12 +1109,6 @@
     .contact-card-content p {
         font-size: 1rem;
     }
-
-    /* Ensure .service-card does NOT have max-width here either unless specifically desired for larger mobiles */
-    /* If you want a max-width, it should be applied in a breakpoint that makes sense, e.g., 768px+ */
-    .service-card {
-        max-width: none; /* Ensure no residual max-width */
-    }
 }
 
 /* Medium devices (desktops and large tablets, 768px and up) */
@@ -1042,6 +1128,12 @@
     .contact-container {
         grid-template-columns: 1fr 1fr;
     }
+
+    /* About Section specific adjustments for medium screens */
+        grid-template-columns: repeat(4, 1fr); /* Explicit 4 columns for wider screens */
+    }
+        grid-template-columns: repeat(2, 1fr); /* Explicit 2 columns for wider screens */
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1053,204 +1145,4 @@
     .gallery-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-}
-
-/* New About Section Styles */
-.about {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1a1a 100%) !important;
-  color: var(--primary-light);
-}
-
-.about .section-title h2 {
-  color: var(--primary-light);
-}
-
-.about .section-subtitle {
-  color: var(--grey-300);
-}
-
-.about-content {
-  text-align: center;
-}
-
-.about-hero {
-  position: relative;
-  margin-bottom: var(--space-xl);
-}
-
-.about-hero-image {
-  position: relative;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  height: 400px;
-  margin-bottom: var(--space-lg);
-}
-
-.about-hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.about-hero-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(212, 175, 55, 0.3), rgba(0, 0, 0, 0.4));
-  pointer-events: none;
-}
-
-.about-intro {
-  background: rgba(255, 255, 255, 0.05);
-  padding: var(--space-lg);
-  border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  backdrop-filter: blur(10px);
-  margin-bottom: var(--space-xl);
-}
-
-.about-intro h3 {
-  font-family: var(--font-accent);
-  font-size: 1.8rem;
-  color: var(--accent-gold);
-  margin-bottom: var(--space-md);
-  font-style: italic;
-}
-
-.about-intro p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--grey-300);
-  margin-bottom: var(--space-md);
-}
-
-.about-intro p:last-child {
-  margin-bottom: 0;
-}
-
-.about-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-lg);
-  margin: var(--space-xl) 0;
-}
-
-.stat-item {
-  text-align: center;
-  padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(212, 175, 55, 0.1);
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.stat-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--accent-gold);
-  display: block;
-  font-family: var(--font-primary);
-  margin-bottom: var(--space-xs);
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.stat-label {
-  font-size: 1rem;
-  color: var(--grey-300);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-.about-values {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
-}
-
-.value-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(212, 175, 55, 0.1);
-  transition: all 0.3s ease;
-  text-align: left;
-}
-
-.value-item:hover {
-  border-color: rgba(212, 175, 55, 0.3);
-  transform: translateX(10px);
-}
-
-.value-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--accent-gold), #f4d03f);
-  border-radius: 50%;
-  color: var(--primary-dark);
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-}
-
-.value-content h4 {
-  font-family: var(--font-primary);
-  font-size: 1.3rem;
-  margin-bottom: var(--space-xs);
-  color: var(--primary-light);
-  font-weight: 600;
-}
-
-.value-content p {
-  font-size: 1rem;
-  color: var(--grey-300);
-  margin-bottom: 0;
-  line-height: 1.6;
-}
-
-/* Responsive updates for new about section */
-@media (min-width: 768px) {
-  .about-stats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .about-values {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .about-hero-image {
-    height: 300px;
-  }
-  
-  .about-intro {
-    padding: var(--space-md);
-  }
-  
-  .about-intro h3 {
-    font-size: 1.5rem;
-  }
-  
-  .stat-number {
-    font-size: 2.5rem;
-  }
 }
