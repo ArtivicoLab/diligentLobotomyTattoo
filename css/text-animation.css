@@ -1,0 +1,116 @@
+/* Text Animation Styles */
+
+/* Phone Shake Animation */
+.phone-shake {
+  animation: phone-shake 1.5s ease infinite;
+  display: inline-block;
+  transform-origin: 50% 50%;
+}
+
+@keyframes phone-shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(-10deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  15% {
+    transform: rotate(-10deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.animated-text {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-text span {
+  position: relative;
+  display: inline-block;
+}
+
+.letter-glow {
+  position: relative;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(213, 0, 50, 0.3);
+  animation: letter-pulse 4s infinite;
+}
+
+.letter-glow::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  animation: border-glow 4s infinite;
+}
+
+@keyframes letter-pulse {
+  0%, 100% {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(213, 0, 50, 0.3);
+  }
+  50% {
+    color: var(--accent-red);
+    text-shadow: 0 0 20px rgba(213, 0, 50, 0.7),
+                 0 0 30px rgba(213, 0, 50, 0.5),
+                 0 0 40px rgba(213, 0, 50, 0.3);
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+  50% {
+    border-color: var(--accent-red);
+    box-shadow: 0 0 10px rgba(213, 0, 50, 0.7);
+  }
+}
+
+.light-trace {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(213, 0, 50, 0.8) 0%, rgba(213, 0, 50, 0) 70%);
+  filter: blur(2px);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+  box-shadow: 0 0 10px 2px rgba(213, 0, 50, 0.4);
+}
+
+.accent-letter {
+  position: relative;
+  display: inline-block;
+}
+
+.letter-highlight {
+  animation: highlight-letter 8s infinite linear;
+}
+
+@keyframes highlight-letter {
+  0%, 100% {
+    color: var(--accent-red);
+    text-shadow: 0 0 10px rgba(213, 0, 50, 0.3);
+  }
+  50% {
+    color: #fff;
+    text-shadow: 0 0 20px rgba(213, 0, 50, 0.7),
+                 0 0 30px rgba(213, 0, 50, 0.5),
+                 0 0 40px rgba(213, 0, 50, 0.3);
+  }
+}
