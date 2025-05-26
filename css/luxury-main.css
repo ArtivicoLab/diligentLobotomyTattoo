@@ -628,13 +628,23 @@ header.scrolled {
 }
 
 /* Responsive Media Queries */
+
+@media (min-width: 320px) {
+  .hero-title .accent {
+    font-size: 0.9em;
+  }
+  .hero-title {
+    letter-spacing: NORMAL;
+  }
+}
+
 @media (min-width: 576px) {
   .footer-links {
     flex-wrap: nowrap;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .nav-links {
     position: static;
     height: auto;
