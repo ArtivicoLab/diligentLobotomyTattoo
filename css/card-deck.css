@@ -211,8 +211,9 @@
   }
   
   .deck-control {
-    padding: 12px 18px;
-    font-size: 0.9rem;
+    padding: 16px 24px;
+    font-size: 1rem;
+    min-height: 48px;
   }
   
   .card-deck {
@@ -252,8 +253,9 @@
   }
   
   .deck-control {
-    padding: 10px 16px;
-    font-size: 0.85rem;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    min-height: 44px;
   }
   
   .deck-control span {
