@@ -186,11 +186,28 @@ document.addEventListener('DOMContentLoaded', function() {
       card.addEventListener('click', nextCard);
     });
     
-    // Add hover/touch pause functionality
-    cardDeck.addEventListener('mouseenter', pauseAutoReveal);
-    cardDeck.addEventListener('mouseleave', resumeAutoReveal);
-    cardDeck.addEventListener('touchstart', pauseAutoReveal);
-    cardDeck.addEventListener('touchend', resumeAutoReveal);
+    // Add hover/touch pause functionality with debouncing
+    let hoverTimeout;
+    
+    cardDeck.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimeout);
+      pauseAutoReveal();
+    });
+    
+    cardDeck.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimeout);
+      hoverTimeout = setTimeout(resumeAutoReveal, 200);
+    });
+    
+    cardDeck.addEventListener('touchstart', () => {
+      clearTimeout(hoverTimeout);
+      pauseAutoReveal();
+    });
+    
+    cardDeck.addEventListener('touchend', () => {
+      clearTimeout(hoverTimeout);
+      hoverTimeout = setTimeout(resumeAutoReveal, 200);
+    });
     
     currentCardIndex = 0;
     updateCounter();
@@ -264,9 +281,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Pause auto reveal on hover/touch
   function pauseAutoReveal() {
-    if (isAutoRevealing && !isPaused && !isAnimating) {
+    if (isAutoRevealing && !isPaused) {
       isPaused = true;
       clearInterval(autoRevealInterval);
+      autoRevealInterval = null;
       
       // Visual feedback - dim the auto reveal button
       autoRevealBtn.style.opacity = '0.6';
@@ -276,24 +294,19 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Resume auto reveal when hover/touch ends
   function resumeAutoReveal() {
-    if (isAutoRevealing && isPaused) {
-      // Add a small delay to prevent immediate triggering
-      setTimeout(() => {
-        if (isAutoRevealing && isPaused && !isAnimating) {
-          isPaused = false;
-          
-          // Restart the interval
-          autoRevealInterval = setInterval(() => {
-            if (!isPaused && !isAnimating) {
-              nextCard();
-            }
-          }, 2000);
-          
-          // Restore button appearance
-          autoRevealBtn.style.opacity = '1';
-          autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
+    if (isAutoRevealing && isPaused && !autoRevealInterval) {
+      isPaused = false;
+      
+      // Restart the interval only if we don't already have one
+      autoRevealInterval = setInterval(() => {
+        if (!isPaused && !isAnimating && isAutoRevealing) {
+          nextCard();
         }
-      }, 100); // Small delay to prevent glitches
+      }, 2000);
+      
+      // Restore button appearance
+      autoRevealBtn.style.opacity = '1';
+      autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
     }
   }
   
