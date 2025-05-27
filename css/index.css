@@ -56,6 +56,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -67,6 +69,8 @@ body {
   padding-top: calc(var(--header-height) + 40px); /* For fixed header and demo banner */
   overflow-x: hidden;
   font-weight: 300;
+  width: 100%;
+  max-width: 100vw;
 }
 
 img {
@@ -2177,5 +2181,52 @@ header.scrolled {
     width: 20px;
     height: 20px;
     font-size: 0.7rem;
+  }
+}
+
+/* Mobile Horizontal Scroll Fix */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent specific elements from causing overflow */
+.hero-content h1,
+.hero-content p,
+.section-title h2,
+.error-code {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Mobile-specific container constraints */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: calc(100vw - 30px);
+  }
+  
+  /* Ensure no element exceeds viewport width */
+  .hero-content,
+  .card-gallery,
+  .gallery-grid,
+  .calculator-container,
+  .business-status-banner {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Fix wide text elements */
+  .hero-content h1 {
+    font-size: 2.5rem;
+    max-width: 100%;
+  }
+  
+  .status-content {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
