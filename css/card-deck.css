@@ -1,0 +1,293 @@
+/* 
+ * Gaming-Style Card Deck Gallery
+ * Interactive deck system with smooth animations and hover controls
+ */
+
+.card-gallery {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f5;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-gallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-gallery .section-title h2 {
+  color: #f5f5f5;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.card-gallery .section-subtitle {
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 48px;
+  font-size: 1.1rem;
+}
+
+/* Gallery Controls */
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.deck-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  white-space: nowrap;
+}
+
+.deck-control:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #f4d03f, #d4af37);
+}
+
+.deck-control:active {
+  transform: translateY(0);
+}
+
+.deck-control i {
+  font-size: 0.8rem;
+}
+
+/* Card Deck Container */
+.card-deck-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.card-deck {
+  position: relative;
+  height: 400px;
+  margin: 0 auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* Individual Cards */
+.deck-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 400px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 2px solid #d4af37;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Card States */
+.deck-card.top-card {
+  z-index: 10;
+  transform: translateX(-50%) translateY(0) rotateY(0deg) scale(1);
+}
+
+.deck-card.in-deck {
+  z-index: 1;
+  transform: translateX(-50%) translateY(10px) rotateY(-5deg) scale(0.95);
+  opacity: 0.7;
+}
+
+.deck-card.moving-to-back {
+  z-index: 5;
+  transform: translateX(-50%) translateY(15px) rotateY(-10deg) scale(0.9);
+  opacity: 0.3;
+}
+
+.deck-card.coming-from-back {
+  z-index: 8;
+  transform: translateX(-50%) translateY(5px) rotateY(2deg) scale(0.98);
+  opacity: 0.9;
+}
+
+/* Card Content */
+.card-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 14px 14px 0 0;
+  position: relative;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.deck-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-info {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+}
+
+.card-info h4 {
+  color: #d4af37;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  text-transform: capitalize;
+}
+
+.card-info p {
+  color: #cccccc;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Deck Counter */
+.deck-counter {
+  text-align: center;
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.deck-counter span {
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: rgba(26, 26, 26, 0.8);
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: 1px solid #d4af37;
+  backdrop-filter: blur(10px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .card-gallery {
+    padding: 60px 0;
+  }
+  
+  .gallery-controls {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  
+  .deck-control {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .card-deck {
+    height: 350px;
+  }
+  
+  .deck-card {
+    width: 250px;
+    height: 350px;
+  }
+  
+  .card-image {
+    height: 230px;
+  }
+  
+  .card-info {
+    padding: 16px;
+  }
+  
+  .card-info h4 {
+    font-size: 1rem;
+  }
+  
+  .card-info p {
+    font-size: 0.85rem;
+  }
+  
+  .deck-counter span {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-controls {
+    gap: 8px;
+  }
+  
+  .deck-control {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .deck-control span {
+    display: none;
+  }
+  
+  .card-deck {
+    height: 320px;
+  }
+  
+  .deck-card {
+    width: 220px;
+    height: 320px;
+  }
+  
+  .card-image {
+    height: 200px;
+  }
+}
+
+/* Loading State */
+.deck-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #cccccc;
+}
+
+.deck-loading i {
+  font-size: 2rem;
+  color: #d4af37;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
