@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Move to next card
   function nextCard() {
-    if (isAnimating || cards.length === 0) return;
+    if (isAnimating || cards.length === 0 || isPaused) return;
     
     isAnimating = true;
     const currentCard = cards[currentCardIndex];
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Pause auto reveal on hover/touch
   function pauseAutoReveal() {
-    if (isAutoRevealing && !isPaused) {
+    if (isAutoRevealing && !isPaused && !isAnimating) {
       isPaused = true;
       clearInterval(autoRevealInterval);
       
@@ -277,18 +277,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Resume auto reveal when hover/touch ends
   function resumeAutoReveal() {
     if (isAutoRevealing && isPaused) {
-      isPaused = false;
-      
-      // Restart the interval
-      autoRevealInterval = setInterval(() => {
-        if (!isPaused) {
-          nextCard();
+      // Add a small delay to prevent immediate triggering
+      setTimeout(() => {
+        if (isAutoRevealing && isPaused && !isAnimating) {
+          isPaused = false;
+          
+          // Restart the interval
+          autoRevealInterval = setInterval(() => {
+            if (!isPaused && !isAnimating) {
+              nextCard();
+            }
+          }, 2000);
+          
+          // Restore button appearance
+          autoRevealBtn.style.opacity = '1';
+          autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
         }
-      }, 2000);
-      
-      // Restore button appearance
-      autoRevealBtn.style.opacity = '1';
-      autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
+      }, 100); // Small delay to prevent glitches
     }
   }
   
@@ -310,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
       autoRevealBtn.style.background = 'linear-gradient(135deg, #dc3545, #ff6b7d)';
       
       autoRevealInterval = setInterval(() => {
-        if (!isPaused) {
+        if (!isPaused && !isAnimating) {
           nextCard();
         }
       }, 2000); // Change card every 2 seconds
