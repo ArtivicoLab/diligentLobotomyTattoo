@@ -122,37 +122,17 @@ class SmartGalleryManager {
    */
   async syncGalleries() {
     const sourceImages = await this.getSourceImages();
-    const optimizedImages = await this.getOptimizedImages();
     
-    // Create lookup sets
-    const sourceSet = new Set(sourceImages);
-    const optimizedSet = new Set(optimizedImages.map(img => {
-      // Convert back to original name for comparison
-      return this.getOriginalFilename(img);
-    }));
-    
-    // Find images that need optimization
+    // Check which images need optimization (not in localStorage)
     const toOptimize = sourceImages.filter(img => {
       const optimizedName = this.getOptimizedFilename(img);
-      return !optimizedImages.includes(optimizedName);
+      const key = `optimized_${optimizedName}`;
+      return !localStorage.getItem(key);
     });
     
-    // Find optimized images that should be removed
-    const toRemove = optimizedImages.filter(img => {
-      const originalName = this.getOriginalFilename(img);
-      return !sourceSet.has(originalName);
-    });
-    
-    // Process optimizations
+    // Process optimizations only for new images
     if (toOptimize.length > 0) {
-      console.log(`Optimizing ${toOptimize.length} new images...`);
       await this.optimizeImages(toOptimize);
-    }
-    
-    // Remove orphaned optimized images
-    if (toRemove.length > 0) {
-      console.log(`Cleaning up ${toRemove.length} removed images...`);
-      this.logRemovedImages(toRemove);
     }
   }
 
@@ -195,10 +175,10 @@ class SmartGalleryManager {
       // Store in browser cache or IndexedDB for future use
       await this.storeOptimizedImage(imageName, optimizedBlob);
       
-      console.log(`Optimized: ${imageName} (${this.formatFileSize(blob.size)} → ${this.formatFileSize(optimizedBlob.size)})`);
+      // Silently optimized for better user experience
       
     } catch (error) {
-      console.error(`Error optimizing ${imageName}:`, error);
+      // Silent error handling - no console spam
     }
   }
 
@@ -251,10 +231,10 @@ class SmartGalleryManager {
    * Start monitoring for changes (polling-based)
    */
   startMonitoring() {
-    // Check for changes every 30 seconds
+    // Check for changes every 5 minutes (less frequent)
     setInterval(async () => {
       await this.syncGalleries();
-    }, 30000);
+    }, 300000);
   }
 
   /**
