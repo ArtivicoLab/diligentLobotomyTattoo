@@ -75,24 +75,69 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   async function loadCardsFromFolder() {
     const cardGalleryPath = 'images/card-gallery/';
-    const potentialImages = [
-      'vibrant-color-masterpiece.jpg',
-      'black-gray-artistry.jpg', 
-      'custom-design-work.jpg',
-      'detailed-portrait-work.jpg',
-      'colorful-dragon-tattoo.jpg',
-      'realistic-portrait.jpg',
-      'geometric-design.jpg',
-      'floral-sleeve.jpg',
-      'minimalist-art.jpg',
-      'traditional-style.jpg',
-      'watercolor-design.jpg',
-      'tribal-artwork.jpg'
-    ];
+    
+    // Try to get the list of files from the server
+    let imageFiles = [];
+    
+    try {
+      const response = await fetch(cardGalleryPath);
+      if (response.ok) {
+        const html = await response.text();
+        // Parse HTML to extract image file names
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const links = doc.querySelectorAll('a[href]');
+        
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
+            imageFiles.push(href);
+          }
+        });
+      }
+    } catch (error) {
+      console.log('Could not fetch directory listing, using fallback method');
+    }
+    
+    // Fallback: try known patterns and common filenames
+    if (imageFiles.length === 0) {
+      const potentialImages = [
+        'vibrant-color-masterpiece.jpg',
+        'black-gray-artistry.jpg', 
+        'custom-design-work.jpg',
+        'detailed-portrait-work.jpg',
+        'colorful-dragon-tattoo.jpg',
+        'realistic-portrait.jpg',
+        'geometric-design.jpg',
+        'floral-sleeve.jpg',
+        'minimalist-art.jpg',
+        'traditional-style.jpg',
+        'watercolor-design.jpg',
+        'tribal-artwork.jpg',
+        // Common patterns from attached assets
+        'IMG_8677.png',
+        'IMG_8678.png',
+        'IMG_8679.png',
+        'IMG_8680.png',
+        'IMG_8681.png',
+        'IMG_8682.png',
+        'IMG_8683.png',
+        'IMG_8684.jpeg',
+        'IMG_8685.jpeg',
+        'IMG_8686.jpeg',
+        'IMG_8687.jpeg',
+        'IMG_8688.jpeg',
+        'IMG_8689.jpeg',
+        'IMG_8690.jpeg',
+        'IMG_8691.jpeg',
+        'IMG_8692.jpeg'
+      ];
+      imageFiles = potentialImages;
+    }
 
     const existingCards = [];
     
-    for (const imageName of potentialImages) {
+    for (const imageName of imageFiles) {
       const imageUrl = cardGalleryPath + imageName;
       if (await imageExists(imageUrl)) {
         existingCards.push({
