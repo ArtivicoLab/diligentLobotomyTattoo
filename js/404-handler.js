@@ -11,7 +11,6 @@
    */
   function check404() {
     const currentPath = window.location.pathname;
-    const currentSearch = window.location.search;
     
     // Don't redirect if we're already on the 404 page
     if (currentPath.includes('404.html')) {
@@ -23,29 +22,29 @@
       return;
     }
     
+    // Check if page contains "Error response" or "404" - indicating server 404
+    const pageContent = document.body ? document.body.textContent || document.body.innerText : '';
+    const title = document.title || '';
+    
+    if (pageContent.includes('Error response') || 
+        pageContent.includes('File not found') ||
+        pageContent.includes('404 - Nothing matches the given URI') ||
+        title.includes('Error response')) {
+      
+      // Replace the entire page with our custom 404
+      window.location.href = '/404.html';
+      return;
+    }
+    
     // List of valid pages/sections that exist
     const validPaths = [
       '/',
       '/index.html',
-      '/404.html',
-      '/#home',
-      '/#about',
-      '/#services', 
-      '/#gallery',
-      '/#card-gallery',
-      '/#calculator',
-      '/#contact',
-      '/#featured',
-      '/#testimonials'
+      '/404.html'
     ];
     
     // Check if current path is valid
-    const isValidPath = validPaths.some(path => {
-      if (path.startsWith('/#')) {
-        return currentPath === '/' && window.location.hash === path.substring(1);
-      }
-      return currentPath === path;
-    });
+    const isValidPath = validPaths.includes(currentPath);
     
     // If path is not valid and doesn't contain common file extensions, redirect to 404
     if (!isValidPath && !currentPath.match(/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|pdf)$/i)) {
@@ -133,8 +132,15 @@
    * Initialize 404 handling
    */
   function init() {
-    // Check current page on load
-    check404();
+    // Check immediately for server 404 errors
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', check404);
+    } else {
+      check404();
+    }
+    
+    // Also check after a brief delay to catch slow-loading error pages
+    setTimeout(check404, 250);
     
     // Handle hash changes
     window.addEventListener('hashchange', handleHashChange);
@@ -144,6 +150,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         handleBrokenImages();
         handleBrokenLinks();
+        check404(); // Check again after DOM loads
       });
     } else {
       handleBrokenImages();
