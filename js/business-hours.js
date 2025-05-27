@@ -23,6 +23,7 @@
 
   let statusBanner;
   let statusText;
+  let currentTime;
   let nextChange;
   let updateInterval;
 
@@ -34,9 +35,10 @@
     if (!statusBanner) return;
 
     statusText = statusBanner.querySelector('.status-text');
+    currentTime = statusBanner.querySelector('.current-time');
     nextChange = statusBanner.querySelector('.next-change');
 
-    if (!statusText || !nextChange) return;
+    if (!statusText || !currentTime || !nextChange) return;
 
     // Update immediately and then every minute
     updateBusinessStatus();
@@ -53,12 +55,12 @@
     const currentDay = DAYS[now.getDay()];
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
-    const currentTime = currentHour + (currentMinute / 60);
+    const currentTimeValue = currentHour + (currentMinute / 60);
 
     const todayHours = BUSINESS_HOURS[currentDay];
-    const status = getBusinessStatus(currentTime, todayHours, now);
+    const status = getBusinessStatus(currentTimeValue, todayHours, now);
 
-    updateBannerDisplay(status);
+    updateBannerDisplay(status, now);
   }
 
   /**
@@ -157,7 +159,7 @@
   /**
    * Update banner display
    */
-  function updateBannerDisplay(status) {
+  function updateBannerDisplay(status, now) {
     // Remove all status classes
     statusBanner.className = 'business-status-banner';
     
@@ -166,7 +168,21 @@
     
     // Update text content
     statusText.textContent = status.statusMessage;
+    currentTime.textContent = formatCurrentTime(now);
     nextChange.textContent = status.nextChangeText;
+  }
+
+  /**
+   * Format current time for display
+   */
+  function formatCurrentTime(now) {
+    const options = {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'America/New_York' // Georgia timezone
+    };
+    return `Current time: ${now.toLocaleTimeString('en-US', options)}`;
   }
 
   /**
