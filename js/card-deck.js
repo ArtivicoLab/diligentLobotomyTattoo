@@ -504,8 +504,8 @@ document.addEventListener('DOMContentLoaded', function() {
     touchStartY = 0;
   });
   
-  // Initialize the deck
-  initializeDeck();
+  // Initialize the dynamic deck
+  initializeDynamicDeck();
   
   // Add a helpful tooltip
   const tooltip = document.createElement('div');
