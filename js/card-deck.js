@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentCardIndex = 0;
   let autoRevealInterval = null;
   let isAutoRevealing = false;
+  let isPaused = false;
   
   // Dynamic card loading from folder
   async function loadCardsFromFolder() {
@@ -185,6 +186,12 @@ document.addEventListener('DOMContentLoaded', function() {
       card.addEventListener('click', nextCard);
     });
     
+    // Add hover/touch pause functionality
+    cardDeck.addEventListener('mouseenter', pauseAutoReveal);
+    cardDeck.addEventListener('mouseleave', resumeAutoReveal);
+    cardDeck.addEventListener('touchstart', pauseAutoReveal);
+    cardDeck.addEventListener('touchend', resumeAutoReveal);
+    
     currentCardIndex = 0;
     updateCounter();
   }
@@ -255,22 +262,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 600);
   }
   
+  // Pause auto reveal on hover/touch
+  function pauseAutoReveal() {
+    if (isAutoRevealing && !isPaused) {
+      isPaused = true;
+      clearInterval(autoRevealInterval);
+      
+      // Visual feedback - dim the auto reveal button
+      autoRevealBtn.style.opacity = '0.6';
+      autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Paused';
+    }
+  }
+  
+  // Resume auto reveal when hover/touch ends
+  function resumeAutoReveal() {
+    if (isAutoRevealing && isPaused) {
+      isPaused = false;
+      
+      // Restart the interval
+      autoRevealInterval = setInterval(() => {
+        if (!isPaused) {
+          nextCard();
+        }
+      }, 2000);
+      
+      // Restore button appearance
+      autoRevealBtn.style.opacity = '1';
+      autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
+    }
+  }
+  
   // Auto reveal cards
   function toggleAutoReveal() {
     if (isAutoRevealing) {
       // Stop auto reveal
       clearInterval(autoRevealInterval);
       isAutoRevealing = false;
+      isPaused = false;
       autoRevealBtn.innerHTML = '<i class="fas fa-play"></i> Auto Reveal';
       autoRevealBtn.style.background = 'linear-gradient(135deg, #d4af37, #f4d03f)';
+      autoRevealBtn.style.opacity = '1';
     } else {
       // Start auto reveal
       isAutoRevealing = true;
+      isPaused = false;
       autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
       autoRevealBtn.style.background = 'linear-gradient(135deg, #dc3545, #ff6b7d)';
       
       autoRevealInterval = setInterval(() => {
-        nextCard();
+        if (!isPaused) {
+          nextCard();
+        }
       }, 2000); // Change card every 2 seconds
     }
   }
@@ -404,6 +446,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isAutoRevealing) {
       toggleAutoReveal();
     }
+    
+    // Reset pause state
+    isPaused = false;
     
     // Reset all cards
     cards.forEach((card, index) => {
