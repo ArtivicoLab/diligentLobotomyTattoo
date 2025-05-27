@@ -99,44 +99,64 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.card:nth-child(1) { 
+/* Top card - fully visible */
+.card.top-card { 
   transform: translateX(0px) translateY(0px) rotateZ(0deg);
-  z-index: 8;
+  z-index: 100;
+  opacity: 1;
 }
 
-.card:nth-child(2) { 
-  transform: translateX(-5px) translateY(-3px) rotateZ(-2deg);
-  z-index: 7;
+/* Hidden cards in the deck */
+.card.in-deck { 
+  transform: translateX(-8px) translateY(-5px) rotateZ(-1deg);
+  z-index: 50;
+  opacity: 0.3;
 }
 
-.card:nth-child(3) { 
-  transform: translateX(-10px) translateY(-6px) rotateZ(-4deg);
-  z-index: 6;
-}
-
-.card:nth-child(4) { 
-  transform: translateX(-15px) translateY(-9px) rotateZ(-6deg);
-  z-index: 5;
-}
-
-.card:nth-child(5) { 
-  transform: translateX(-20px) translateY(-12px) rotateZ(-8deg);
-  z-index: 4;
-}
-
-.card:nth-child(6) { 
-  transform: translateX(-25px) translateY(-15px) rotateZ(-10deg);
-  z-index: 3;
-}
-
-.card:nth-child(7) { 
-  transform: translateX(-30px) translateY(-18px) rotateZ(-12deg);
-  z-index: 2;
-}
-
-.card:nth-child(8) { 
-  transform: translateX(-35px) translateY(-21px) rotateZ(-14deg);
+/* Card moving to back */
+.card.moving-to-back {
+  animation: moveToBack 0.6s ease-in-out forwards;
   z-index: 1;
+}
+
+/* Card coming from back */
+.card.coming-from-back {
+  animation: comeFromBack 0.6s ease-in-out forwards;
+  z-index: 99;
+}
+
+@keyframes moveToBack {
+  0% {
+    transform: translateX(0px) translateY(0px) rotateZ(0deg);
+    opacity: 1;
+    z-index: 100;
+  }
+  50% {
+    transform: translateX(-100px) translateY(-30px) rotateZ(-15deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-8px) translateY(-5px) rotateZ(-1deg);
+    opacity: 0.3;
+    z-index: 1;
+  }
+}
+
+@keyframes comeFromBack {
+  0% {
+    transform: translateX(-8px) translateY(-5px) rotateZ(-1deg);
+    opacity: 0.3;
+    z-index: 1;
+  }
+  50% {
+    transform: translateX(100px) translateY(-30px) rotateZ(15deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotateZ(0deg);
+    opacity: 1;
+    z-index: 100;
+  }
 }
 
 .card.flipped {

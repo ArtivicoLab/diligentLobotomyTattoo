@@ -6,15 +6,17 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   const cardDeck = document.getElementById('card-deck');
-  const shuffleBtn = document.getElementById('shuffle-deck');
-  const fanOutBtn = document.getElementById('fan-out');
+  const prevBtn = document.getElementById('prev-card');
+  const nextBtn = document.getElementById('next-card');
+  const autoRevealBtn = document.getElementById('auto-reveal');
   const resetBtn = document.getElementById('reset-deck');
   const cardCounter = document.getElementById('card-counter');
   
   let cards = [];
   let isAnimating = false;
-  let isFannedOut = false;
-  let selectedCard = null;
+  let currentCardIndex = 0;
+  let autoRevealInterval = null;
+  let isAutoRevealing = false;
   
   // Dynamic card loading from folder
   async function loadCardsFromFolder() {
@@ -172,88 +174,105 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize card interactions
   function initializeCardInteractions() {
     cards.forEach((card, index) => {
-      card.style.zIndex = cards.length - index;
-      card.addEventListener('click', handleCardClick);
-      card.addEventListener('mouseenter', handleCardHover);
-      card.addEventListener('mouseleave', handleCardLeave);
+      // Set initial classes - only first card is visible
+      if (index === 0) {
+        card.classList.add('top-card');
+      } else {
+        card.classList.add('in-deck');
+      }
       
-      // Set initial position
-      card.style.transform = `translateX(${-index * 5}px) translateY(${-index * 3}px) rotateZ(${-index * 2}deg)`;
-    });
-  }
-  
-  // Handle card click
-  function handleCardClick(e) {
-    if (isAnimating) return;
-    
-    const card = e.currentTarget;
-    
-    // If card is already selected, deselect it
-    if (card.classList.contains('selected')) {
-      deselectCard(card);
-      return;
-    }
-    
-    // Deselect any previously selected card
-    if (selectedCard) {
-      deselectCard(selectedCard);
-    }
-    
-    // Select the clicked card
-    selectCard(card);
-  }
-  
-  // Select a card
-  function selectCard(card) {
-    selectedCard = card;
-    card.classList.add('selected');
-    
-    // Move other cards away slightly
-    cards.forEach(otherCard => {
-      if (otherCard !== card) {
-        otherCard.style.transform += ' translateY(20px)';
-        otherCard.style.opacity = '0.7';
-      }
+      // Add click handler to go to next card
+      card.addEventListener('click', nextCard);
     });
     
-    // Add glow effect
+    currentCardIndex = 0;
+    updateCounter();
+  }
+  
+  // Move to next card
+  function nextCard() {
+    if (isAnimating || cards.length === 0) return;
+    
+    isAnimating = true;
+    const currentCard = cards[currentCardIndex];
+    const nextIndex = (currentCardIndex + 1) % cards.length;
+    const nextCard = cards[nextIndex];
+    
+    // Animate current card to back
+    currentCard.classList.remove('top-card');
+    currentCard.classList.add('moving-to-back');
+    
+    // Animate next card to front
+    nextCard.classList.remove('in-deck');
+    nextCard.classList.add('coming-from-back');
+    
+    // Update index
+    currentCardIndex = nextIndex;
+    
+    // Clean up after animation
     setTimeout(() => {
-      card.style.filter = 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.6))';
-    }, 300);
+      currentCard.classList.remove('moving-to-back');
+      currentCard.classList.add('in-deck');
+      
+      nextCard.classList.remove('coming-from-back');
+      nextCard.classList.add('top-card');
+      
+      isAnimating = false;
+      updateCounter();
+    }, 600);
   }
   
-  // Deselect a card
-  function deselectCard(card) {
-    card.classList.remove('selected');
-    card.style.filter = '';
+  // Move to previous card
+  function prevCard() {
+    if (isAnimating || cards.length === 0) return;
     
-    // Reset other cards
-    cards.forEach(otherCard => {
-      if (otherCard !== card) {
-        otherCard.style.opacity = '1';
-        // Remove the translateY that was added
-        let transform = otherCard.style.transform;
-        otherCard.style.transform = transform.replace('translateY(20px)', '');
-      }
-    });
+    isAnimating = true;
+    const currentCard = cards[currentCardIndex];
+    const prevIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    const prevCard = cards[prevIndex];
     
-    selectedCard = null;
+    // Animate current card to back
+    currentCard.classList.remove('top-card');
+    currentCard.classList.add('moving-to-back');
+    
+    // Animate previous card to front
+    prevCard.classList.remove('in-deck');
+    prevCard.classList.add('coming-from-back');
+    
+    // Update index
+    currentCardIndex = prevIndex;
+    
+    // Clean up after animation
+    setTimeout(() => {
+      currentCard.classList.remove('moving-to-back');
+      currentCard.classList.add('in-deck');
+      
+      prevCard.classList.remove('coming-from-back');
+      prevCard.classList.add('top-card');
+      
+      isAnimating = false;
+      updateCounter();
+    }, 600);
   }
   
-  // Handle card hover
-  function handleCardHover(e) {
-    if (isAnimating || e.currentTarget.classList.contains('selected')) return;
-    
-    const card = e.currentTarget;
-    card.style.filter = 'brightness(1.1) drop-shadow(0 5px 15px rgba(212, 175, 55, 0.3))';
-  }
-  
-  // Handle card leave
-  function handleCardLeave(e) {
-    if (isAnimating || e.currentTarget.classList.contains('selected')) return;
-    
-    const card = e.currentTarget;
-    card.style.filter = '';
+  // Auto reveal cards
+  function toggleAutoReveal() {
+    if (isAutoRevealing) {
+      // Stop auto reveal
+      clearInterval(autoRevealInterval);
+      isAutoRevealing = false;
+      autoRevealBtn.innerHTML = '<i class="fas fa-play"></i> Auto Reveal';
+      autoRevealBtn.style.background = 'linear-gradient(135deg, #d4af37, #f4d03f)';
+    } else {
+      // Start auto reveal
+      isAutoRevealing = true;
+      autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> Stop Auto';
+      autoRevealBtn.style.background = 'linear-gradient(135deg, #dc3545, #ff6b7d)';
+      
+      autoRevealInterval = setInterval(() => {
+        nextCard();
+      }, 2000); // Change card every 2 seconds
+    }
   }
   
   // Shuffle deck animation
@@ -373,10 +392,32 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Update card counter
   function updateCounter() {
-    const visibleCards = Array.from(cards).filter(card => 
-      !card.classList.contains('hidden')
-    ).length;
-    cardCounter.textContent = `${visibleCards} Cards in Deck`;
+    const currentCardData = cards[currentCardIndex]?.querySelector('.card-info h4')?.textContent || 'Card';
+    cardCounter.textContent = `${currentCardIndex + 1} of ${cards.length} - ${currentCardData}`;
+  }
+  
+  // Reset deck
+  function resetDeck() {
+    if (isAnimating) return;
+    
+    // Stop auto reveal if running
+    if (isAutoRevealing) {
+      toggleAutoReveal();
+    }
+    
+    // Reset all cards
+    cards.forEach((card, index) => {
+      card.classList.remove('top-card', 'in-deck', 'moving-to-back', 'coming-from-back');
+      
+      if (index === 0) {
+        card.classList.add('top-card');
+      } else {
+        card.classList.add('in-deck');
+      }
+    });
+    
+    currentCardIndex = 0;
+    updateCounter();
   }
   
   // Play card sound effect (visual feedback)
@@ -428,31 +469,34 @@ document.addEventListener('DOMContentLoaded', function() {
   document.head.appendChild(style);
   
   // Event listeners
-  shuffleBtn.addEventListener('click', shuffleDeck);
-  fanOutBtn.addEventListener('click', fanOutCards);
-  resetBtn.addEventListener('click', () => resetDeck(true));
+  prevBtn.addEventListener('click', prevCard);
+  nextBtn.addEventListener('click', nextCard);
+  autoRevealBtn.addEventListener('click', toggleAutoReveal);
+  resetBtn.addEventListener('click', resetDeck);
   
   // Keyboard shortcuts
   document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     
     switch(e.key) {
-      case 's':
-      case 'S':
-        shuffleDeck();
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        prevCard();
         break;
-      case 'f':
-      case 'F':
-        fanOutCards();
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case ' ':
+        e.preventDefault();
+        nextCard();
+        break;
+      case 'a':
+      case 'A':
+        toggleAutoReveal();
         break;
       case 'r':
       case 'R':
-        resetDeck(true);
-        break;
-      case 'Escape':
-        if (selectedCard) {
-          deselectCard(selectedCard);
-        }
+        resetDeck();
         break;
     }
   });
@@ -479,18 +523,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Math.abs(diffX) > Math.abs(diffY)) {
       if (Math.abs(diffX) > 50) {
         if (diffX > 0) {
-          // Swipe left - shuffle
-          shuffleDeck();
+          // Swipe left - previous card
+          prevCard();
         } else {
-          // Swipe right - fan out
-          fanOutCards();
+          // Swipe right - next card
+          nextCard();
         }
       }
     } else {
       if (Math.abs(diffY) > 50) {
         if (diffY > 0) {
-          // Swipe up - reset
-          resetDeck(true);
+          // Swipe up - toggle auto reveal
+          toggleAutoReveal();
         }
       }
     }
