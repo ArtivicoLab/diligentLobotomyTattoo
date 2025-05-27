@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ink102tattoos.com/sitemap.xml
+
+# Allow crawling of images for better SEO
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Disallow any admin or private directories (none currently)
+# Disallow: /admin/
