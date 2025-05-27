@@ -1,0 +1,336 @@
+/*
+ * Ink 102 Tattoos and Piercings - Responsive Styles
+ * Contains all @media query rules for responsive design
+ */
+
+/* Global Container adjustments for smaller screens */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+@media (max-width: 575px) {
+    .container {
+        padding: 0 var(--space-sm); /* Even tighter for very small screens */
+    }
+}
+
+/* Header & Navigation responsive adjustments */
+@media (min-width: 769px) {
+  .nav-links {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    width: auto;
+  }
+
+  .nav-links li {
+    margin: 0 var(--space-md);
+    opacity: 1;
+    transform: none;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* General adjustments for smaller screens */
+@media (max-width: 767px) {
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    min-width: 130px;
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .footer-links {
+    gap: var(--space-md);
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+  }
+}
+
+/* Hero Section specific adjustments */
+@media (max-width: 575px) {
+    .hero-title {
+        margin-top: -var(--space-xl);
+    }
+
+    .hero-controls {
+        bottom: var(--space-md);
+    }
+}
+
+/* About Section specific adjustments */
+@media (min-width: 768px) {
+  .about-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .about-values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .about-hero-image {
+    aspect-ratio: 4/3; /* Adjust aspect ratio for mobile */
+  }
+
+  .about-intro {
+    padding: var(--space-md);
+  }
+
+  .about-intro h3 {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* Featured Work Section specific adjustments */
+@media (min-width: 768px) {
+  .featured-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Services Section specific adjustments */
+@media (min-width: 576px) {
+    .service-card {
+        padding: var(--space-md);
+    }
+    .service-title {
+        font-size: 1.3rem;
+    }
+    .service-description {
+        font-size: 0.95rem;
+    }
+    .pricing-row {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Gallery Section specific adjustments */
+@media (min-width: 576px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Testimonials Section specific adjustments */
+@media (max-width: 575px) {
+    .testimonial-content {
+        padding: var(--space-md);
+    }
+}
+
+@media (min-width: 576px) {
+    .testimonial-content {
+        padding: var(--space-lg); /* Restore larger padding */
+    }
+}
+
+/* Calculator Section specific adjustments */
+@media (max-width: 575px) {
+    .calculator {
+        padding: var(--space-xl) var(--space-xs); /* Even tighter horizontal padding for very small screens */
+    }
+
+    .calculator-container {
+        padding: var(--space-md); /* Still keep some inner padding */
+    }
+
+    /* Force radio options to stack vertically on small screens */
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs); /* Reduced gap between stacked options */
+    }
+
+    .radio-option label {
+        font-size: 0.9rem; /* Slightly smaller font size for radio labels */
+    }
+
+    /* Adjust padding for the main "CALCULATE PRICE" button */
+    .calc-submit button {
+        padding: var(--space-sm); /* Slightly less padding on the main button */
+    }
+
+    /* Further refine padding on the result section and its elements for smallest screens */
+    .calculator-result {
+        padding: var(--space-sm) var(--space-xs); /* Very tight padding for result section on small screens */
+    }
+
+    .calculator-result h3 {
+        font-size: 1.3rem; /* Slightly smaller heading */
+    }
+
+    .price-display {
+        font-size: 1.8rem; /* Make price display significantly smaller on tiny screens */
+    }
+
+    .price-range-text {
+        font-size: 0.8rem; /* Smaller text for range */
+    }
+
+    .price-disclaimer {
+        font-size: 0.65rem; /* Smallest disclaimer text */
+    }
+
+    /* CRUCIAL: Adjust "BOOK A CONSULTATION" button for the smallest screens */
+    .calculator-result .calc-submit button {
+        padding: var(--space-xs); /* Very tight padding for this specific button */
+        font-size: 0.8rem; /* Reduce font size on the button text */
+        letter-spacing: 0; /* Remove letter spacing to save horizontal space */
+    }
+}
+
+/* Small devices (tablets and larger phones, 576px and up) */
+@media (min-width: 576px) {
+    .size-input-container {
+        flex-direction: row; /* Layout number input and slider side-by-side */
+        align-items: center;
+    }
+
+    .calculator-container {
+        padding: var(--space-lg); /* Restore larger padding for tablets */
+    }
+
+    /* Allow radio options to flow horizontally again */
+    .radio-group {
+        flex-direction: row; /* Allow horizontal flow */
+        flex-wrap: wrap; /* Allow wrapping onto multiple rows if needed */
+        gap: var(--space-sm); /* Restore default gap */
+        justify-content: flex-start; /* Align to start */
+    }
+
+    .radio-option label {
+        font-size: 1rem; /* Restore original font size */
+    }
+
+    /* Restore main "CALCULATE PRICE" button padding */
+    .calc-submit button {
+        padding: var(--space-md);
+    }
+
+    /* Restore "BOOK A CONSULTATION" button styles for larger screens */
+    .calculator-result {
+        padding: var(--space-lg); /* Restore larger padding for result section */
+    }
+    .calculator-result h3 {
+        font-size: 1.5rem; /* Restore heading size */
+    }
+    .price-display {
+        font-size: 3rem; /* Restore price display size */
+    }
+    .price-range-text {
+        font-size: 1.1rem; /* Restore text size */
+    }
+    .price-disclaimer {
+        font-size: 0.9rem; /* Restore text size */
+    }
+    .calculator-result .calc-submit button {
+        padding: var(--space-md); /* Restore full padding for the button */
+        font-size: 1rem; /* Restore font size */
+        letter-spacing: 1px; /* Restore letter spacing */
+    }
+}
+
+/* Medium devices (desktops and large tablets, 768px and up) */
+@media (min-width: 768px) {
+    .calculator-container {
+        grid-template-columns: 1fr 1fr; /* Two columns for larger screens */;
+    }
+
+    .calculator-result {
+        display: flex; /* Change to flex for vertical centering of content */
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+        opacity: 0.7; /* Apply initial opacity here */
+        transform: none; /* Remove transform */
+        height: 100%;
+        padding: var(--space-md); /* Adjust padding for result column in multi-column layout */
+    }
+
+    .calculator-result.active {
+        opacity: 1; /* Fade in to full opacity */
+        animation: none; /* No animation for desktop active state */
+    }
+}
+
+@media (max-width: 767px) {
+    .calculator-container {
+        grid-template-columns: none;
+    }
+}
+
+/* Contact Section specific adjustments */
+@media (min-width: 576px) {
+    .contact-card {
+        padding: var(--space-lg);
+        flex-direction: row; /* Back to side-by-side */
+        align-items: flex-start;
+        text-align: left;
+    }
+    .contact-icon {
+        margin-bottom: 0;
+    }
+    .contact-card-content h3 {
+        font-size: 1.3rem;
+    }
+    .contact-card-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Footer specific adjustments */
+@media (min-width: 576px) {
+  .footer-links {
+    flex-wrap: nowrap;
+  }
+}
