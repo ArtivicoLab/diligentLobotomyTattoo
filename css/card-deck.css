@@ -211,25 +211,70 @@
   }
   
   .deck-control {
-    padding: 10px 16px;
-    font-size: 0.8rem;
+    padding: 12px 18px;
+    font-size: 0.9rem;
   }
   
   .card-deck {
-    height: 350px;
+    height: 480px;
   }
   
   .deck-card {
-    width: 250px;
-    height: 350px;
+    width: 320px;
+    height: 480px;
   }
   
   .card-image {
-    height: 230px;
+    height: 340px;
   }
   
   .card-info {
-    padding: 16px;
+    padding: 20px;
+  }
+  
+  .card-info h4 {
+    font-size: 1.1rem;
+  }
+  
+  .card-info p {
+    font-size: 0.9rem;
+  }
+  
+  .deck-counter span {
+    font-size: 1.1rem;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-controls {
+    gap: 10px;
+  }
+  
+  .deck-control {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .deck-control span {
+    display: none;
+  }
+  
+  .card-deck {
+    height: 450px;
+  }
+  
+  .deck-card {
+    width: 300px;
+    height: 450px;
+  }
+  
+  .card-image {
+    height: 320px;
+  }
+  
+  .card-info {
+    padding: 18px;
   }
   
   .card-info h4 {
@@ -238,39 +283,6 @@
   
   .card-info p {
     font-size: 0.85rem;
-  }
-  
-  .deck-counter span {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-controls {
-    gap: 8px;
-  }
-  
-  .deck-control {
-    padding: 8px 12px;
-    font-size: 0.75rem;
-  }
-  
-  .deck-control span {
-    display: none;
-  }
-  
-  .card-deck {
-    height: 320px;
-  }
-  
-  .deck-card {
-    width: 220px;
-    height: 320px;
-  }
-  
-  .card-image {
-    height: 200px;
   }
 }
 
