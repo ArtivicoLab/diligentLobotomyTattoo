@@ -208,11 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedCard = card;
     card.classList.add('selected');
     
-    // Flip the card if it's not already flipped
-    if (!card.classList.contains('flipped')) {
-      card.classList.add('flipped');
-    }
-    
     // Move other cards away slightly
     cards.forEach(otherCard => {
       if (otherCard !== card) {
@@ -345,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Remove all animation classes
     cards.forEach((card, index) => {
-      card.classList.remove('flipped', 'selected', 'fanned-out', 'shuffling');
+      card.classList.remove('selected', 'fanned-out', 'shuffling');
       card.style.filter = '';
       card.style.opacity = '1';
       
