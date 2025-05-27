@@ -3,26 +3,46 @@
  * Interactive deck system with smooth animations and smart hover controls
  */
 
-// Global variables
-let currentIndex = 0;
-let cards = [];
-let isAutoRevealing = false;
-let autoRevealInterval;
-let cardDeck;
-let deckControls;
-
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-  cardDeck = document.querySelector('.card-deck');
-  deckControls = document.querySelectorAll('.deck-control');
-  
+  // DOM Elements
+  const cardDeck = document.getElementById('card-deck');
+  const prevBtn = document.getElementById('prev-card');
+  const nextBtn = document.getElementById('next-card');
+  const autoRevealBtn = document.getElementById('auto-reveal');
+  const resetBtn = document.getElementById('reset-deck');
+  const shuffleBtn = document.getElementById('shuffle-deck');
+  const cardCounter = document.getElementById('card-counter');
+
+  // State Management
+  let cards = [];
+  let currentCardIndex = 0;
+  let isAnimating = false;
+  let autoRevealInterval = null;
+  let isAutoRevealing = false;
+  let isPaused = false;
+  let hoverTimeout = null;
+
+  // Accessibility elements
+  const announcements = document.getElementById('gallery-announcements');
+
+  // Initialize the deck
+  initializeDeck();
+
+  // Event Listeners
+  if (prevBtn) prevBtn.addEventListener('click', prevCard);
+  if (nextBtn) nextBtn.addEventListener('click', nextCard);
+  if (autoRevealBtn) autoRevealBtn.addEventListener('click', toggleAutoReveal);
+  if (resetBtn) resetBtn.addEventListener('click', resetDeck);
+  if (shuffleBtn) shuffleBtn.addEventListener('click', shuffleDeck);
+
+  // Keyboard Navigation
+  document.addEventListener('keydown', handleKeyboard);
+
+  // Touch/Swipe Support
+  let touchStartX = 0;
+  let touchStartY = 0;
+
   if (cardDeck) {
-    initializeDeck();
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', handleKeyboard);
-    
-    // Touch navigation
     cardDeck.addEventListener('touchstart', handleTouchStart, { passive: true });
     cardDeck.addEventListener('touchend', handleTouchEnd, { passive: true });
   }
@@ -30,82 +50,127 @@ document.addEventListener('DOMContentLoaded', function() {
   /**
    * Initialize the card deck system
    */
-  function initializeDeck() {
+  async function initializeDeck() {
     if (!cardDeck) return;
 
-    // Load cards directly
-    loadCardsFromFolder();
+    // Show loading state
+    cardDeck.innerHTML = '<div class="deck-loading"><i class="fas fa-spinner"></i><p>Loading cards...</p></div>';
+
+    try {
+      await loadCardsFromFolder();
+      if (cards.length > 0) {
+        setupCardInteractions();
+        updateCounter();
+      } else {
+        cardDeck.innerHTML = '<div class="deck-loading"><p>No cards found. Add images to the gallery folder.</p></div>';
+      }
+    } catch (error) {
+      console.error('Error loading cards:', error);
+      cardDeck.innerHTML = '<div class="deck-loading"><p>Error loading cards. Please try again.</p></div>';
+    }
   }
 
   /**
-   * Load cards from gallery folder
+   * Load cards dynamically from the images/card-gallery folder
    */
-  function loadCardsFromFolder() {
+  async function loadCardsFromFolder() {
     const cardGalleryPath = 'images/card-gallery/';
     
-    // Known image files from your gallery
-    const cardData = [
-      {
-        url: cardGalleryPath + 'black-gray-artistry.jpg',
-        title: 'Black & Gray Artistry',
-        description: 'Stunning black and gray realism showcasing incredible detail and shading techniques.'
-      },
-      {
-        url: cardGalleryPath + 'custom-design-work.jpg',
-        title: 'Custom Design Work',
-        description: 'Unique custom designs tailored specifically to bring client visions to life.'
-      },
-      {
-        url: cardGalleryPath + 'detailed-portrait-work.jpg',
-        title: 'Detailed Portrait Work',
-        description: 'Incredibly detailed portrait work capturing every nuance with artistic precision.'
-      },
-      {
-        url: cardGalleryPath + 'geometric-design.jpg',
-        title: 'Geometric Design',
-        description: 'Modern geometric patterns featuring clean lines and contemporary artistic elements.'
-      },
-      {
-        url: cardGalleryPath + 'realistic-portrait.jpg',
-        title: 'Realistic Portrait',
-        description: 'Photorealistic portrait work demonstrating masterful technique and attention to detail.'
-      },
-      {
-        url: cardGalleryPath + 'vibrant-color-masterpiece.jpg',
-        title: 'Vibrant Color Masterpiece',
-        description: 'Bold, vibrant colors bringing life and energy to creative tattoo designs.'
-      },
-      {
-        url: cardGalleryPath + 'IMG_8677.png',
-        title: 'Professional Artistry',
-        description: 'Professional tattoo artistry showcasing our skilled craftsmanship and creativity.'
+    // Try to get the list of files from the server
+    let imageFiles = [];
+    
+    try {
+      const response = await fetch(cardGalleryPath);
+      if (response.ok) {
+        const html = await response.text();
+        // Parse HTML to extract image file names
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const links = doc.querySelectorAll('a[href]');
+        
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
+            imageFiles.push(href);
+          }
+        });
       }
-    ];
+    } catch (error) {
+      console.log('Could not fetch directory listing, using fallback method');
+    }
+    
+    // Fallback: try known patterns and common filenames
+    if (imageFiles.length === 0) {
+      const potentialImages = [
+        'vibrant-color-masterpiece.jpg',
+        'black-gray-artistry.jpg', 
+        'custom-design-work.jpg',
+        'detailed-portrait-work.jpg',
+        'colorful-dragon-tattoo.jpg',
+        'realistic-portrait.jpg',
+        'geometric-design.jpg',
+        'floral-sleeve.jpg',
+        'minimalist-art.jpg',
+        'traditional-style.jpg',
+        'watercolor-design.jpg',
+        'tribal-artwork.jpg',
+        // Common patterns from attached assets
+        'IMG_8677.png',
+        'IMG_8678.png',
+        'IMG_8679.png',
+        'IMG_8680.png',
+        'IMG_8681.png',
+        'IMG_8682.png',
+        'IMG_8683.png',
+        'IMG_8684.jpeg',
+        'IMG_8685.jpeg',
+        'IMG_8686.jpeg',
+        'IMG_8687.jpeg',
+        'IMG_8688.jpeg',
+        'IMG_8689.jpeg',
+        'IMG_8690.jpeg',
+        'IMG_8691.jpeg',
+        'IMG_8692.jpeg'
+      ];
+      imageFiles = potentialImages;
+    }
 
-    createCardsFromData(cardData);
-  }
+    const existingCards = [];
+    
+    for (const imageName of imageFiles) {
+      const imageUrl = cardGalleryPath + imageName;
+      if (await imageExists(imageUrl)) {
+        existingCards.push({
+          url: imageUrl,
+          title: formatCardTitle(imageName),
+          description: generateDescription(imageName)
+        });
+      }
+    }
 
-  /**
-   * Create cards from data
-   */
-  function createCardsFromData(cardData) {
     // Clear the deck and create cards
     cardDeck.innerHTML = '';
     cards = [];
 
-    cardData.forEach((data, index) => {
-      const card = createCard(data, index);
+    existingCards.forEach((cardData, index) => {
+      const card = createCard(cardData, index);
       cardDeck.appendChild(card);
       cards.push(card);
     });
 
-    console.log(`✨ Created ${cards.length} interactive cards!`);
-    
-    // Setup interactions and start auto-cycling
-    if (cards.length > 0) {
-      setupCardInteractions();
-      startAutoReveal();
-    }
+    console.log(`✨ Loaded ${cards.length} cards into deck!`);
+  }
+
+  /**
+   * Check if an image exists
+   */
+  function imageExists(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
   }
 
   /**
@@ -163,12 +228,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <p>${cardData.description}</p>
       </div>
     `;
-
-    // Hide all cards except the first one
-    if (index !== 0) {
-      card.style.display = 'none';
-    }
-
     return card;
   }
 
@@ -176,88 +235,129 @@ document.addEventListener('DOMContentLoaded', function() {
    * Setup card interactions and initial states
    */
   function setupCardInteractions() {
-    if (cards.length === 0) return;
-
-    // Show first card
-    currentIndex = 0;
-    showCurrentCard();
-
-    // Update counter
-    updateCounter();
-
-    // Setup hover pause/resume
-    cardDeck.addEventListener('mouseenter', pauseAutoReveal);
-    cardDeck.addEventListener('mouseleave', resumeAutoReveal);
-
-    // Announce to screen readers
-    announce(`Card gallery loaded with ${cards.length} tattoo designs. Use arrow keys to navigate.`);
-  }
-
-  /**
-   * Show current card and hide others
-   */
-  function showCurrentCard() {
+    // Set initial card states
     cards.forEach((card, index) => {
-      if (index === currentIndex) {
-        card.style.display = 'block';
-        card.classList.add('active');
+      if (index === 0) {
+        card.classList.add('top-card');
       } else {
-        card.style.display = 'none';
-        card.classList.remove('active');
+        card.classList.add('in-deck');
       }
+      
+      // Add click handler
+      card.addEventListener('click', nextCard);
     });
+
+    // Setup hover pause functionality with debouncing
+    if (cardDeck) {
+      cardDeck.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimeout);
+        pauseAutoReveal();
+      });
+      
+      cardDeck.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(resumeAutoReveal, 200);
+      });
+    }
+
+    currentCardIndex = 0;
   }
 
   /**
    * Announce to screen readers
    */
   function announce(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
-    document.body.appendChild(announcement);
-    setTimeout(() => document.body.removeChild(announcement), 1000);
+    if (announcements) {
+      announcements.textContent = message;
+    }
   }
 
   /**
    * Move to next card
    */
   function nextCard() {
-    if (cards.length === 0) return;
-    currentIndex = (currentIndex + 1) % cards.length;
-    showCurrentCard();
-    updateCounter();
-    announce(`Showing card ${currentIndex + 1} of ${cards.length}`);
+    if (isAnimating || cards.length === 0) return;
+    
+    isAnimating = true;
+    const currentCard = cards[currentCardIndex];
+    const nextIndex = (currentCardIndex + 1) % cards.length;
+    const nextCard = cards[nextIndex];
+    
+    // Start animations
+    currentCard.classList.remove('top-card');
+    currentCard.classList.add('moving-to-back');
+    
+    nextCard.classList.remove('in-deck');
+    nextCard.classList.add('coming-from-back');
+    
+    // Update index
+    currentCardIndex = nextIndex;
+    
+    // Complete animation after transition
+    setTimeout(() => {
+      currentCard.classList.remove('moving-to-back');
+      currentCard.classList.add('in-deck');
+      
+      nextCard.classList.remove('coming-from-back');
+      nextCard.classList.add('top-card');
+      
+      isAnimating = false;
+      updateCounter();
+      
+      // Announce card change to screen readers
+      const cardTitle = nextCard.querySelector('h4')?.textContent || 'Card';
+      announce(`Now viewing ${cardTitle}, card ${currentCardIndex + 1} of ${cards.length}`);
+    }, 600);
   }
 
   /**
    * Move to previous card
    */
   function prevCard() {
-    if (cards.length === 0) return;
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    showCurrentCard();
-    updateCounter();
-    announce(`Showing card ${currentIndex + 1} of ${cards.length}`);
-  }
-
-  /**
-   * Start auto reveal mode
-   */
-  function startAutoReveal() {
-    if (cards.length <= 1) return;
-    isAutoRevealing = true;
-    autoRevealInterval = setInterval(nextCard, 4000);
+    if (isAnimating || cards.length === 0) return;
+    
+    isAnimating = true;
+    const currentCard = cards[currentCardIndex];
+    const prevIndex = currentCardIndex === 0 ? cards.length - 1 : currentCardIndex - 1;
+    const prevCard = cards[prevIndex];
+    
+    // Start animations
+    currentCard.classList.remove('top-card');
+    currentCard.classList.add('in-deck');
+    
+    prevCard.classList.remove('in-deck');
+    prevCard.classList.add('coming-from-back');
+    
+    // Update index
+    currentCardIndex = prevIndex;
+    
+    // Complete animation
+    setTimeout(() => {
+      prevCard.classList.remove('coming-from-back');
+      prevCard.classList.add('top-card');
+      
+      isAnimating = false;
+      updateCounter();
+      
+      // Announce card change to screen readers
+      const cardTitle = prevCard.querySelector('h4')?.textContent || 'Card';
+      announce(`Now viewing ${cardTitle}, card ${currentCardIndex + 1} of ${cards.length}`);
+    }, 600);
   }
 
   /**
    * Pause auto reveal on hover
    */
   function pauseAutoReveal() {
-    if (autoRevealInterval) {
+    if (isAutoRevealing && !isPaused) {
+      isPaused = true;
       clearInterval(autoRevealInterval);
+      autoRevealInterval = null;
+      
+      if (autoRevealBtn) {
+        autoRevealBtn.style.opacity = '0.6';
+        autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> <span>Paused</span>';
+      }
     }
   }
 
@@ -265,8 +365,19 @@ document.addEventListener('DOMContentLoaded', function() {
    * Resume auto reveal when hover ends
    */
   function resumeAutoReveal() {
-    if (isAutoRevealing && cards.length > 1) {
-      autoRevealInterval = setInterval(nextCard, 4000);
+    if (isAutoRevealing && isPaused && !autoRevealInterval) {
+      isPaused = false;
+      
+      autoRevealInterval = setInterval(() => {
+        if (!isPaused && !isAnimating && isAutoRevealing) {
+          nextCard();
+        }
+      }, 2000);
+      
+      if (autoRevealBtn) {
+        autoRevealBtn.style.opacity = '1';
+        autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> <span>Stop Auto</span>';
+      }
     }
   }
 
@@ -275,12 +386,38 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   function toggleAutoReveal() {
     if (isAutoRevealing) {
-      pauseAutoReveal();
+      // Stop auto reveal
+      clearInterval(autoRevealInterval);
+      autoRevealInterval = null;
       isAutoRevealing = false;
-      announce('Auto-cycling paused');
+      isPaused = false;
+      
+      if (autoRevealBtn) {
+        autoRevealBtn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> <span>Auto Reveal</span>';
+        autoRevealBtn.style.background = 'linear-gradient(135deg, #d4af37, #f4d03f)';
+        autoRevealBtn.style.opacity = '1';
+        autoRevealBtn.setAttribute('aria-pressed', 'false');
+      }
+      
+      announce('Auto reveal stopped');
     } else {
-      startAutoReveal();
-      announce('Auto-cycling resumed');
+      // Start auto reveal
+      isAutoRevealing = true;
+      isPaused = false;
+      
+      autoRevealInterval = setInterval(() => {
+        if (!isPaused && !isAnimating) {
+          nextCard();
+        }
+      }, 2000);
+      
+      if (autoRevealBtn) {
+        autoRevealBtn.innerHTML = '<i class="fas fa-pause" aria-hidden="true"></i> <span>Stop Auto</span>';
+        autoRevealBtn.style.background = 'linear-gradient(135deg, #dc3545, #ff6b7d)';
+        autoRevealBtn.setAttribute('aria-pressed', 'true');
+      }
+      
+      announce('Auto reveal started. Cards will change every 2 seconds');
     }
   }
 
@@ -288,173 +425,260 @@ document.addEventListener('DOMContentLoaded', function() {
    * Shuffle deck
    */
   function shuffleDeck() {
-    if (cards.length <= 1) return;
+    if (isAnimating || cards.length === 0) return;
     
-    // Fisher-Yates shuffle
+    // Stop auto reveal if running
+    if (isAutoRevealing) {
+      toggleAutoReveal();
+    }
+    
+    // Shuffle the cards array
     for (let i = cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      cardDeck.insertBefore(cards[j], cards[i].nextSibling);
       [cards[i], cards[j]] = [cards[j], cards[i]];
     }
     
-    currentIndex = 0;
-    showCurrentCard();
-    updateCounter();
-    announce('Deck shuffled');
+    // Reset positions
+    resetDeck();
+    announce('Deck shuffled. Cards are now in random order');
   }
 
   /**
    * Reset deck to original state
    */
   function resetDeck() {
-    currentIndex = 0;
-    showCurrentCard();
-    updateCounter();
-    if (!isAutoRevealing) {
-      startAutoReveal();
+    if (isAnimating) return;
+    
+    // Stop auto reveal
+    if (isAutoRevealing) {
+      toggleAutoReveal();
     }
-    announce('Deck reset to beginning');
+    
+    isPaused = false;
+    
+    // Reset all card states
+    cards.forEach((card, index) => {
+      card.classList.remove('top-card', 'in-deck', 'moving-to-back', 'coming-from-back');
+      
+      if (index === 0) {
+        card.classList.add('top-card');
+      } else {
+        card.classList.add('in-deck');
+      }
+    });
+    
+    currentCardIndex = 0;
+    updateCounter();
+    
+    const firstCardTitle = cards[0]?.querySelector('h4')?.textContent || 'First card';
+    announce(`Deck reset. Now viewing ${firstCardTitle}, card 1 of ${cards.length}`);
   }
 
   /**
    * Update the card counter display
    */
   function updateCounter() {
-    const counter = document.querySelector('.deck-counter');
-    if (counter && cards.length > 0) {
-      counter.textContent = `${currentIndex + 1} / ${cards.length}`;
-    }
+    if (!cardCounter || cards.length === 0) return;
+    
+    const currentCardTitle = cards[currentCardIndex]?.querySelector('.card-info h4')?.textContent || 'Card';
+    cardCounter.textContent = `${currentCardIndex + 1} of ${cards.length} - ${currentCardTitle}`;
   }
 
   /**
    * Handle keyboard navigation
    */
   function handleKeyboard(event) {
-    if (!cardDeck.contains(document.activeElement) && document.activeElement !== cardDeck) {
-      return;
-    }
-
+    if (!cards.length) return;
+    
     switch(event.key) {
-      case 'ArrowRight':
-      case 'ArrowDown':
-        event.preventDefault();
-        nextCard();
-        break;
       case 'ArrowLeft':
-      case 'ArrowUp':
         event.preventDefault();
         prevCard();
+        announce('Navigated to previous card using keyboard');
         break;
-      case ' ':
+      case 'ArrowRight':
+        event.preventDefault();
+        nextCard();
+        announce('Navigated to next card using keyboard');
+        break;
+      case 'a':
+      case 'A':
         event.preventDefault();
         toggleAutoReveal();
         break;
+      case 'r':
+      case 'R':
+        event.preventDefault();
+        resetDeck();
+        break;
+      case 's':
+      case 'S':
+        event.preventDefault();
+        shuffleDeck();
+        break;
       case 'Home':
         event.preventDefault();
-        currentIndex = 0;
-        showCurrentCard();
-        updateCounter();
+        if (currentCardIndex !== 0) {
+          currentCardIndex = 0;
+          resetDeck();
+        }
         break;
       case 'End':
         event.preventDefault();
-        currentIndex = cards.length - 1;
-        showCurrentCard();
-        updateCounter();
+        if (currentCardIndex !== cards.length - 1) {
+          // Go to last card
+          const targetIndex = cards.length - 1;
+          while (currentCardIndex !== targetIndex) {
+            nextCard();
+          }
+        }
         break;
     }
   }
-
-  // Touch navigation variables
-  let touchStartX = 0;
-  let touchEndX = 0;
 
   /**
    * Handle touch start for swipe navigation
    */
   function handleTouchStart(event) {
-    touchStartX = event.changedTouches[0].screenX;
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
   }
 
   /**
    * Handle touch end for swipe navigation
    */
   function handleTouchEnd(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    handleSwipe();
-  }
-
-  /**
-   * Handle swipe gestures
-   */
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    const swipeDistance = touchStartX - touchEndX;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-      if (swipeDistance > 0) {
-        // Swiped left - next card
-        nextCard();
-      } else {
-        // Swiped right - previous card
-        prevCard();
+    if (!touchStartX || !touchStartY) return;
+    
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+    
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = touchStartY - touchEndY;
+    
+    // Minimum swipe distance
+    const minSwipeDistance = 50;
+    
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal swipe
+      if (Math.abs(deltaX) > minSwipeDistance) {
+        if (deltaX > 0) {
+          nextCard(); // Swipe left = next
+        } else {
+          prevCard(); // Swipe right = previous
+        }
+      }
+    } else {
+      // Vertical swipe
+      if (Math.abs(deltaY) > minSwipeDistance && deltaY > 0) {
+        toggleAutoReveal(); // Swipe up = toggle auto reveal
       }
     }
+    
+    touchStartX = 0;
+    touchStartY = 0;
   }
-
-  // Global functions for button controls
-  window.nextCard = nextCard;
-  window.prevCard = prevCard;
-  window.toggleAutoReveal = toggleAutoReveal;
-  window.shuffleDeck = shuffleDeck;
-  window.resetDeck = resetDeck;
 });
 
-// Social sharing functions
+/**
+ * Website Sharing Functions
+ */
+
+// Get the current page URL for sharing context
 function getCurrentPageUrl() {
   return window.location.href;
 }
 
+// Share website to Facebook
 function shareWebsiteToFacebook() {
-  const url = getCurrentPageUrl();
-  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-  window.open(shareUrl, '_blank', 'width=600,height=400');
+  const pageUrl = getCurrentPageUrl();
+  const shareText = 'Check out INK 102 Tattoos - Premium tattoo studio in Stonecrest, GA! Amazing custom designs, expert artists, and professional service.';
+  
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
+  
+  window.open(facebookUrl, 'facebook-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to Facebook');
+  }
 }
 
+// Share website to Twitter
 function shareWebsiteToTwitter() {
-  const url = getCurrentPageUrl();
-  const text = 'Check out this amazing tattoo shop! Professional artistry and custom designs.';
-  const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-  window.open(shareUrl, '_blank', 'width=600,height=400');
+  const pageUrl = getCurrentPageUrl();
+  const hashtags = 'tattoo,ink,tattooart,StonecrestGA,INK102Tattoos';
+  const shareText = 'Amazing tattoo studio in Stonecrest, GA! Check out @INK102Tattoos for custom designs, expert artistry, and professional service.';
+  
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}&hashtags=${hashtags}`;
+  
+  window.open(twitterUrl, 'twitter-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to Twitter');
+  }
 }
 
+// Share website to Instagram
 function shareWebsiteToInstagram() {
-  // Instagram doesn't have direct web sharing, so copy link instead
-  copyWebsiteLink();
-  alert('Link copied! You can now paste it in your Instagram story or bio.');
+  const instagramUrl = 'https://www.instagram.com/';
+  const shareText = 'Check out INK 102 Tattoos in Stonecrest, GA! Premium tattoo studio with amazing custom designs and expert artists. #tattoo #ink #tattooart #StonecrestGA #INK102Tattoos #tattoostudio';
+  
+  // Copy text to clipboard for easy pasting
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('Caption copied to clipboard! Open Instagram and paste it in your story or post.');
+    });
+  }
+  
+  window.open(instagramUrl, 'instagram-share', 'width=600,height=600,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Opening Instagram. Caption copied for sharing INK 102 Tattoos');
+  }
 }
 
+// Share website to WhatsApp
 function shareWebsiteToWhatsApp() {
-  const url = getCurrentPageUrl();
-  const text = 'Check out this amazing tattoo shop! Professional artistry and custom designs.';
-  const shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
-  window.open(shareUrl, '_blank');
+  const pageUrl = getCurrentPageUrl();
+  const shareText = `Check out INK 102 Tattoos - amazing tattoo studio in Stonecrest, GA! Custom designs, expert artists, professional service. ${pageUrl}`;
+  
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+  
+  window.open(whatsappUrl, 'whatsapp-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to WhatsApp');
+  }
 }
 
+// Copy website link to clipboard
 function copyWebsiteLink(buttonElement) {
-  const url = getCurrentPageUrl();
-  navigator.clipboard.writeText(url).then(() => {
-    if (buttonElement) {
-      const originalText = buttonElement.innerHTML;
-      buttonElement.innerHTML = '<i class="fas fa-check"></i> Copied!';
-      buttonElement.style.background = '#28a745';
+  const pageUrl = getCurrentPageUrl();
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(pageUrl).then(() => {
+      // Visual feedback
+      const originalIcon = buttonElement.innerHTML;
+      buttonElement.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+      buttonElement.classList.add('copied');
+      buttonElement.title = 'Website link copied!';
+      
+      // Reset after 2 seconds
       setTimeout(() => {
-        buttonElement.innerHTML = originalText;
-        buttonElement.style.background = '';
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('copied');
+        buttonElement.title = 'Copy website link';
       }, 2000);
-    } else {
-      alert('Website link copied to clipboard!');
-    }
-  }).catch(() => {
-    alert('Could not copy link. Please copy manually: ' + url);
-  });
+      
+      if (window.announce) {
+        window.announce('Website link copied to clipboard');
+      }
+    }).catch(() => {
+      // Fallback for older browsers
+      prompt('Copy this link:', pageUrl);
+    });
+  } else {
+    // Fallback for browsers without clipboard API
+    prompt('Copy this link:', pageUrl);
+  }
 }
