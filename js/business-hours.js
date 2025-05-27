@@ -26,6 +26,9 @@
   let currentTime;
   let nextChange;
   let updateInterval;
+  let backToTopButton;
+  let backToTopStatusDot;
+  let backToTopStatusLabel;
 
   /**
    * Initialize the business hours status system
@@ -40,11 +43,59 @@
 
     if (!statusText || !currentTime || !nextChange) return;
 
+    // Initialize back to top button
+    initializeBackToTop();
+
     // Update immediately and then every minute
     updateBusinessStatus();
     updateInterval = setInterval(updateBusinessStatus, 60000); // Update every minute
 
     console.log('✅ Business Hours Status System initialized');
+  }
+
+  /**
+   * Initialize back to top button
+   */
+  function initializeBackToTop() {
+    backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
+    backToTopStatusDot = backToTopButton.querySelector('.status-dot');
+    backToTopStatusLabel = backToTopButton.querySelector('.status-label');
+
+    // Add click event for scroll to top
+    backToTopButton.addEventListener('click', scrollToTop);
+
+    // Add scroll event to show/hide button
+    window.addEventListener('scroll', handleScroll);
+
+    console.log('✅ Back to Top Button initialized');
+  }
+
+  /**
+   * Handle scroll to show/hide back to top button
+   */
+  function handleScroll() {
+    if (!backToTopButton) return;
+
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const shouldShow = scrollTop > 300; // Show after scrolling 300px
+
+    if (shouldShow) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  }
+
+  /**
+   * Smooth scroll to top
+   */
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   /**
@@ -170,6 +221,38 @@
     statusText.textContent = status.statusMessage;
     currentTime.textContent = formatCurrentTime(now);
     nextChange.textContent = status.nextChangeText;
+
+    // Update back to top button status
+    updateBackToTopStatus(status);
+  }
+
+  /**
+   * Update back to top button status
+   */
+  function updateBackToTopStatus(status) {
+    if (!backToTopButton || !backToTopStatusLabel) return;
+
+    // Remove all status classes from back to top button
+    backToTopButton.className = 'back-to-top';
+    
+    // Add current status class
+    backToTopButton.classList.add(status.statusClass);
+    
+    // Add visible class if currently visible
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 300) {
+      backToTopButton.classList.add('visible');
+    }
+
+    // Update status label
+    const statusMap = {
+      'open': 'Open',
+      'closed': 'Closed',
+      'closing-soon': 'Closing Soon',
+      'opening-soon': 'Opening Soon'
+    };
+    
+    backToTopStatusLabel.textContent = statusMap[status.statusClass] || 'Loading...';
   }
 
   /**
