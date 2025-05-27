@@ -259,6 +259,23 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Add click handler
       card.addEventListener('click', nextCard);
+      
+      // Add touch hover effects
+      card.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        card.classList.add('touch-active');
+      });
+      
+      card.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        setTimeout(() => {
+          card.classList.remove('touch-active');
+        }, 150);
+      });
+      
+      card.addEventListener('touchcancel', () => {
+        card.classList.remove('touch-active');
+      });
     });
 
     // Setup hover pause functionality with debouncing
