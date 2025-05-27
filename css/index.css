@@ -1991,3 +1991,81 @@ header.scrolled {
                 0 0 20px rgba(212, 175, 55, 0.3);
   }
 }
+
+/* Business Status Banner */
+.business-status-banner {
+  background: linear-gradient(135deg, #0f3460 0%, #1e5b8c 100%);
+  color: white;
+  padding: var(--space-md) 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.business-status-banner.open {
+  background: linear-gradient(135deg, #0d5a2d 0%, #2d8f5a 100%);
+}
+
+.business-status-banner.closed {
+  background: linear-gradient(135deg, #8b1538 0%, #c53030 100%);
+}
+
+.business-status-banner.closing-soon {
+  background: linear-gradient(135deg, #b7791f 0%, #ed8936 100%);
+}
+
+.business-status-banner.opening-soon {
+  background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #10b981;
+  animation: pulse 2s infinite;
+}
+
+.business-status-banner.closed .status-indicator {
+  background-color: #ef4444;
+}
+
+.business-status-banner.closing-soon .status-indicator {
+  background-color: #f59e0b;
+}
+
+.business-status-banner.opening-soon .status-indicator {
+  background-color: #8b5cf6;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.next-change {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
