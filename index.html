@@ -488,6 +488,127 @@
       </div>
     </section>
 
+    <!-- Card Deck Gallery Section -->
+    <section id="card-gallery" class="card-gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>Interactive Portfolio</h2>
+        </div>
+        <p class="section-subtitle">Experience our masterpieces in an elegant card deck - click and discover each unique piece</p>
+        
+        <div class="gallery-controls">
+          <button class="deck-control" id="shuffle-deck">
+            <i class="fas fa-random"></i>
+            Shuffle Deck
+          </button>
+          <button class="deck-control" id="fan-out">
+            <i class="fas fa-layer-group"></i>
+            Fan Out
+          </button>
+          <button class="deck-control" id="reset-deck">
+            <i class="fas fa-undo"></i>
+            Reset
+          </button>
+        </div>
+        
+        <div class="card-deck-container">
+          <div class="card-deck" id="card-deck">
+            <div class="card" data-card="1">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8684.jpeg" alt="Vibrant color tattoo by Ink 102 - professional artistic work">
+                <div class="card-info">
+                  <h4>Vibrant Color Work</h4>
+                  <p>Professional artistic expression with stunning color saturation</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="2">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8685.jpeg" alt="Detailed black and gray tattoo by Ink 102 - professional shading technique">
+                <div class="card-info">
+                  <h4>Black & Gray Mastery</h4>
+                  <p>Expert shading and depth with masterful technique</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="3">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8686.jpeg" alt="Custom design tattoo by Ink 102 - unique artistic expression">
+                <div class="card-info">
+                  <h4>Custom Design</h4>
+                  <p>Unique artistic expression tailored to your vision</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="4">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8687.jpeg" alt="Colorful tattoo design by Ink 102 - vibrant custom artwork">
+                <div class="card-info">
+                  <h4>Vibrant Artwork</h4>
+                  <p>Bold colors and creative design elements</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="5">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8688.jpeg" alt="Black and gray realism tattoo by Ink 102 - premium shading work">
+                <div class="card-info">
+                  <h4>Realistic Portraits</h4>
+                  <p>Lifelike detail with premium shading techniques</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="6">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8689.jpeg" alt="Custom tattoo design by Ink 102 - bespoke artistic work">
+                <div class="card-info">
+                  <h4>Bespoke Art</h4>
+                  <p>One-of-a-kind custom artistic creations</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="7">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8690.jpeg" alt="Vibrant color tattoo by Ink 102 - artistic expression">
+                <div class="card-info">
+                  <h4>Color Mastery</h4>
+                  <p>Expert color blending and artistic composition</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card" data-card="8">
+              <div class="card-face card-back"></div>
+              <div class="card-face card-front">
+                <img src="/images/tattoos/IMG_8691.jpeg" alt="Fine line black and gray tattoo by Ink 102 - detailed work">
+                <div class="card-info">
+                  <h4>Fine Line Work</h4>
+                  <p>Precision and detailed craftsmanship at its finest</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="deck-counter">
+            <span id="card-counter">8 Cards in Deck</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
       <div class="container">
@@ -1052,5 +1173,8 @@
       });
     });
   </script>
+  
+  <!-- Card Deck JavaScript -->
+  <script src="js/card-deck.js"></script>
 </body>
 </html>
