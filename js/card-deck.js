@@ -101,34 +101,66 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /**
-   * Load cards directly with known image files
+   * Load cards from gallery folder with lazy loading
    */
   async function loadCardsFromFolder() {
     const cardGalleryPath = 'images/card-gallery/';
     
-    // Use known image files from your gallery
-    const knownImages = [
-      'black-gray-artistry.jpg',
-      'custom-design-work.jpg', 
-      'detailed-portrait-work.jpg',
-      'geometric-design.jpg',
-      'realistic-portrait.jpg',
-      'vibrant-color-masterpiece.jpg',
-      'IMG_8677.png'
-    ];
-    
-    existingCards = [];
-    
-    // Process each known image
-    for (const imageName of knownImages) {
-      const imageUrl = cardGalleryPath + imageName;
-      if (await imageExists(imageUrl)) {
-        existingCards.push({
-          url: imageUrl,
-          title: formatCardTitle(imageName),
-          description: generateDescription(imageName)
-        });
+    try {
+      // Try to get file list from server directory
+      const response = await fetch(cardGalleryPath);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const links = doc.querySelectorAll('a[href]');
+      
+      existingCards = [];
+      
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+          existingCards.push({
+            url: cardGalleryPath + href,
+            title: formatCardTitle(href),
+            description: generateDescription(href)
+          });
+        }
+      });
+      
+      // Fallback to known images if directory listing fails
+      if (existingCards.length === 0) {
+        const knownImages = [
+          'black-gray-artistry.jpg',
+          'custom-design-work.jpg', 
+          'detailed-portrait-work.jpg',
+          'geometric-design.jpg',
+          'realistic-portrait.jpg',
+          'vibrant-color-masterpiece.jpg',
+          'IMG_8677.png'
+        ];
+        
+        for (const imageName of knownImages) {
+          existingCards.push({
+            url: cardGalleryPath + imageName,
+            title: formatCardTitle(imageName),
+            description: generateDescription(imageName)
+          });
+        }
       }
+    } catch (error) {
+      console.log('Using fallback image list');
+      existingCards = [
+        {
+          url: 'images/card-gallery/black-gray-artistry.jpg',
+          title: 'Black & Gray Artistry',
+          description: 'Stunning black and gray realism showcasing incredible detail and shading techniques.'
+        },
+        {
+          url: 'images/card-gallery/vibrant-color-masterpiece.jpg',
+          title: 'Vibrant Color Masterpiece', 
+          description: 'Bold, vibrant colors bringing life to creative tattoo designs.'
+        }
+      ];
     }
   }
 
@@ -149,17 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(`✨ Created ${cards.length} interactive cards!`);
   }
 
-  /**
-   * Check if an image exists
-   */
-  function imageExists(url) {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = url;
-    });
-  }
+
 
   /**
    * Format filename into a readable card title
