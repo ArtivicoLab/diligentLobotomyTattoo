@@ -491,6 +491,49 @@
 
 
 
+    <!-- Interactive Card Deck Gallery -->
+    <section id="card-gallery" class="card-gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>Interactive Portfolio</h2>
+        </div>
+        <p class="section-subtitle">Experience our masterpieces in an elegant gaming-style card deck - click to reveal each unique piece</p>
+        
+        <div class="gallery-controls">
+          <button class="deck-control" id="prev-card">
+            <i class="fas fa-chevron-left"></i>
+            <span>Previous</span>
+          </button>
+          <button class="deck-control" id="auto-reveal">
+            <i class="fas fa-play"></i>
+            <span>Auto Reveal</span>
+          </button>
+          <button class="deck-control" id="next-card">
+            <i class="fas fa-chevron-right"></i>
+            <span>Next</span>
+          </button>
+          <button class="deck-control" id="shuffle-deck">
+            <i class="fas fa-random"></i>
+            <span>Shuffle</span>
+          </button>
+          <button class="deck-control" id="reset-deck">
+            <i class="fas fa-undo"></i>
+            <span>Reset</span>
+          </button>
+        </div>
+        
+        <div class="card-deck-container">
+          <div class="card-deck" id="card-deck">
+            <!-- Cards will be loaded dynamically -->
+          </div>
+          
+          <div class="deck-counter">
+            <span id="card-counter">Loading deck...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
       <div class="container">
@@ -1056,6 +1099,7 @@
     });
   </script>
   
-
+  <!-- Card Deck JavaScript -->
+  <script src="js/card-deck.js"></script>
 </body>
 </html>
