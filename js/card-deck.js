@@ -59,9 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
       await loadCardsFromFolder();
-      if (cards.length > 0) {
+      if (existingCards && existingCards.length > 0) {
+        createCardsFromData();
         setupCardInteractions();
-        updateCounter();
+        startAutoReveal();
       } else {
         cardDeck.innerHTML = '<div class="deck-loading"><p>No cards found. Add images to the gallery folder.</p></div>';
       }
@@ -173,12 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log(`✨ Loaded ${cards.length} cards into deck!`);
-    
-    // Setup interactions and start auto-cycling
-    if (cards.length > 0) {
-      setupCardInteractions();
-      startAutoReveal();
-    }
   }
 
   /**
