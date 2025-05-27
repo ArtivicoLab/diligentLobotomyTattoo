@@ -492,44 +492,64 @@
 
 
     <!-- Interactive Card Deck Gallery -->
-    <section id="card-gallery" class="card-gallery">
+    <section id="card-gallery" class="card-gallery" role="region" aria-labelledby="gallery-heading">
       <div class="container">
         <div class="section-title">
-          <h2>Interactive Portfolio</h2>
+          <h2 id="gallery-heading">Interactive Portfolio</h2>
         </div>
         <p class="section-subtitle">Experience our masterpieces in an elegant gaming-style card deck - click to reveal each unique piece</p>
         
-        <div class="gallery-controls">
-          <button class="deck-control" id="prev-card">
-            <i class="fas fa-chevron-left"></i>
+        <!-- Live region for screen reader announcements -->
+        <div id="gallery-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+        
+        <div class="gallery-controls" role="group" aria-label="Card deck navigation controls">
+          <button class="deck-control" id="prev-card" type="button" aria-describedby="prev-card-desc">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
             <span>Previous</span>
+            <span id="prev-card-desc" class="sr-only">Go to previous tattoo card in the deck</span>
           </button>
-          <button class="deck-control" id="auto-reveal">
-            <i class="fas fa-play"></i>
+          <button class="deck-control" id="auto-reveal" type="button" aria-describedby="auto-reveal-desc">
+            <i class="fas fa-play" aria-hidden="true"></i>
             <span>Auto Reveal</span>
+            <span id="auto-reveal-desc" class="sr-only">Start or stop automatic card cycling every 2 seconds</span>
           </button>
-          <button class="deck-control" id="next-card">
-            <i class="fas fa-chevron-right"></i>
+          <button class="deck-control" id="next-card" type="button" aria-describedby="next-card-desc">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
             <span>Next</span>
+            <span id="next-card-desc" class="sr-only">Go to next tattoo card in the deck</span>
           </button>
-          <button class="deck-control" id="shuffle-deck">
-            <i class="fas fa-random"></i>
+          <button class="deck-control" id="shuffle-deck" type="button" aria-describedby="shuffle-desc">
+            <i class="fas fa-random" aria-hidden="true"></i>
             <span>Shuffle</span>
+            <span id="shuffle-desc" class="sr-only">Randomly shuffle the order of cards in the deck</span>
           </button>
-          <button class="deck-control" id="reset-deck">
-            <i class="fas fa-undo"></i>
+          <button class="deck-control" id="reset-deck" type="button" aria-describedby="reset-desc">
+            <i class="fas fa-undo" aria-hidden="true"></i>
             <span>Reset</span>
+            <span id="reset-desc" class="sr-only">Reset deck to the first card and stop auto reveal</span>
           </button>
         </div>
         
         <div class="card-deck-container">
-          <div class="card-deck" id="card-deck">
+          <div class="card-deck" id="card-deck" role="img" aria-label="Interactive tattoo portfolio deck" tabindex="0">
             <!-- Cards will be loaded dynamically -->
           </div>
           
-          <div class="deck-counter">
+          <div class="deck-counter" role="status" aria-live="polite">
             <span id="card-counter">Loading deck...</span>
           </div>
+        </div>
+        
+        <!-- Instructions for screen readers -->
+        <div class="sr-only">
+          <h3>Card deck navigation instructions</h3>
+          <ul>
+            <li>Use the Previous and Next buttons to navigate through tattoo cards</li>
+            <li>Press Auto Reveal to automatically cycle through cards every 2 seconds</li>
+            <li>Use arrow keys: Left for previous, Right for next</li>
+            <li>Press A to toggle auto reveal, R to reset, S to shuffle</li>
+            <li>The deck pauses automatically when you hover over it during auto reveal</li>
+          </ul>
         </div>
       </div>
     </section>

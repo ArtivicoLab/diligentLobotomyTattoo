@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let isPaused = false;
   let hoverTimeout = null;
 
+  // Accessibility elements
+  const announcements = document.getElementById('gallery-announcements');
+
   // Initialize the deck
   initializeDeck();
 
@@ -163,14 +166,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /**
-   * Create a card element
+   * Create a card element with accessibility features
    */
   function createCard(cardData, index) {
     const card = document.createElement('div');
     card.className = 'deck-card';
+    card.setAttribute('role', 'img');
+    card.setAttribute('aria-label', `Tattoo artwork: ${cardData.title}. ${cardData.description}`);
+    card.setAttribute('tabindex', '0');
     card.innerHTML = `
       <div class="card-image">
-        <img src="${cardData.url}" alt="${cardData.title}" loading="lazy">
+        <img src="${cardData.url}" alt="${cardData.title} - ${cardData.description}" loading="lazy" role="presentation">
       </div>
       <div class="card-info">
         <h4>${cardData.title}</h4>
@@ -213,6 +219,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /**
+   * Announce to screen readers
+   */
+  function announce(message) {
+    if (announcements) {
+      announcements.textContent = message;
+    }
+  }
+
+  /**
    * Move to next card
    */
   function nextCard() {
@@ -243,6 +258,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       isAnimating = false;
       updateCounter();
+      
+      // Announce card change to screen readers
+      const cardTitle = nextCard.querySelector('h4')?.textContent || 'Card';
+      announce(`Now viewing ${cardTitle}, card ${currentCardIndex + 1} of ${cards.length}`);
     }, 600);
   }
 
@@ -274,6 +293,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       isAnimating = false;
       updateCounter();
+      
+      // Announce card change to screen readers
+      const cardTitle = prevCard.querySelector('h4')?.textContent || 'Card';
+      announce(`Now viewing ${cardTitle}, card ${currentCardIndex + 1} of ${cards.length}`);
     }, 600);
   }
 
@@ -325,10 +348,13 @@ document.addEventListener('DOMContentLoaded', function() {
       isPaused = false;
       
       if (autoRevealBtn) {
-        autoRevealBtn.innerHTML = '<i class="fas fa-play"></i> <span>Auto Reveal</span>';
+        autoRevealBtn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> <span>Auto Reveal</span>';
         autoRevealBtn.style.background = 'linear-gradient(135deg, #d4af37, #f4d03f)';
         autoRevealBtn.style.opacity = '1';
+        autoRevealBtn.setAttribute('aria-pressed', 'false');
       }
+      
+      announce('Auto reveal stopped');
     } else {
       // Start auto reveal
       isAutoRevealing = true;
@@ -341,9 +367,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 2000);
       
       if (autoRevealBtn) {
-        autoRevealBtn.innerHTML = '<i class="fas fa-pause"></i> <span>Stop Auto</span>';
+        autoRevealBtn.innerHTML = '<i class="fas fa-pause" aria-hidden="true"></i> <span>Stop Auto</span>';
         autoRevealBtn.style.background = 'linear-gradient(135deg, #dc3545, #ff6b7d)';
+        autoRevealBtn.setAttribute('aria-pressed', 'true');
       }
+      
+      announce('Auto reveal started. Cards will change every 2 seconds');
     }
   }
 
@@ -366,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Reset positions
     resetDeck();
+    announce('Deck shuffled. Cards are now in random order');
   }
 
   /**
@@ -394,6 +424,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     currentCardIndex = 0;
     updateCounter();
+    
+    const firstCardTitle = cards[0]?.querySelector('h4')?.textContent || 'First card';
+    announce(`Deck reset. Now viewing ${firstCardTitle}, card 1 of ${cards.length}`);
   }
 
   /**
