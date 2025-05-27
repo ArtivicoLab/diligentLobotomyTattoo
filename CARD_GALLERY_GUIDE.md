@@ -86,6 +86,35 @@ The system automatically creates card titles from your filenames:
 
 **Pro Tip:** The more descriptive your filename, the better your card will look!
 
+## Gallery Performance & Best Practices
+
+### How Many Images Can I Add?
+- **No limit!** Add as many tattoo photos as you want
+- The system automatically includes all images in the gallery folder
+- Works smoothly with 20, 50, 100+ images
+
+### Keep Your Gallery Fast & Professional:
+
+**File Size Guidelines:**
+- Keep each image under 2MB for fast loading
+- Compress large photos before uploading
+- High-quality photos are important, but huge files slow down your site
+
+**Organization Tips:**
+- If you have 50+ images, consider organizing by style
+- Use consistent naming patterns for easier management
+- Regular cleanup of old or low-quality images keeps the gallery fresh
+
+**Loading Performance:**
+- More images = slightly longer initial load time
+- Visitors see the first card immediately while others load in background
+- Mobile users especially benefit from optimized image sizes
+
+**Visitor Experience:**
+- Card navigation works smoothly with any number of images
+- Auto-shuffle and manual browsing keeps galleries engaging
+- Each visitor might see different images first due to shuffling
+
 ### Need Help?
 
 If you need assistance adding images or have questions about the gallery system, contact your web developer or refer to your website management documentation.
