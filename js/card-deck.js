@@ -1,6 +1,7 @@
 /**
  * Gaming-Style Card Deck Gallery
  * Interactive deck system with smooth animations and smart hover controls
+ * Now includes automatic image optimization for better performance
  */
 
 document.addEventListener('DOMContentLoaded', function() {
