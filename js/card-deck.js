@@ -449,10 +449,12 @@ document.addEventListener('DOMContentLoaded', function() {
       case 'ArrowLeft':
         event.preventDefault();
         prevCard();
+        announce('Navigated to previous card using keyboard');
         break;
       case 'ArrowRight':
         event.preventDefault();
         nextCard();
+        announce('Navigated to next card using keyboard');
         break;
       case 'a':
       case 'A':
@@ -468,6 +470,23 @@ document.addEventListener('DOMContentLoaded', function() {
       case 'S':
         event.preventDefault();
         shuffleDeck();
+        break;
+      case 'Home':
+        event.preventDefault();
+        if (currentCardIndex !== 0) {
+          currentCardIndex = 0;
+          resetDeck();
+        }
+        break;
+      case 'End':
+        event.preventDefault();
+        if (currentCardIndex !== cards.length - 1) {
+          // Go to last card
+          const targetIndex = cards.length - 1;
+          while (currentCardIndex !== targetIndex) {
+            nextCard();
+          }
+        }
         break;
     }
   }
