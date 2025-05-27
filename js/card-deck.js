@@ -550,10 +550,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const tooltip = document.createElement('div');
   tooltip.className = 'deck-tooltip';
   tooltip.innerHTML = `
-    <p><strong>Controls:</strong></p>
-    <p>🖱️ Click cards to flip and view</p>
-    <p>⌨️ Press S to Shuffle, F to Fan Out, R to Reset</p>
-    <p>📱 Swipe left/right/up for controls</p>
+    <p><strong>Navigation Controls:</strong></p>
+    <p>🖱️ Click card or use Previous/Next buttons</p>
+    <p>⌨️ Arrow keys to navigate, A for Auto Reveal, R to Reset</p>
+    <p>📱 Swipe left/right to navigate, up for Auto Reveal</p>
   `;
   tooltip.style.cssText = `
     position: absolute;
