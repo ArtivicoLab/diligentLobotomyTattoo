@@ -32,29 +32,31 @@ class BusinessHours {
   }
 
   createStatusDisplay() {
-    // Find footer or create container
-    const footer = document.querySelector('footer') || document.querySelector('.footer');
-    if (!footer) return;
+    // Find hero section or main content area
+    const heroSection = document.querySelector('.hero') || document.querySelector('main') || document.querySelector('.main-content');
+    if (!heroSection) return;
 
-    // Create status container
+    // Create status banner container
     const statusContainer = document.createElement('div');
-    statusContainer.className = 'business-status-container';
+    statusContainer.className = 'business-status-banner';
     statusContainer.innerHTML = `
-      <div class="business-status">
-        <div class="status-indicator">
-          <div class="status-dot"></div>
-          <div class="status-pulse"></div>
-        </div>
-        <div class="status-content">
-          <div class="status-text">Loading...</div>
-          <div class="status-time"></div>
-          <div class="status-countdown"></div>
+      <div class="container">
+        <div class="business-status">
+          <div class="status-indicator">
+            <div class="status-dot"></div>
+            <div class="status-pulse"></div>
+          </div>
+          <div class="status-content">
+            <div class="status-text">Loading...</div>
+            <div class="status-time"></div>
+            <div class="status-countdown"></div>
+          </div>
         </div>
       </div>
     `;
 
-    // Insert before footer content
-    footer.insertBefore(statusContainer, footer.firstChild);
+    // Insert right after hero section
+    heroSection.parentNode.insertBefore(statusContainer, heroSection.nextSibling);
 
     // Cache elements
     this.statusElement = statusContainer.querySelector('.status-text');
@@ -69,25 +71,39 @@ class BusinessHours {
 
   addStyles() {
     const styles = `
-      .business-status-container {
-        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-        border: 2px solid #d4af37;
-        border-radius: 12px;
-        padding: 20px;
-        margin: 20px 0;
+      .business-status-banner {
+        background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        border-top: 3px solid #d4af37;
+        border-bottom: 3px solid #d4af37;
+        padding: 24px 0;
         position: relative;
         overflow: hidden;
+        width: 100%;
+        z-index: 100;
       }
 
-      .business-status-container::before {
+      .business-status-banner::before {
         content: '';
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.1), transparent);
-        animation: shimmer 3s infinite;
+        background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.15), transparent);
+        animation: shimmer 4s infinite;
+      }
+
+      .business-status-banner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+        pointer-events: none;
       }
 
       @keyframes shimmer {
@@ -95,35 +111,46 @@ class BusinessHours {
         100% { left: 100%; }
       }
 
-      .business-status {
-        display: flex;
-        align-items: center;
-        gap: 16px;
+      .business-status-banner .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
         position: relative;
         z-index: 1;
       }
 
+      .business-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
       .status-indicator {
         position: relative;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
       }
 
       .status-dot {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         transition: all 0.3s ease;
         position: relative;
         z-index: 2;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       }
 
       .status-pulse {
         position: absolute;
         top: 0;
         left: 0;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         opacity: 0.6;
         animation: pulse 2s infinite;
@@ -131,32 +158,36 @@ class BusinessHours {
 
       @keyframes pulse {
         0% { transform: scale(1); opacity: 0.6; }
-        50% { transform: scale(1.5); opacity: 0.3; }
-        100% { transform: scale(2); opacity: 0; }
+        50% { transform: scale(1.8); opacity: 0.3; }
+        100% { transform: scale(2.5); opacity: 0; }
       }
 
       .status-content {
         flex: 1;
+        max-width: 600px;
       }
 
       .status-text {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 4px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 6px;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.1em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .status-time {
-        font-size: 0.9rem;
-        color: #cccccc;
-        margin-bottom: 2px;
+        font-size: 1rem;
+        color: #f5f5f5;
+        margin-bottom: 4px;
+        font-weight: 500;
       }
 
       .status-countdown {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         color: #d4af37;
-        font-weight: 500;
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
 
       /* Status States */
@@ -197,21 +228,58 @@ class BusinessHours {
       }
 
       @media (max-width: 768px) {
-        .business-status-container {
-          padding: 16px;
-          margin: 16px 0;
+        .business-status-banner {
+          padding: 20px 0;
+        }
+        
+        .business-status {
+          gap: 16px;
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .status-indicator {
+          width: 20px;
+          height: 20px;
+        }
+        
+        .status-dot, .status-pulse {
+          width: 20px;
+          height: 20px;
         }
         
         .status-text {
-          font-size: 1rem;
+          font-size: 1.2rem;
         }
         
         .status-time {
-          font-size: 0.8rem;
+          font-size: 0.9rem;
         }
         
         .status-countdown {
-          font-size: 0.75rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .business-status-banner {
+          padding: 16px 0;
+        }
+        
+        .business-status-banner .container {
+          padding: 0 16px;
+        }
+        
+        .status-text {
+          font-size: 1.1rem;
+        }
+        
+        .status-time {
+          font-size: 0.85rem;
+        }
+        
+        .status-countdown {
+          font-size: 0.8rem;
         }
       }
     `;
