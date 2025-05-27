@@ -54,8 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
   async function initializeDeck() {
     if (!cardDeck) return;
 
-    // Show loading state
-    cardDeck.innerHTML = '<div class="deck-loading"><i class="fas fa-spinner"></i><p>Loading cards...</p></div>';
+    // Disable controls during loading
+    disableControls();
+    
+    // Show simple loading state
+    cardDeck.innerHTML = '<div class="deck-loading"><p>Loading portfolio...</p></div>';
 
     try {
       await loadCardsFromFolder();
@@ -63,98 +66,63 @@ document.addEventListener('DOMContentLoaded', function() {
         createCardsFromData();
         setupCardInteractions();
         startAutoReveal();
+        enableControls();
       } else {
-        cardDeck.innerHTML = '<div class="deck-loading"><p>No cards found. Add images to the gallery folder.</p></div>';
+        cardDeck.innerHTML = '<div class="deck-loading"><p>No portfolio images found.</p></div>';
+        enableControls();
       }
     } catch (error) {
       console.error('Error loading cards:', error);
-      cardDeck.innerHTML = '<div class="deck-loading"><p>Error loading cards. Please try again.</p></div>';
+      cardDeck.innerHTML = '<div class="deck-loading"><p>Failed to load portfolio. <button onclick="location.reload()" class="reload-btn">Reload Page</button></p></div>';
+      enableControls();
     }
   }
 
   /**
-   * Load cards dynamically from the images/card-gallery folder
+   * Disable gallery controls during loading
+   */
+  function disableControls() {
+    const controls = document.querySelectorAll('.deck-control');
+    controls.forEach(control => {
+      control.disabled = true;
+      control.style.opacity = '0.5';
+    });
+  }
+
+  /**
+   * Enable gallery controls after loading
+   */
+  function enableControls() {
+    const controls = document.querySelectorAll('.deck-control');
+    controls.forEach(control => {
+      control.disabled = false;
+      control.style.opacity = '1';
+    });
+  }
+
+  /**
+   * Load cards directly with known image files
    */
   async function loadCardsFromFolder() {
     const cardGalleryPath = 'images/card-gallery/';
     
-    // Try to get the list of files from the server
-    let imageFiles = [];
+    // Use known image files from your gallery
+    const knownImages = [
+      'black-gray-artistry.jpg',
+      'custom-design-work.jpg', 
+      'detailed-portrait-work.jpg',
+      'geometric-design.jpg',
+      'realistic-portrait.jpg',
+      'vibrant-color-masterpiece.jpg',
+      'IMG_8677.png'
+    ];
     
-    try {
-      const response = await fetch(cardGalleryPath);
-      if (response.ok) {
-        const html = await response.text();
-        // Parse HTML to extract image file names
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const links = doc.querySelectorAll('a[href]');
-        
-        links.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && (href.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
-            imageFiles.push(href);
-          }
-        });
-      }
-    } catch (error) {
-      console.log('Could not fetch directory listing, using fallback method');
-    }
+    existingCards = [];
     
-    // Fallback: try known patterns and common filenames
-    if (imageFiles.length === 0) {
-      const potentialImages = [
-        'vibrant-color-masterpiece.jpg',
-        'black-gray-artistry.jpg', 
-        'custom-design-work.jpg',
-        'detailed-portrait-work.jpg',
-        'colorful-dragon-tattoo.jpg',
-        'realistic-portrait.jpg',
-        'geometric-design.jpg',
-        'floral-sleeve.jpg',
-        'minimalist-art.jpg',
-        'traditional-style.jpg',
-        'watercolor-design.jpg',
-        'tribal-artwork.jpg',
-        // Common patterns from attached assets
-        'IMG_8677.png',
-        'IMG_8678.png',
-        'IMG_8679.png',
-        'IMG_8680.png',
-        'IMG_8681.png',
-        'IMG_8682.png',
-        'IMG_8683.png',
-        'IMG_8684.jpeg',
-        'IMG_8685.jpeg',
-        'IMG_8686.jpeg',
-        'IMG_8687.jpeg',
-        'IMG_8688.jpeg',
-        'IMG_8689.jpeg',
-        'IMG_8690.jpeg',
-        'IMG_8691.jpeg',
-        'IMG_8692.jpeg'
-      ];
-      imageFiles = potentialImages;
-    }
-
-    const existingCards = [];
-    
-    for (const imageName of imageFiles) {
-      let imageUrl = cardGalleryPath + imageName;
-      
-      // Use optimized version if smart gallery manager is available
-      if (window.smartGalleryManager) {
-        try {
-          const optimizedUrl = await window.smartGalleryManager.getDisplayImage(imageName);
-          if (optimizedUrl) {
-            imageUrl = optimizedUrl;
-          }
-        } catch (error) {
-          console.log(`Using original image for ${imageName}`);
-        }
-      }
-      
-      if (await imageExists(imageUrl) || imageUrl.startsWith('data:')) {
+    // Process each known image
+    for (const imageName of knownImages) {
+      const imageUrl = cardGalleryPath + imageName;
+      if (await imageExists(imageUrl)) {
         existingCards.push({
           url: imageUrl,
           title: formatCardTitle(imageName),
@@ -162,7 +130,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     }
+  }
 
+  /**
+   * Create cards from loaded data
+   */
+  function createCardsFromData() {
     // Clear the deck and create cards
     cardDeck.innerHTML = '';
     cards = [];
@@ -173,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cards.push(card);
     });
 
-    console.log(`✨ Loaded ${cards.length} cards into deck!`);
+    console.log(`✨ Created ${cards.length} interactive cards!`);
   }
 
   /**
