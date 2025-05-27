@@ -378,11 +378,11 @@
     </p>
     
     <div class="button-container">
-      <a href="/" class="fun-button primary-button">
+      <a href="javascript:void(0)" onclick="goHome()" class="fun-button primary-button">
         <i class="fas fa-home"></i>
         <span>Take Me Home!</span>
       </a>
-      <a href="/#gallery" class="fun-button secondary-button">
+      <a href="javascript:void(0)" onclick="goToGallery()" class="fun-button secondary-button">
         <i class="fas fa-images"></i>
         <span>Show Me Awesome Tattoos</span>
       </a>
@@ -390,6 +390,37 @@
   </div>
 
   <script>
+    // Smart navigation functions that work for both local and GitHub Pages
+    function goHome() {
+      // Try to determine the correct home URL
+      const currentUrl = window.location.href;
+      const isGitHubPages = currentUrl.includes('.github.io');
+      
+      if (isGitHubPages) {
+        // For GitHub Pages, go to the repository root
+        const pathParts = window.location.pathname.split('/');
+        const repoName = pathParts[1]; // Get repository name
+        window.location.href = `${window.location.origin}/${repoName}/`;
+      } else {
+        // For local development or custom domain
+        window.location.href = '/';
+      }
+    }
+    
+    function goToGallery() {
+      // Navigate to gallery section
+      const currentUrl = window.location.href;
+      const isGitHubPages = currentUrl.includes('.github.io');
+      
+      if (isGitHubPages) {
+        const pathParts = window.location.pathname.split('/');
+        const repoName = pathParts[1];
+        window.location.href = `${window.location.origin}/${repoName}/#gallery`;
+      } else {
+        window.location.href = '/#gallery';
+      }
+    }
+    
     // Add some extra fun interactions
     document.addEventListener('DOMContentLoaded', function() {
       // Random floating elements
