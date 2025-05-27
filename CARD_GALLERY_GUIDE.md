@@ -9,15 +9,26 @@
    - Make sure images are at least 800px wide for best quality
    - Keep file sizes under 2MB for fast loading
 
-2. **Name Your Images**
-   - Use descriptive names that describe the tattoo style
-   - Use hyphens (-) instead of spaces
-   - Examples of good names:
-     - `colorful-dragon-tattoo.jpg`
-     - `black-and-gray-portrait.jpg`
-     - `floral-sleeve-design.jpg`
-     - `minimalist-geometric.jpg`
-     - `traditional-american-style.jpg`
+2. **Name Your Images Properly** 
+   ⚠️ **IMPORTANT:** The filename creates the card title and description automatically!
+   
+   **✅ DO THIS:**
+   - Use descriptive words separated by hyphens (-)
+   - Include the tattoo style, subject, and placement
+   - Use lowercase letters
+   - No spaces or special characters
+   
+   **❌ DON'T DO THIS:**
+   - Generic names like `IMG_1234.jpg` or `photo.png`
+   - Names with spaces like `dragon tattoo.jpg`
+   - Random names like `untitled.jpg`
+
+   **Perfect Naming Examples:**
+   - `traditional-rose-sleeve.jpg` → Creates: "Traditional Rose Sleeve"
+   - `watercolor-butterfly-back.jpg` → Creates: "Watercolor Butterfly Back"
+   - `geometric-mandala-forearm.jpg` → Creates: "Geometric Mandala Forearm"
+   - `realistic-portrait-shoulder.jpg` → Creates: "Realistic Portrait Shoulder"
+   - `minimalist-line-mountain.jpg` → Creates: "Minimalist Line Mountain"
 
 3. **Upload to the Gallery Folder**
    - Navigate to the `images/card-gallery/` folder in your website files
@@ -47,16 +58,33 @@ The system automatically creates card titles from your filenames:
 - **Mobile friendly** - all images work perfectly on phones and tablets
 - **Professional descriptions** - the system adds appropriate descriptions based on the filename
 
-### Suggested Image Names for Tattoo Styles:
+### Smart Keywords That Create Great Descriptions:
 
-- `watercolor-design.jpg`
-- `tribal-artwork.jpg`
-- `fine-line-work.jpg`
-- `cover-up-transformation.jpg`
-- `japanese-traditional.jpg`
-- `biomechanical-art.jpg`
-- `script-lettering.jpg`
-- `mandala-design.jpg`
+**Tattoo Styles** (use these words for automatic descriptions):
+- `traditional` → "Classic traditional tattoo style"
+- `watercolor` → "Artistic watercolor technique with flowing colors"
+- `geometric` → "Modern geometric patterns with clean lines"
+- `minimalist` → "Clean minimalist design with elegant simplicity"
+- `realistic` → "Photorealistic detail capturing every nuance"
+- `tribal` → "Bold tribal patterns with cultural significance"
+- `fine-line` → "Delicate fine line work with precision"
+- `black-gray` → "Masterful black and gray shading technique"
+- `vibrant-color` → "Stunning vibrant color showcasing artistic brilliance"
+
+**Body Placement Words:**
+- `sleeve`, `forearm`, `shoulder`, `back`, `chest`, `leg`, `foot`, `hand`
+
+**Subject Ideas:**
+- `rose`, `dragon`, `butterfly`, `eagle`, `skull`, `mandala`, `portrait`, `landscape`
+
+**Example Combinations:**
+- `geometric-rose-forearm.jpg`
+- `watercolor-butterfly-shoulder.jpg`
+- `traditional-eagle-chest.jpg`
+- `minimalist-mountain-back.jpg`
+- `realistic-portrait-sleeve.jpg`
+
+**Pro Tip:** The more descriptive your filename, the better your card will look!
 
 ### Need Help?
 
