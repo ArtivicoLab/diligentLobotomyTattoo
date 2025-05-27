@@ -139,8 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const existingCards = [];
     
     for (const imageName of imageFiles) {
-      const imageUrl = cardGalleryPath + imageName;
-      if (await imageExists(imageUrl)) {
+      let imageUrl = cardGalleryPath + imageName;
+      
+      // Use optimized version if smart gallery manager is available
+      if (window.smartGalleryManager) {
+        try {
+          const optimizedUrl = await window.smartGalleryManager.getDisplayImage(imageName);
+          if (optimizedUrl) {
+            imageUrl = optimizedUrl;
+          }
+        } catch (error) {
+          console.log(`Using original image for ${imageName}`);
+        }
+      }
+      
+      if (await imageExists(imageUrl) || imageUrl.startsWith('data:')) {
         existingCards.push({
           url: imageUrl,
           title: formatCardTitle(imageName),
