@@ -24,9 +24,9 @@
   <meta property="twitter:image" content="/images/tattoos/IMG_8684.jpeg">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/card-deck.css">
+  <link rel="stylesheet" href="css/luxury-main.css">
+  <link rel="stylesheet" href="css/luxury-sections.css">
+  <link rel="stylesheet" href="css/luxury-calculator.css">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,18 +126,11 @@
           <div class="hero-contact-info">
             <div class="hero-contact-item">
               <i class="fas fa-map-marker-alt"></i>
-              <a 
-                href="https://www.google.com/maps/search/?api=1&query=2980+Stonecrest+Pass,+Stonecrest,+GA" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <span>2980 Stonecrest Pass, Stonecrest, GA</span>
-              </a>
-              
+              <span>2980 Stonecrest Pass, Stonecrest, GA</span>
             </div>
             <div class="hero-contact-item">
               <i class="fas fa-phone-alt phone-shake"></i>
-              <a href="tel:7706133051"><span>(770) 613-3051</span></a>
+              <span>(770) 613-3051</span>
             </div>
           </div>
           
@@ -153,6 +146,8 @@
         <span class="hero-indicator" data-index="4"></span>
       </div>
     </section>
+
+
 
     <!-- Featured Work Section -->
     <section id="featured" class="featured-work">
@@ -488,45 +483,6 @@
       </div>
     </section>
 
-    <!-- Card Deck Gallery Section -->
-    <section id="card-gallery" class="card-gallery">
-      <div class="container">
-        <div class="section-title">
-          <h2>Interactive Portfolio</h2>
-        </div>
-        <p class="section-subtitle">Experience our masterpieces in an elegant card deck - click and discover each unique piece</p>
-        
-        <div class="gallery-controls">
-          <button class="deck-control" id="prev-card">
-            <i class="fas fa-chevron-left"></i>
-            Previous
-          </button>
-          <button class="deck-control" id="auto-reveal">
-            <i class="fas fa-play"></i>
-            Auto Reveal
-          </button>
-          <button class="deck-control" id="next-card">
-            <i class="fas fa-chevron-right"></i>
-            Next
-          </button>
-          <button class="deck-control" id="reset-deck">
-            <i class="fas fa-undo"></i>
-            Reset
-          </button>
-        </div>
-        
-        <div class="card-deck-container">
-          <div class="card-deck" id="card-deck">
-            <!-- Cards will be loaded dynamically from images/card-gallery folder -->
-          </div>
-          
-          <div class="deck-counter">
-            <span id="card-counter">8 Cards in Deck</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
       <div class="container">
@@ -692,7 +648,7 @@
               </div>
               <div class="contact-card-content">
                 <h3>Phone</h3>
-                <a href="tel:7706133051"><span>(770) 613-3051</span></a>
+                <p>(770) 613-3051</p>
               </div>
             </div>
             
@@ -1091,8 +1047,5 @@
       });
     });
   </script>
-  
-  <!-- Card Deck JavaScript -->
-  <script src="js/card-deck.js"></script>
 </body>
 </html>
