@@ -173,6 +173,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log(`✨ Loaded ${cards.length} cards into deck!`);
+    
+    // Setup interactions and start auto-cycling
+    if (cards.length > 0) {
+      setupCardInteractions();
+      startAutoReveal();
+    }
   }
 
   /**
