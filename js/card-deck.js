@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /**
-   * Create a card element with accessibility features
+   * Create a card element with accessibility features and social sharing
    */
   function createCard(cardData, index) {
     const card = document.createElement('div');
@@ -181,6 +181,26 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="card-info">
         <h4>${cardData.title}</h4>
         <p>${cardData.description}</p>
+        <div class="card-share">
+          <button class="share-btn facebook" onclick="shareToFacebook('${cardData.url}', '${cardData.title}', '${cardData.description}')" title="Share on Facebook" aria-label="Share this tattoo design on Facebook">
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          </button>
+          <button class="share-btn twitter" onclick="shareToTwitter('${cardData.url}', '${cardData.title}', '${cardData.description}')" title="Share on Twitter" aria-label="Share this tattoo design on Twitter">
+            <i class="fab fa-twitter" aria-hidden="true"></i>
+          </button>
+          <button class="share-btn instagram" onclick="shareToInstagram('${cardData.url}', '${cardData.title}')" title="Share on Instagram" aria-label="Share this tattoo design on Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </button>
+          <button class="share-btn pinterest" onclick="shareToPinterest('${cardData.url}', '${cardData.title}', '${cardData.description}')" title="Share on Pinterest" aria-label="Share this tattoo design on Pinterest">
+            <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+          </button>
+          <button class="share-btn whatsapp" onclick="shareToWhatsApp('${cardData.url}', '${cardData.title}')" title="Share on WhatsApp" aria-label="Share this tattoo design on WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </button>
+          <button class="share-btn copy-link" onclick="copyImageLink('${cardData.url}', this)" title="Copy image link" aria-label="Copy direct link to this tattoo design">
+            <i class="fas fa-link" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     `;
     return card;
@@ -534,3 +554,226 @@ document.addEventListener('DOMContentLoaded', function() {
     touchStartY = 0;
   }
 });
+
+/**
+ * Social Media Sharing Functions
+ */
+
+// Get the current page URL for sharing context
+function getCurrentPageUrl() {
+  return window.location.href;
+}
+
+// Get the full image URL
+function getFullImageUrl(imagePath) {
+  return new URL(imagePath, window.location.origin).href;
+}
+
+// Share to Facebook
+function shareToFacebook(imageUrl, title, description) {
+  const fullImageUrl = getFullImageUrl(imageUrl);
+  const pageUrl = getCurrentPageUrl();
+  const shareText = `Check out this amazing tattoo design: ${title} - ${description}`;
+  
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
+  
+  window.open(facebookUrl, 'facebook-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  // Announce to screen readers
+  if (window.announce) {
+    window.announce(`Sharing ${title} to Facebook`);
+  }
+}
+
+// Share to Twitter
+function shareToTwitter(imageUrl, title, description) {
+  const pageUrl = getCurrentPageUrl();
+  const hashtags = 'tattoo,ink,tattooart,INK102Tattoos';
+  const shareText = `Amazing tattoo design: ${title} by @INK102Tattoos - ${description}`;
+  
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}&hashtags=${hashtags}`;
+  
+  window.open(twitterUrl, 'twitter-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce(`Sharing ${title} to Twitter`);
+  }
+}
+
+// Share to Instagram (opens Instagram web with guidance)
+function shareToInstagram(imageUrl, title) {
+  const instagramUrl = 'https://www.instagram.com/';
+  const shareText = `Amazing tattoo design: ${title} by INK 102 Tattoos. Save this image and post it to your Instagram story or feed! #tattoo #ink #tattooart #INK102Tattoos`;
+  
+  // Copy text to clipboard for easy pasting
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('Caption copied to clipboard! Save the image and paste the caption on Instagram.');
+    });
+  }
+  
+  window.open(instagramUrl, 'instagram-share', 'width=600,height=600,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce(`Opening Instagram. Caption copied for sharing ${title}`);
+  }
+}
+
+// Share to Pinterest
+function shareToPinterest(imageUrl, title, description) {
+  const fullImageUrl = getFullImageUrl(imageUrl);
+  const pageUrl = getCurrentPageUrl();
+  const shareDescription = `${title} - ${description} | Professional tattoo artistry by INK 102 Tattoos in Stonecrest, GA`;
+  
+  const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(fullImageUrl)}&description=${encodeURIComponent(shareDescription)}`;
+  
+  window.open(pinterestUrl, 'pinterest-share', 'width=600,height=600,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce(`Sharing ${title} to Pinterest`);
+  }
+}
+
+// Share to WhatsApp
+function shareToWhatsApp(imageUrl, title) {
+  const pageUrl = getCurrentPageUrl();
+  const shareText = `Check out this amazing tattoo design: ${title} by INK 102 Tattoos! ${pageUrl}`;
+  
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+  
+  window.open(whatsappUrl, 'whatsapp-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce(`Sharing ${title} to WhatsApp`);
+  }
+}
+
+// Copy image link to clipboard
+function copyImageLink(imageUrl, buttonElement) {
+  const fullImageUrl = getFullImageUrl(imageUrl);
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(fullImageUrl).then(() => {
+      // Visual feedback
+      const originalIcon = buttonElement.innerHTML;
+      buttonElement.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+      buttonElement.classList.add('copied');
+      buttonElement.title = 'Link copied!';
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('copied');
+        buttonElement.title = 'Copy image link';
+      }, 2000);
+      
+      if (window.announce) {
+        window.announce('Image link copied to clipboard');
+      }
+    }).catch(() => {
+      // Fallback for older browsers
+      prompt('Copy this link:', fullImageUrl);
+    });
+  } else {
+    // Fallback for browsers without clipboard API
+    prompt('Copy this link:', fullImageUrl);
+  }
+}
+
+/**
+ * Website Sharing Functions
+ */
+
+// Share website to Facebook
+function shareWebsiteToFacebook() {
+  const pageUrl = getCurrentPageUrl();
+  const shareText = 'Check out INK 102 Tattoos - Premium tattoo studio in Stonecrest, GA! Amazing custom designs, expert artists, and professional service.';
+  
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
+  
+  window.open(facebookUrl, 'facebook-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to Facebook');
+  }
+}
+
+// Share website to Twitter
+function shareWebsiteToTwitter() {
+  const pageUrl = getCurrentPageUrl();
+  const hashtags = 'tattoo,ink,tattooart,StonecrestGA,INK102Tattoos';
+  const shareText = 'Amazing tattoo studio in Stonecrest, GA! Check out @INK102Tattoos for custom designs, expert artistry, and professional service.';
+  
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}&hashtags=${hashtags}`;
+  
+  window.open(twitterUrl, 'twitter-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to Twitter');
+  }
+}
+
+// Share website to Instagram
+function shareWebsiteToInstagram() {
+  const instagramUrl = 'https://www.instagram.com/';
+  const shareText = 'Check out INK 102 Tattoos in Stonecrest, GA! Premium tattoo studio with amazing custom designs and expert artists. #tattoo #ink #tattooart #StonecrestGA #INK102Tattoos #tattoostudio';
+  
+  // Copy text to clipboard for easy pasting
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('Caption copied to clipboard! Open Instagram and paste it in your story or post.');
+    });
+  }
+  
+  window.open(instagramUrl, 'instagram-share', 'width=600,height=600,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Opening Instagram. Caption copied for sharing INK 102 Tattoos');
+  }
+}
+
+// Share website to WhatsApp
+function shareWebsiteToWhatsApp() {
+  const pageUrl = getCurrentPageUrl();
+  const shareText = `Check out INK 102 Tattoos - amazing tattoo studio in Stonecrest, GA! Custom designs, expert artists, professional service. ${pageUrl}`;
+  
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+  
+  window.open(whatsappUrl, 'whatsapp-share', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  
+  if (window.announce) {
+    window.announce('Sharing INK 102 Tattoos website to WhatsApp');
+  }
+}
+
+// Copy website link to clipboard
+function copyWebsiteLink(buttonElement) {
+  const pageUrl = getCurrentPageUrl();
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(pageUrl).then(() => {
+      // Visual feedback
+      const originalIcon = buttonElement.innerHTML;
+      buttonElement.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+      buttonElement.classList.add('copied');
+      buttonElement.title = 'Website link copied!';
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('copied');
+        buttonElement.title = 'Copy website link';
+      }, 2000);
+      
+      if (window.announce) {
+        window.announce('Website link copied to clipboard');
+      }
+    }).catch(() => {
+      // Fallback for older browsers
+      prompt('Copy this link:', pageUrl);
+    });
+  } else {
+    // Fallback for browsers without clipboard API
+    prompt('Copy this link:', pageUrl);
+  }
+}

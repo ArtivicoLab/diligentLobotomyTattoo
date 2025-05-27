@@ -222,8 +222,108 @@
 .card-info p {
   color: #cccccc;
   font-size: 0.9rem;
-  margin: 0;
+  margin: 0 0 16px 0;
   line-height: 1.4;
+}
+
+/* Social Share Controls */
+.card-share {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  color: white;
+  text-decoration: none;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.share-btn:focus {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.share-btn.facebook {
+  background: #1877f2;
+}
+
+.share-btn.twitter {
+  background: #1da1f2;
+}
+
+.share-btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.share-btn.pinterest {
+  background: #bd081c;
+}
+
+.share-btn.whatsapp {
+  background: #25d366;
+}
+
+.share-btn.copy-link {
+  background: #666;
+}
+
+.share-btn.copy-link.copied {
+  background: #28a745;
+}
+
+/* Website Share Section */
+.website-share {
+  text-align: center;
+  margin: 32px 0;
+  padding: 24px;
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.website-share h3 {
+  color: #d4af37;
+  font-size: 1.3rem;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.website-share p {
+  color: #cccccc;
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+}
+
+.website-share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.website-share-buttons .share-btn {
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
 }
 
 /* Deck Counter */
