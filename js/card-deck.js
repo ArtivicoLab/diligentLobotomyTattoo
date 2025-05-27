@@ -1,6 +1,7 @@
 /**
  * Interactive Card Deck Gallery
  * Gaming-style card effects for showcasing tattoo images
+ * Dynamic card loading from images/card-gallery folder
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,21 +10,176 @@ document.addEventListener('DOMContentLoaded', function() {
   const fanOutBtn = document.getElementById('fan-out');
   const resetBtn = document.getElementById('reset-deck');
   const cardCounter = document.getElementById('card-counter');
-  const cards = document.querySelectorAll('.card');
   
+  let cards = [];
   let isAnimating = false;
   let isFannedOut = false;
   let selectedCard = null;
   
-  // Initialize card deck
-  function initializeDeck() {
+  // Dynamic card loading from folder
+  async function loadCardsFromFolder() {
+    const cardGalleryPath = 'images/card-gallery/';
+    const supportedFormats = ['jpg', 'jpeg', 'png', 'webp'];
+    const imageList = [];
+    
+    // Try to load images from the card gallery folder
+    try {
+      // Common image filenames to check
+      const potentialImages = [
+        'vibrant-color-masterpiece.jpg',
+        'black-gray-artistry.jpg', 
+        'custom-design-work.jpg',
+        'detailed-portrait-work.jpg',
+        'colorful-dragon-tattoo.jpg',
+        'realistic-portrait.jpg',
+        'geometric-design.jpg',
+        'floral-sleeve.jpg',
+        'minimalist-art.jpg',
+        'traditional-style.jpg'
+      ];
+      
+      // Check which images exist by trying to load them
+      for (const imageName of potentialImages) {
+        const imageUrl = cardGalleryPath + imageName;
+        if (await imageExists(imageUrl)) {
+          imageList.push({
+            url: imageUrl,
+            name: formatCardTitle(imageName)
+          });
+        }
+      }
+      
+      // If no images found in card-gallery, use fallback images
+      if (imageList.length === 0) {
+        const fallbackImages = [
+          { url: 'images/tattoos/IMG_8684.jpeg', name: 'Vibrant Color Work' },
+          { url: 'images/tattoos/IMG_8685.jpeg', name: 'Black & Gray Mastery' },
+          { url: 'images/tattoos/IMG_8686.jpeg', name: 'Custom Design' },
+          { url: 'images/tattoos/IMG_8687.jpeg', name: 'Detailed Portrait Work' },
+          { url: 'images/tattoos/IMG_8688.jpeg', name: 'Realistic Artistry' },
+          { url: 'images/tattoos/IMG_8689.jpeg', name: 'Bespoke Art' },
+          { url: 'images/tattoos/IMG_8690.jpeg', name: 'Color Mastery' },
+          { url: 'images/tattoos/IMG_8691.jpeg', name: 'Fine Line Work' }
+        ];
+        
+        for (const img of fallbackImages) {
+          if (await imageExists(img.url)) {
+            imageList.push(img);
+          }
+        }
+      }
+      
+    } catch (error) {
+      console.log('Loading images from available sources...');
+    }
+    
+    return imageList;
+  }
+  
+  // Check if image exists
+  function imageExists(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  }
+  
+  // Format filename to card title
+  function formatCardTitle(filename) {
+    const nameWithoutExt = filename.replace(/\.[^/.]+$/, '');
+    return nameWithoutExt
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  
+  // Generate card description based on filename
+  function generateDescription(filename) {
+    const descriptions = {
+      'vibrant': 'Stunning color work with exceptional detail',
+      'color': 'Bold and vibrant artistic expression',
+      'black': 'Expert black and gray shading technique',
+      'gray': 'Masterful monochrome artistry',
+      'custom': 'Unique design tailored to your vision',
+      'design': 'Creative and innovative artwork',
+      'portrait': 'Lifelike detail and realistic shading',
+      'realistic': 'Photorealistic artistic technique',
+      'detailed': 'Intricate work with precise execution',
+      'fine': 'Delicate line work and precision',
+      'geometric': 'Clean lines and mathematical precision',
+      'floral': 'Nature-inspired artistic beauty',
+      'traditional': 'Classic tattoo artistry',
+      'minimalist': 'Simple elegance and clean design'
+    };
+    
+    const lowerFilename = filename.toLowerCase();
+    for (const [key, desc] of Object.entries(descriptions)) {
+      if (lowerFilename.includes(key)) {
+        return desc;
+      }
+    }
+    return 'Professional tattoo artistry at its finest';
+  }
+  
+  // Create card element
+  function createCard(imageData, index) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-card', index + 1);
+    
+    card.innerHTML = `
+      <div class="card-face card-back"></div>
+      <div class="card-face card-front">
+        <img src="${imageData.url}" alt="${imageData.name} - professional tattoo work by Ink 102" loading="lazy">
+        <div class="card-info">
+          <h4>${imageData.name}</h4>
+          <p>${generateDescription(imageData.url)}</p>
+        </div>
+      </div>
+    `;
+    
+    return card;
+  }
+  
+  // Initialize dynamic deck
+  async function initializeDynamicDeck() {
+    // Clear existing static cards
+    cardDeck.innerHTML = '';
+    
+    // Load images from folder
+    const imageList = await loadCardsFromFolder();
+    
+    // Create cards dynamically
+    imageList.forEach((imageData, index) => {
+      const card = createCard(imageData, index);
+      cardDeck.appendChild(card);
+    });
+    
+    // Update cards array
+    cards = document.querySelectorAll('.card');
+    
+    // Initialize card interactions
+    initializeCardInteractions();
+    
+    // Update counter
+    updateCounter();
+    
+    console.log(`✨ Loaded ${cards.length} cards dynamically!`);
+  }
+  
+  // Initialize card interactions
+  function initializeCardInteractions() {
     cards.forEach((card, index) => {
       card.style.zIndex = cards.length - index;
       card.addEventListener('click', handleCardClick);
       card.addEventListener('mouseenter', handleCardHover);
       card.addEventListener('mouseleave', handleCardLeave);
+      
+      // Set initial position
+      card.style.transform = `translateX(${-index * 5}px) translateY(${-index * 3}px) rotateZ(${-index * 2}deg)`;
     });
-    updateCounter();
   }
   
   // Handle card click
