@@ -1224,6 +1224,70 @@ section::before {
   margin: 0;
 }
 
+/* COVID-19 Safety Section */
+.covid-safety {
+  background: linear-gradient(135deg, var(--blood-red-dark, #8B0000) 0%, var(--warm-black) 50%, var(--deep-charcoal) 100%);
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-xxl);
+}
+
+.safety-card {
+  background: linear-gradient(135deg, var(--warm-black), var(--deep-charcoal));
+  border: 3px solid var(--coral-pink);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+}
+
+.safety-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--electric-yellow) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.safety-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--electric-yellow);
+  box-shadow: var(--shadow-luxury);
+}
+
+.safety-card:hover::before {
+  opacity: 0.1;
+}
+
+.safety-icon {
+  font-size: 3rem;
+  color: var(--coral-pink);
+  margin-bottom: var(--space-lg);
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+.safety-card h3 {
+  color: var(--zombie-green-light);
+  font-family: var(--font-accent);
+  margin-bottom: var(--space-md);
+}
+
+.safety-card p {
+  color: var(--cream-white);
+  line-height: 1.6;
+}
+
 /* Friends Section */
 .friends {
   background: linear-gradient(135deg, var(--coral-pink-dark) 0%, var(--zombie-green-dark) 50%, var(--warm-black) 100%);
