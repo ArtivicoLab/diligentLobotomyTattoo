@@ -323,14 +323,16 @@ p {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(144, 238, 144, 0.3);
   border-radius: var(--border-radius);
-  padding: var(--space-sm);
-  min-width: 180px;
+  padding: 0;
+  min-width: 200px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
   transition: all 0.3s ease;
   z-index: 1000;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  margin: 0;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -341,20 +343,28 @@ p {
 
 .dropdown-menu li {
   margin: 0;
+  list-style: none;
 }
 
 .dropdown-menu li a {
   display: block;
-  padding: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
   font-size: 0.9rem;
   border-radius: var(--border-radius-sm);
   transition: all 0.3s ease;
+  color: var(--cream-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(144, 238, 144, 0.1);
+}
+
+.dropdown-menu li:last-child a {
+  border-bottom: none;
 }
 
 .dropdown-menu li a:hover {
-  background: rgba(144, 238, 144, 0.1);
+  background: rgba(144, 238, 144, 0.15);
   color: var(--zombie-green);
-  transform: translateX(5px);
+  padding-left: calc(var(--space-lg) + var(--space-xs));
 }
 
 /* CTA Navigation Button */
