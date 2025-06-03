@@ -759,6 +759,15 @@ p {
   z-index: 3;
 }
 
+/* Mobile Hero Controls */
+@media (max-width: 768px) {
+  .hero-controls {
+    bottom: var(--space-xl);
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
 .hero-indicator {
   width: 15px;
   height: 15px;
@@ -1712,10 +1721,18 @@ section::before {
   }
   
   /* Hero Mobile Fixes */
+  .hero {
+    height: auto !important;
+    min-height: 80vh !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+  
   .hero-title h1 {
     font-size: 2.2rem !important;
     line-height: 1.1 !important;
     margin-bottom: var(--space-sm) !important;
+    white-space: nowrap;
+    overflow: visible;
   }
   
   .hero-title h2 {
@@ -1732,16 +1749,24 @@ section::before {
   
   .hero-content {
     padding: var(--space-md) !important;
+    margin-bottom: var(--space-3xl) !important;
   }
   
   .hero-contact-info {
     flex-direction: column;
     gap: var(--space-sm);
+    margin-bottom: var(--space-xl) !important;
   }
   
   .contact-button {
     font-size: 0.9rem !important;
     padding: var(--space-sm) var(--space-md) !important;
+  }
+  
+  .hero-controls {
+    bottom: var(--space-md) !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
   }
   
   .main-nav {
