@@ -2896,24 +2896,29 @@ section::before {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .back-to-top {
-    width: 100px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     bottom: 20px;
     right: 20px;
-    border-radius: 25px;
-    padding: var(--space-xs) var(--space-sm);
   }
   
   .back-to-top-icon {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .business-status-indicator {
+    top: -8px;
+    right: -50px;
+    min-width: 70px;
+    padding: 3px 6px;
   }
   
   .status-text {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
   }
   
   .status-time {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
 }
 
