@@ -201,6 +201,35 @@ class DiligentLobotomyCore {
       });
     }
 
+    // Dropdown functionality for mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const dropdown = toggle.closest('.dropdown');
+          const menu = dropdown.querySelector('.dropdown-menu');
+          
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown-menu').forEach(otherMenu => {
+            if (otherMenu !== menu) {
+              otherMenu.classList.remove('active');
+            }
+          });
+          
+          menu.classList.toggle('active');
+        }
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('active');
+        });
+      }
+    });
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -211,6 +240,14 @@ class DiligentLobotomyCore {
             behavior: 'smooth',
             block: 'start'
           });
+          
+          // Close mobile menu after clicking
+          if (navLinks) {
+            navLinks.classList.remove('active');
+          }
+          if (menuToggle) {
+            menuToggle.classList.remove('active');
+          }
         }
       });
     });

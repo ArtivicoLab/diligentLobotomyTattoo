@@ -304,6 +304,87 @@ p {
   border-radius: 2px;
 }
 
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--zombie-green);
+  border-radius: var(--border-radius);
+  padding: var(--space-sm);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: var(--space-sm);
+  font-size: 0.9rem;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(144, 238, 144, 0.1);
+  color: var(--zombie-green);
+  transform: translateX(5px);
+}
+
+/* CTA Navigation Button */
+.cta-nav {
+  background: linear-gradient(45deg, var(--zombie-green), var(--electric-yellow)) !important;
+  color: var(--dark-bg) !important;
+  font-weight: 800;
+  padding: var(--space-sm) var(--space-lg) !important;
+  border-radius: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(144, 238, 144, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cta-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(144, 238, 144, 0.5);
+  color: var(--dark-bg) !important;
+}
+
 /* Hero Section */
 .hero {
   height: 70vh;
@@ -1471,5 +1552,33 @@ section::before {
   
   .booking-card.featured:hover {
     transform: translateY(-10px) scale(1.02);
+  }
+  
+  /* Mobile dropdown styles */
+  .dropdown-menu {
+    position: static;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--zombie-green);
+    margin-top: var(--space-sm);
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    max-height: 200px;
+  }
+  
+  .dropdown-menu li a {
+    padding: var(--space-md);
+    border-bottom: 1px solid rgba(144, 238, 144, 0.1);
+  }
+  
+  .dropdown-menu li:last-child a {
+    border-bottom: none;
   }
 }
