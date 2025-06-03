@@ -746,6 +746,31 @@ section::before {
   color: var(--electric-yellow);
 }
 
+.artist-contact {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.contact-btn {
+  background: linear-gradient(45deg, var(--zombie-green), var(--coral-pink));
+  color: var(--warm-black);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-family: var(--font-modern);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition-bounce);
+  display: inline-block;
+  border: 2px solid transparent;
+}
+
+.contact-btn:hover {
+  background: linear-gradient(45deg, var(--coral-pink), var(--electric-yellow));
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 138, 155, 0.4);
+}
+
 /* Gallery Section */
 .gallery {
   background: linear-gradient(135deg, var(--zombie-green-dark) 0%, var(--warm-black) 50%, var(--deep-charcoal) 100%);
