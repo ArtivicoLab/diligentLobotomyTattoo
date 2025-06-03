@@ -114,20 +114,12 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-family: var(--font-display);
-  background: linear-gradient(
-    45deg,
-    var(--zombie-green) 0%,
-    var(--electric-yellow) 50%,
-    var(--coral-pink) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--zombie-green) !important;
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: var(--space-md);
   position: relative;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(144, 238, 144, 0.3);
 }
 
 
