@@ -202,7 +202,8 @@ p {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
+  height: 70px;
 }
 
 /* Logo */
@@ -245,7 +246,10 @@ p {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: var(--space-lg);
+  gap: var(--space-md);
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
@@ -269,19 +273,26 @@ p {
 .menu-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
   padding: var(--space-sm);
+  width: 50px;
+  height: 50px;
+  position: relative;
+  z-index: 1001;
 }
 
 .menu-toggle span {
-  width: 30px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--zombie-green), var(--coral-pink));
-  margin: 4px 0;
-  transition: var(--transition-smooth);
+  width: 28px;
+  height: 3px;
+  background: var(--cream-white);
+  margin: 3px 0;
+  transition: all 0.3s ease;
   border-radius: 2px;
+  display: block;
 }
 
 /* Dropdown Styles */
@@ -350,18 +361,23 @@ p {
 .cta-nav {
   background: linear-gradient(45deg, var(--zombie-green), var(--electric-yellow)) !important;
   color: var(--dark-bg) !important;
-  font-weight: 800;
+  font-weight: 700;
   padding: var(--space-sm) var(--space-lg) !important;
   border-radius: 25px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(144, 238, 144, 0.3);
+  box-shadow: 0 2px 10px rgba(144, 238, 144, 0.3);
   transition: all 0.3s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
 }
 
 .cta-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(144, 238, 144, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(144, 238, 144, 0.4);
   color: var(--dark-bg) !important;
 }
 
@@ -1471,22 +1487,24 @@ section::before {
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
-    top: 100%;
+    top: 70px;
     left: 0;
     width: 100%;
-    background: rgba(26, 26, 26, 0.98);
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
     flex-direction: column;
-    padding: var(--space-xl);
-    gap: var(--space-lg);
-    transition: var(--transition-smooth);
+    padding: var(--space-lg);
+    gap: var(--space-md);
+    transition: all 0.3s ease;
     transform: translateY(-100%);
     opacity: 0;
+    z-index: 998;
+    border-bottom: 1px solid rgba(144, 238, 144, 0.3);
   }
   
   .nav-links.active {
-    top: 100px;
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
   
   .menu-toggle {
