@@ -2700,6 +2700,110 @@ section::before {
   font-size: 0.8rem !important;
 }
 
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .hero-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .service-card {
+    padding: var(--space-md);
+  }
+  
+  .artist-nav-btn {
+    min-width: 100%;
+    padding: var(--space-md);
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .booking-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .friends-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .policy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Extra Small Devices - 320px and up */
+@media (max-width: 320px) {
+  :root {
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+    --space-xxl: 2rem;
+    --space-3xl: 2.5rem;
+  }
+  
+  .hero-title h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-title h2 {
+    font-size: 1.2rem;
+  }
+  
+  .nav-links {
+    padding: var(--space-md);
+  }
+  
+  .service-card,
+  .artist-portfolio,
+  .booking-card,
+  .friend-card {
+    padding: var(--space-sm);
+  }
+  
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .footer-logo h2 {
+    font-size: 1.8rem;
+  }
+  
+  .footer-logo h3 {
+    font-size: 1.2rem;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .policy-highlights {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xs);
+  }
+}
+
 /* Responsive Footer */
 @media (max-width: 768px) {
   .footer-content {
