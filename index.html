@@ -123,78 +123,21 @@
   }
   </script>
   
-  <!-- Critical CSS with loading screen to prevent FOUC -->
+  <!-- Critical CSS (inline for performance) -->
   <style>
     /* Critical above-the-fold styles */
     :root{--zombie-green:#7FB069;--text-light:#dedede;--warm-black:#1A1A1A;--cream-white:#FFF8DC;--font-display:'Creepster',cursive;--font-body:'Kalam',sans-serif;--space-lg:2rem;}
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:var(--font-body);background:var(--warm-black);color:var(--text-light);line-height:1.6;}
-    
-    /* Loading screen to prevent FOUC */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--warm-black);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    
-    .loading-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    
-    .loading-logo {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 8vw, 4rem);
-      color: var(--zombie-green);
-      text-align: center;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 30px rgba(127, 176, 105, 0.6);
-    }
-    
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(127, 176, 105, 0.3);
-      border-top: 3px solid var(--zombie-green);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
     .hero{min-height:100vh;background:linear-gradient(135deg,rgba(10,10,10,0.8),rgba(26,26,26,0.9));display:flex;align-items:center;justify-content:center;}
     .hero-content{text-align:center;padding:var(--space-lg);}
     .hero h1{font-family:var(--font-display);font-size:clamp(2rem,8vw,4rem);color:var(--zombie-green);margin-bottom:1rem;}
     .nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);}
-    
-    /* Hide main content until loaded */
-    .main-content {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .main-content.loaded {
-      opacity: 1;
-    }
   </style>
   
-  <!-- Load CSS synchronously to prevent FOUC -->
-  <link rel="stylesheet" href="css/dlt-luxury.css?v=40.1&t=1733243088">
-  <link rel="stylesheet" href="css/responsive.css?v=1.1">
-  <link rel="stylesheet" href="css/animations.css?v=1.1">
+  <!-- Load main CSS asynchronously -->
+  <link rel="preload" href="css/dlt-luxury.css?v=38.0&t=1733242588" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/dlt-luxury.css?v=38.0&t=1733242588"></noscript>
   
   <!-- Resource hints for performance -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -220,18 +163,8 @@
   <link rel="canonical" href="https://diligentlobotomytattoo.com/">
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="loading-logo">
-      Diligent Lobotomy
-    </div>
-    <div class="loading-spinner"></div>
-  </div>
-
-  <!-- Main Content Wrapper -->
-  <div class="main-content" id="mainContent">
-    <!-- Demo Banner -->
-    <div class="demo-banner">
+  <!-- Demo Banner -->
+  <div class="demo-banner">
     <div class="demo-banner-content">
       <span class="demo-text">This is a demo site by ArtivicoLab for preview purposes. All content are subject to their respective owner.</span>
       <a href="mailto:contact@artivicolab.com" class="demo-claim-btn">Contact ArtivicoLab</a>
@@ -1390,34 +1323,7 @@
     </div>
   </button>
 
-  </div> <!-- End main-content wrapper -->
-
   <!-- JavaScript - deferred for performance -->
   <script src="js/dlt-core.js?v=11.0&t=1733242588" defer></script>
-  
-  <!-- Loading screen handler -->
-  <script>
-    // Hide loading screen once page is fully loaded
-    window.addEventListener('load', function() {
-      const loadingScreen = document.getElementById('loadingScreen');
-      const mainContent = document.getElementById('mainContent');
-      
-      // Add a small delay to ensure smooth transition
-      setTimeout(() => {
-        loadingScreen.classList.add('hidden');
-        mainContent.classList.add('loaded');
-      }, 300);
-    });
-    
-    // Fallback: hide loading screen after 3 seconds regardless
-    setTimeout(() => {
-      const loadingScreen = document.getElementById('loadingScreen');
-      const mainContent = document.getElementById('mainContent');
-      if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
-        loadingScreen.classList.add('hidden');
-        mainContent.classList.add('loaded');
-      }
-    }, 3000);
-  </script>
 </body>
 </html>
