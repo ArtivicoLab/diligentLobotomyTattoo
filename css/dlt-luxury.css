@@ -1,6 +1,22 @@
-/*
- * Diligent Lobotomy Tattoo - Luxurious Vibrant Design
- * Inspired by the zombie mascot with premium aesthetics
+/**
+ * Diligent Lobotomy Tattoo - Luxury Horror Aesthetic Stylesheet
+ * 
+ * A comprehensive CSS framework for the DLT tattoo studio website featuring:
+ * - Vibrant zombie-inspired color palette from brand mascot
+ * - Mobile-first responsive design (320px+)
+ * - Horror-luxury aesthetic with premium animations
+ * - Performance-optimized with critical CSS inlining
+ * - Touch-friendly interactions for mobile devices
+ * - Accessibility considerations for all users
+ * 
+ * Color Scheme: Zombie green, coral pink, electric yellow
+ * Typography: Horror display fonts with elegant fallbacks
+ * Layout: CSS Grid and Flexbox for modern browsers
+ * 
+ * @author ArtivicoLab (artivicolab.com)
+ * @version 38.0
+ * @location Tucker, GA (4213 Fellowship Rd Ste B, Tucker, GA 30084)
+ * @updated 2025-06-03
  */
 
 /* Import premium fonts with optimized loading */

@@ -1,39 +1,64 @@
-/*
- * Diligent Lobotomy Tattoo - Core JavaScript
- * Business hours tracking and interactive features
+/**
+ * Diligent Lobotomy Tattoo - Core JavaScript Module
+ * 
+ * This module handles all interactive features for the DLT website including:
+ * - Business hours display and status tracking
+ * - Hero image slider functionality
+ * - Navigation and scroll effects
+ * - Gallery filtering and modal display
+ * - FAQ accordion interactions
+ * - Artist portfolio showcase
+ * - Mobile touch interactions
+ * - Back-to-top functionality
+ * 
+ * @author ArtivicoLab (artivicolab.com)
+ * @version 11.0
+ * @location Tucker, GA (Eastern Time Zone)
  */
 
 class DiligentLobotomyCore {
+  /**
+   * Initialize the DLT Core with business configuration
+   * Sets up business hours for Tucker, GA location (Eastern Time)
+   */
   constructor() {
+    // Business hours configuration for Tucker, GA location
+    // Times are in 24-hour format (Eastern Time Zone)
     this.businessHours = {
       0: null, // Sunday - Closed
-      1: { open: 11, close: 19 }, // Monday
-      2: { open: 11, close: 19 }, // Tuesday
-      3: { open: 11, close: 19 }, // Wednesday
-      4: { open: 11, close: 19 }, // Thursday
-      5: { open: 10, close: 21 }, // Friday
-      6: { open: 10, close: 21 }  // Saturday
+      1: { open: 11, close: 19 }, // Monday: 11:00 AM - 7:00 PM
+      2: { open: 11, close: 19 }, // Tuesday: 11:00 AM - 7:00 PM
+      3: { open: 11, close: 19 }, // Wednesday: 11:00 AM - 7:00 PM
+      4: { open: 11, close: 19 }, // Thursday: 11:00 AM - 7:00 PM
+      5: { open: 10, close: 21 }, // Friday: 10:00 AM - 9:00 PM
+      6: { open: 10, close: 21 }  // Saturday: 10:00 AM - 9:00 PM
     };
     
+    // Hero slider state management
     this.currentSlide = 0;
     this.totalSlides = 0;
     this.slideInterval = null;
     
+    // Initialize all modules when DOM is ready
     this.init();
   }
 
+  /**
+   * Initialize all website modules in proper order
+   * Called automatically on instantiation
+   */
   init() {
-    this.initBusinessStatus();
-    this.initHeroSlider();
-    this.initNavigation();
-    this.initScrollEffects();
-    this.initAnimations();
-    this.initGalleryFilters();
-    this.initFAQ();
-    this.initGalleryModal();
-    this.initArtistShowcase();
-    this.initTouchInteractions();
-    this.initBackToTop();
+    this.initBusinessStatus();    // Business hours display
+    this.initHeroSlider();        // Hero image carousel
+    this.initNavigation();        // Mobile menu & navigation
+    this.initScrollEffects();     // Scroll-based animations
+    this.initAnimations();        // General animations
+    this.initGalleryFilters();    // Portfolio filtering
+    this.initFAQ();               // FAQ accordion
+    this.initGalleryModal();      // Image modal viewer
+    this.initArtistShowcase();    // Artist portfolio switching
+    this.initTouchInteractions(); // Mobile touch feedback
+    this.initBackToTop();         // Back-to-top button
   }
 
   initTouchInteractions() {
