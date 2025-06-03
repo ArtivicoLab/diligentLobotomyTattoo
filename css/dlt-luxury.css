@@ -8,6 +8,9 @@
 
 /* CSS Custom Properties - Vibrant Color Palette from Image */
 :root {
+  /* Smooth scrolling performance */
+  scroll-behavior: smooth;
+  
   /* Primary Colors from the Zombie Mascot */
   --zombie-green: #7FB069;
   --zombie-green-light: #A4D17A;
