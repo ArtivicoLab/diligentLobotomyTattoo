@@ -1746,3 +1746,48 @@ section::before {
     border-bottom: none;
   }
 }
+
+/* Service Notes Section */
+.service-notes {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: rgba(144, 238, 144, 0.05);
+  border: 1px solid var(--zombie-green);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+}
+
+.service-notes h4 {
+  color: var(--zombie-green);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-md);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.service-notes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-notes li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid rgba(144, 238, 144, 0.1);
+  color: var(--text-light);
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.service-notes li:last-child {
+  border-bottom: none;
+}
+
+.service-notes li::before {
+  content: "⚠";
+  position: absolute;
+  left: 0;
+  color: var(--zombie-green);
+  font-weight: bold;
+}
