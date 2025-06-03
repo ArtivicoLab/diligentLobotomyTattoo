@@ -106,10 +106,12 @@ class DiligentLobotomyCore {
   }
 
   updateBusinessStatus() {
+    // Get current time in Eastern Time (Tucker, GA timezone)
     const now = new Date();
-    const currentDay = now.getDay();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+    const easternTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+    const currentDay = easternTime.getDay();
+    const currentHour = easternTime.getHours();
+    const currentMinute = easternTime.getMinutes();
     const currentTime = currentHour + (currentMinute / 60);
 
     const statusText = document.querySelector('.status-text');
@@ -616,11 +618,13 @@ class DiligentLobotomyCore {
     
     if (!backToTopBtn || !statusText || !statusTime) return;
 
+    // Get current time in Eastern Time (Tucker, GA timezone)
     const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinutes = now.getMinutes();
+    const easternTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+    const currentHour = easternTime.getHours();
+    const currentMinutes = easternTime.getMinutes();
     const currentTime = currentHour + (currentMinutes / 60);
-    const dayIndex = now.getDay();
+    const dayIndex = easternTime.getDay();
     
     const todayHours = this.businessHours[dayIndex] || { open: 10, close: 19 };
     

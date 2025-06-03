@@ -2820,21 +2820,21 @@ section::before {
   font-family: var(--font-modern);
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--warm-black);
+  color: var(--cream-white);
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .status-time {
   font-family: var(--font-elegant);
   font-size: 0.55rem;
-  color: var(--warm-black);
+  color: var(--cream-white);
   line-height: 1;
   margin-top: 2px;
-  opacity: 0.8;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Status color variations */
