@@ -2763,6 +2763,147 @@ section::before {
   }
 }
 
+/* Back to Top Button with Business Status */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--zombie-green), var(--zombie-green-dark));
+  border: 3px solid var(--electric-yellow);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 25px rgba(144, 238, 144, 0.4), 0 0 30px rgba(144, 238, 144, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: visible;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(144, 238, 144, 0.6), 0 0 40px rgba(144, 238, 144, 0.3);
+  border-color: var(--coral-pink);
+}
+
+.back-to-top-icon {
+  font-size: 1.5rem;
+  color: var(--warm-black);
+  margin-bottom: 2px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.business-status-indicator {
+  position: absolute;
+  top: -15px;
+  right: -40px;
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid var(--zombie-green);
+  border-radius: var(--border-radius);
+  padding: var(--space-xs) var(--space-sm);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  text-align: center;
+}
+
+.status-text {
+  font-family: var(--font-modern);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--zombie-green);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-time {
+  font-family: var(--font-elegant);
+  font-size: 0.6rem;
+  color: var(--electric-yellow);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Status color variations */
+.back-to-top.status-open {
+  background: linear-gradient(135deg, var(--zombie-green), var(--zombie-green-light));
+  animation: openPulse 3s ease-in-out infinite;
+}
+
+.back-to-top.status-closed {
+  background: linear-gradient(135deg, var(--coral-pink-dark), var(--coral-pink));
+  border-color: var(--coral-pink);
+}
+
+.back-to-top.status-opening-soon {
+  background: linear-gradient(135deg, var(--electric-yellow), #FFD700);
+  border-color: var(--electric-yellow);
+  animation: openingSoon 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@keyframes openPulse {
+  0%, 100% { box-shadow: 0 8px 25px rgba(144, 238, 144, 0.4), 0 0 30px rgba(144, 238, 144, 0.2); }
+  50% { box-shadow: 0 12px 35px rgba(144, 238, 144, 0.8), 0 0 50px rgba(144, 238, 144, 0.4); }
+}
+
+@keyframes openingSoon {
+  0%, 100% { box-shadow: 0 8px 25px rgba(255, 235, 59, 0.4), 0 0 30px rgba(255, 235, 59, 0.2); }
+  50% { box-shadow: 0 12px 35px rgba(255, 235, 59, 0.8), 0 0 50px rgba(255, 235, 59, 0.4); }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .back-to-top-icon {
+    font-size: 1.2rem;
+  }
+  
+  .business-status-indicator {
+    top: -12px;
+    right: -35px;
+    min-width: 80px;
+    padding: 4px 8px;
+  }
+  
+  .status-text {
+    font-size: 0.6rem;
+  }
+  
+  .status-time {
+    font-size: 0.5rem;
+  }
+}
+
 /* Add touch-action for interactive elements */
 .service-card,
 .friend-card,
