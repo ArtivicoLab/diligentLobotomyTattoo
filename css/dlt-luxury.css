@@ -1909,15 +1909,30 @@ section::before {
 }
 
 .nav-info h4 {
-  color: var(--zombie-green);
+  color: var(--zombie-green) !important;
   margin: 0;
   font-size: 1.1rem;
 }
 
 .nav-info span {
-  color: var(--text-light);
+  color: var(--text-light) !important;
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+/* Force color overrides for iOS Safari */
+.artist-nav-btn .nav-info h4,
+.artist-nav-btn .nav-info h4:visited,
+.artist-nav-btn .nav-info h4:active {
+  color: var(--zombie-green) !important;
+  text-decoration: none !important;
+}
+
+.artist-nav-btn .nav-info span,
+.artist-nav-btn .nav-info span:visited,
+.artist-nav-btn .nav-info span:active {
+  color: var(--text-light) !important;
+  text-decoration: none !important;
 }
 
 /* Artist Portfolios */
@@ -2762,13 +2777,13 @@ section::before {
   }
 }
 
-/* Back to Top Button with Business Status */
+/* Back to Top Button */
 .back-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, var(--zombie-green), var(--zombie-green-dark));
   border: 3px solid var(--electric-yellow);
   border-radius: 50%;
@@ -2780,11 +2795,8 @@ section::before {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 8px 25px rgba(144, 238, 144, 0.4), 0 0 30px rgba(144, 238, 144, 0.2);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xs);
-  overflow: visible;
   color: var(--cream-white) !important;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2804,50 +2816,13 @@ section::before {
 }
 
 .back-to-top-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--cream-white) !important;
   animation: bounce 2s ease-in-out infinite;
-  flex-shrink: 0;
 }
 
 .back-to-top-icon i {
   color: var(--cream-white) !important;
-}
-
-.business-status-indicator {
-  position: absolute;
-  top: -10px;
-  right: -60px;
-  background: rgba(10, 10, 10, 0.95);
-  border: 2px solid var(--zombie-green);
-  border-radius: var(--border-radius);
-  padding: 4px 8px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 80px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.status-text {
-  font-family: var(--font-modern);
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: var(--zombie-green) !important;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.status-time {
-  font-family: var(--font-elegant);
-  font-size: 0.5rem;
-  color: var(--electric-yellow) !important;
-  line-height: 1;
-  margin-top: 2px;
 }
 
 /* Force white text on all elements in back-to-top button for iOS Safari */
@@ -2858,23 +2833,6 @@ section::before {
 .back-to-top, .back-to-top:visited, .back-to-top:hover, .back-to-top:active {
   color: var(--cream-white) !important;
   text-decoration: none !important;
-}
-
-/* Status color variations */
-.back-to-top.status-open {
-  background: linear-gradient(135deg, var(--zombie-green), var(--zombie-green-light));
-  animation: openPulse 3s ease-in-out infinite;
-}
-
-.back-to-top.status-closed {
-  background: linear-gradient(135deg, var(--coral-pink-dark), var(--coral-pink));
-  border-color: var(--coral-pink);
-}
-
-.back-to-top.status-opening-soon {
-  background: linear-gradient(135deg, var(--electric-yellow), #FFD700);
-  border-color: var(--electric-yellow);
-  animation: openingSoon 2s ease-in-out infinite;
 }
 
 @keyframes bounce {

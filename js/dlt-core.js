@@ -581,9 +581,8 @@ class DiligentLobotomyCore {
 
   initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
-    const statusIndicator = document.getElementById('statusIndicator');
     
-    if (!backToTopBtn || !statusIndicator) return;
+    if (!backToTopBtn) return;
 
     // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
@@ -601,75 +600,9 @@ class DiligentLobotomyCore {
         behavior: 'smooth'
       });
     });
-
-    // Update business status on the button
-    this.updateBackToTopStatus();
-    
-    // Update status every minute
-    setInterval(() => {
-      this.updateBackToTopStatus();
-    }, 60000);
   }
 
-  updateBackToTopStatus() {
-    const backToTopBtn = document.getElementById('backToTop');
-    const statusText = document.querySelector('.status-text');
-    const statusTime = document.querySelector('.status-time');
-    
-    if (!backToTopBtn || !statusText || !statusTime) return;
 
-    // Get current time in Eastern Time (Tucker, GA timezone)
-    const now = new Date();
-    const easternTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
-    const currentHour = easternTime.getHours();
-    const currentMinutes = easternTime.getMinutes();
-    const currentTime = currentHour + (currentMinutes / 60);
-    const dayIndex = easternTime.getDay();
-    
-    const todayHours = this.businessHours[dayIndex] || { open: 10, close: 19 };
-    
-    // Remove all status classes
-    backToTopBtn.classList.remove('status-open', 'status-closed', 'status-opening-soon');
-    
-    let status = '';
-    let timeText = '';
-    
-    if (currentTime >= todayHours.open && currentTime < todayHours.close) {
-      // Currently open
-      status = 'OPEN NOW';
-      const closeTime = this.formatTime(todayHours.close);
-      timeText = `Closes ${closeTime}`;
-      backToTopBtn.classList.add('status-open');
-      
-    } else {
-      // Currently closed
-      const nextOpenTime = this.getNextOpenTime(now);
-      
-      if (currentTime < todayHours.open) {
-        // Will open today
-        const openTime = this.formatTime(todayHours.open);
-        const minutesToOpen = Math.round((todayHours.open - currentTime) * 60);
-        
-        if (minutesToOpen <= 60) {
-          status = 'OPENING SOON';
-          timeText = `Opens ${openTime}`;
-          backToTopBtn.classList.add('status-opening-soon');
-        } else {
-          status = 'CLOSED';
-          timeText = `Opens ${openTime}`;
-          backToTopBtn.classList.add('status-closed');
-        }
-      } else {
-        // Closed for the day
-        status = 'CLOSED';
-        timeText = nextOpenTime;
-        backToTopBtn.classList.add('status-closed');
-      }
-    }
-    
-    statusText.textContent = status;
-    statusTime.textContent = timeText;
-  }
 }
 
 // Initialize when DOM is loaded
