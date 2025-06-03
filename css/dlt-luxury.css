@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-family: var(--font-display);
   background: linear-gradient(45deg, var(--zombie-green), var(--coral-pink), var(--electric-yellow));
   -webkit-background-clip: text;
@@ -148,12 +148,13 @@ p {
 .demo-banner {
   background: linear-gradient(90deg, var(--coral-pink), var(--zombie-green), var(--electric-yellow));
   color: var(--warm-black);
-  padding: var(--space-sm) 0;
+  padding: var(--space-xs) 0;
   text-align: center;
   font-family: var(--font-modern);
   font-weight: 700;
   position: relative;
   z-index: 1000;
+  font-size: 0.9rem;
 }
 
 .demo-banner-content {
@@ -187,11 +188,10 @@ p {
   background: rgba(26, 26, 26, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 3px solid var(--zombie-green);
-  position: fixed;
-  top: 0;
+  position: relative;
   width: 100%;
   z-index: 999;
-  padding: var(--space-md) 0;
+  padding: var(--space-sm) 0;
   box-shadow: var(--shadow-luxury);
 }
 
@@ -252,11 +252,11 @@ p {
 
 .nav-links li a {
   font-family: var(--font-modern);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--cream-white);
   text-decoration: none;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--border-radius);
   transition: var(--transition-bounce);
   position: relative;
@@ -306,13 +306,13 @@ p {
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  height: 70vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-top: 100px;
+  margin-top: 0;
 }
 
 .hero-slider {
@@ -369,7 +369,7 @@ p {
   z-index: 3;
   text-align: center;
   max-width: 900px;
-  padding: var(--space-3xl);
+  padding: var(--space-lg);
 }
 
 .hero-title {
@@ -396,13 +396,13 @@ p {
 }
 
 .hero-tagline {
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--cream-white);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
   font-family: var(--font-elegant);
   font-weight: 400;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 /* Hero CTA */
