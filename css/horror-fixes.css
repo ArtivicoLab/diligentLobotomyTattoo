@@ -1,0 +1,352 @@
+/*
+ * Diligent Lobotomy Tattoo - Horror Theme Fixes
+ * Additional styles to ensure proper horror theme display
+ */
+
+/* Override any conflicting styles */
+.hero-content {
+  position: relative !important;
+  z-index: 3 !important;
+  text-align: center !important;
+  max-width: 800px !important;
+  padding: var(--space-xl) !important;
+  margin: 0 auto !important;
+}
+
+/* Hero Title Styling */
+.hero-title {
+  font-family: var(--font-horror-title) !important;
+  font-size: clamp(3rem, 10vw, 8rem) !important;
+  color: var(--zombie-green) !important;
+  text-shadow: 
+    4px 4px 0px var(--blood-red),
+    8px 8px 0px var(--shadow-black),
+    0 0 30px var(--toxic-yellow) !important;
+  margin-bottom: var(--space-md) !important;
+  animation: titleGlow 3s ease-in-out infinite alternate !important;
+  line-height: 1.2 !important;
+}
+
+.hero-title .accent {
+  color: var(--flesh-pink) !important;
+  display: block !important;
+  font-family: var(--font-horror-accent) !important;
+}
+
+.hero-title .subtitle {
+  color: var(--toxic-yellow) !important;
+  font-family: var(--font-butcher) !important;
+  font-size: 0.4em !important;
+  display: block !important;
+  margin-top: var(--space-sm) !important;
+}
+
+/* Hero Tagline */
+.hero-tagline {
+  font-family: var(--font-typewriter) !important;
+  font-size: clamp(1.2rem, 4vw, 2rem) !important;
+  color: var(--bone-white) !important;
+  text-shadow: 2px 2px 4px var(--shadow-black) !important;
+  margin-bottom: var(--space-xl) !important;
+  max-width: 600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Hero CTA Section */
+.hero-cta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--space-lg) !important;
+  align-items: center !important;
+}
+
+.hero-contact-info {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: var(--space-lg) !important;
+  justify-content: center !important;
+}
+
+.hero-contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-sm) !important;
+  font-family: var(--font-typewriter) !important;
+  color: var(--bone-white) !important;
+}
+
+.hero-contact-item i {
+  color: var(--zombie-green) !important;
+  font-size: 1.2rem !important;
+  animation: iconGlow 2s ease-in-out infinite alternate !important;
+}
+
+@keyframes iconGlow {
+  from { color: var(--zombie-green); }
+  to { color: var(--toxic-yellow); }
+}
+
+.hero-contact-item a {
+  color: var(--bone-white) !important;
+  text-decoration: none !important;
+  transition: var(--transition-horror) !important;
+}
+
+.hero-contact-item a:hover {
+  color: var(--toxic-yellow) !important;
+  text-shadow: 0 0 10px var(--toxic-yellow) !important;
+}
+
+/* Hero Controls */
+.hero-controls {
+  position: absolute !important;
+  bottom: var(--space-xl) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: var(--space-sm) !important;
+  z-index: 3 !important;
+}
+
+.hero-indicator {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(245, 245, 220, 0.3) !important;
+  border: 2px solid var(--zombie-green) !important;
+  cursor: pointer !important;
+  transition: var(--transition-horror) !important;
+}
+
+.hero-indicator.active,
+.hero-indicator:hover {
+  background: var(--toxic-yellow) !important;
+  box-shadow: 0 0 15px var(--toxic-yellow) !important;
+}
+
+/* Featured Work Section */
+.featured-work {
+  padding: var(--space-xxl) 0 !important;
+  background: linear-gradient(135deg, var(--shadow-black) 0%, var(--midnight-black) 100%) !important;
+  position: relative !important;
+}
+
+.featured-work::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--blood-red), var(--zombie-green), var(--blood-red)) !important;
+}
+
+.featured-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: var(--space-xxl) !important;
+  align-items: center !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.featured-image img {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: var(--border-radius-horror) !important;
+  box-shadow: var(--shadow-horror) !important;
+  filter: sepia(20%) saturate(150%) hue-rotate(90deg) contrast(120%) !important;
+  transition: var(--transition-horror) !important;
+}
+
+.featured-image img:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 
+    var(--shadow-horror),
+    0 0 30px var(--zombie-green) !important;
+}
+
+.featured-content h2 {
+  color: var(--flesh-pink) !important;
+  margin-bottom: var(--space-lg) !important;
+}
+
+.featured-content p {
+  color: var(--bone-white) !important;
+  margin-bottom: var(--space-md) !important;
+  line-height: 1.7 !important;
+}
+
+/* Services Section */
+.services {
+  padding: var(--space-xxl) 0 !important;
+  background: linear-gradient(135deg, var(--midnight-black) 0%, var(--zombie-green-dark) 30%, var(--shadow-black) 100%) !important;
+  position: relative !important;
+}
+
+.services::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--blood-red), var(--zombie-green), var(--blood-red)) !important;
+}
+
+.services-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: var(--space-xl) !important;
+  margin-top: var(--space-xxl) !important;
+}
+
+.service-card {
+  background: linear-gradient(135deg, var(--midnight-black), var(--zombie-green-dark)) !important;
+  border: 2px solid var(--zombie-green) !important;
+  border-radius: var(--border-radius-horror) !important;
+  padding: var(--space-xl) !important;
+  box-shadow: var(--shadow-horror) !important;
+  transition: var(--transition-horror) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 
+    var(--shadow-horror),
+    var(--shadow-green) !important;
+  border-color: var(--toxic-yellow) !important;
+}
+
+.service-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-md) !important;
+  margin-bottom: var(--space-lg) !important;
+}
+
+.service-icon {
+  font-size: 2rem !important;
+  color: var(--zombie-green) !important;
+  animation: iconFloat 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes iconFloat {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-5px); }
+}
+
+.service-title {
+  color: var(--flesh-pink) !important;
+  font-family: var(--font-metal) !important;
+  margin: 0 !important;
+}
+
+.service-description {
+  color: var(--bone-white) !important;
+  margin-bottom: var(--space-lg) !important;
+  line-height: 1.6 !important;
+}
+
+.service-pricing {
+  margin-bottom: var(--space-lg) !important;
+}
+
+.pricing-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: var(--space-sm) 0 !important;
+  border-bottom: 1px solid rgba(107, 142, 74, 0.3) !important;
+}
+
+.pricing-row:last-child {
+  border-bottom: none !important;
+}
+
+.service-name {
+  color: var(--bone-white) !important;
+  font-family: var(--font-typewriter) !important;
+}
+
+.service-price {
+  color: var(--toxic-yellow) !important;
+  font-weight: bold !important;
+  font-family: var(--font-metal) !important;
+  text-shadow: 0 0 5px var(--toxic-yellow) !important;
+}
+
+.service-footer {
+  text-align: center !important;
+}
+
+/* Section Titles */
+.section-title h2 {
+  text-align: center !important;
+  margin-bottom: var(--space-md) !important;
+  color: var(--zombie-green) !important;
+  font-family: var(--font-horror-accent) !important;
+}
+
+.section-subtitle {
+  text-align: center !important;
+  margin-bottom: var(--space-xxl) !important;
+  color: var(--bone-white) !important;
+  font-family: var(--font-typewriter) !important;
+  font-size: 1.2rem !important;
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Business Status Banner */
+.business-status-banner {
+  background: linear-gradient(90deg, var(--shadow-black), var(--zombie-green-dark), var(--shadow-black)) !important;
+  color: var(--bone-white) !important;
+  padding: var(--space-md) 0 !important;
+  border-top: 1px solid var(--zombie-green) !important;
+  border-bottom: 1px solid var(--zombie-green) !important;
+}
+
+.status-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: var(--space-md) !important;
+  flex-wrap: wrap !important;
+  font-family: var(--font-typewriter) !important;
+}
+
+.status-indicator {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: var(--toxic-yellow) !important;
+  box-shadow: 0 0 10px var(--toxic-yellow) !important;
+  animation: statusPulse 2s ease-in-out infinite !important;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .featured-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg) !important;
+  }
+  
+  .hero-contact-info {
+    flex-direction: column !important;
+    gap: var(--space-md) !important;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
