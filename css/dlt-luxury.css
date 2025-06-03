@@ -1486,7 +1486,7 @@ section::before {
 
 .faq-item.active .faq-answer {
   padding: var(--space-xl) var(--space-lg);
-  max-height: 300px;
+  max-height: none;
 }
 
 .faq-answer p {
