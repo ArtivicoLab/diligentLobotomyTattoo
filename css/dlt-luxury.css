@@ -2242,6 +2242,24 @@ section::before {
   border-top: 3px solid var(--zombie-green);
 }
 
+/* Global link color fixes */
+.footer a {
+  color: var(--text-light) !important;
+  text-decoration: none !important;
+}
+
+.footer a:hover {
+  color: var(--zombie-green) !important;
+}
+
+.footer a:visited {
+  color: var(--text-light) !important;
+}
+
+.footer a:active {
+  color: var(--zombie-green) !important;
+}
+
 .footer-bg-animation {
   position: absolute;
   top: 0;
@@ -2249,15 +2267,78 @@ section::before {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(144, 238, 144, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 138, 155, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(255, 248, 144, 0.1) 0%, transparent 50%);
-  animation: bgPulse 15s ease-in-out infinite;
+    radial-gradient(ellipse at 10% 30%, rgba(144, 238, 144, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 70%, rgba(255, 138, 155, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 80%, rgba(255, 248, 144, 0.1) 0%, transparent 35%),
+    radial-gradient(ellipse at 70% 20%, rgba(144, 238, 144, 0.08) 0%, transparent 50%);
+  animation: zombieAura 20s ease-in-out infinite;
 }
 
-@keyframes bgPulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
+.footer-bg-animation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 48%, rgba(144, 238, 144, 0.03) 49%, rgba(144, 238, 144, 0.03) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(255, 138, 155, 0.02) 49%, rgba(255, 138, 155, 0.02) 51%, transparent 52%);
+  animation: horrorGrid 30s linear infinite;
+}
+
+.footer-bg-animation::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 300%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(144, 238, 144, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, rgba(255, 138, 155, 0.06) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(255, 248, 144, 0.04) 0%, transparent 25%);
+  animation: floatingOrbs 25s ease-in-out infinite;
+  transform: translate(-33%, -33%);
+}
+
+@keyframes zombieAura {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+  25% { 
+    opacity: 0.7;
+    transform: scale(1.05) rotate(1deg);
+  }
+  50% { 
+    opacity: 0.5;
+    transform: scale(0.95) rotate(-1deg);
+  }
+  75% { 
+    opacity: 0.8;
+    transform: scale(1.02) rotate(0.5deg);
+  }
+}
+
+@keyframes horrorGrid {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-100px, -100px) scale(1.1); }
+}
+
+@keyframes floatingOrbs {
+  0%, 100% { 
+    transform: translate(-33%, -33%) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  33% { 
+    transform: translate(-30%, -35%) rotate(120deg) scale(1.1);
+    opacity: 0.6;
+  }
+  66% { 
+    transform: translate(-35%, -30%) rotate(240deg) scale(0.9);
+    opacity: 0.4;
+  }
 }
 
 .footer-content {
@@ -2346,13 +2427,21 @@ section::before {
 
 .contact-item span,
 .contact-item a {
-  color: var(--text-light);
-  text-decoration: none;
+  color: var(--text-light) !important;
+  text-decoration: none !important;
   transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
-  color: var(--zombie-green);
+  color: var(--zombie-green) !important;
+}
+
+.contact-item a:visited {
+  color: var(--text-light) !important;
+}
+
+.contact-item a:active {
+  color: var(--zombie-green) !important;
 }
 
 /* Business Hours */
@@ -2479,8 +2568,50 @@ section::before {
 }
 
 .social-link span {
-  color: var(--text-light);
+  color: var(--text-light) !important;
   font-weight: 600;
+}
+
+/* Additional link color fixes for all footer links */
+.footer .artist-link {
+  color: var(--text-light) !important;
+}
+
+.footer .artist-link:visited {
+  color: var(--text-light) !important;
+}
+
+.footer .artist-link:hover {
+  color: var(--zombie-green) !important;
+}
+
+.footer .artist-link div span {
+  color: var(--zombie-green) !important;
+}
+
+.footer .artist-link div small {
+  color: var(--text-light) !important;
+}
+
+.footer .social-link {
+  color: var(--text-light) !important;
+  text-decoration: none !important;
+}
+
+.footer .social-link:visited {
+  color: var(--text-light) !important;
+}
+
+.footer .cta-button {
+  text-decoration: none !important;
+}
+
+.footer .cta-button:visited {
+  color: var(--bg-dark) !important;
+}
+
+.footer .cta-button.secondary:visited {
+  color: var(--zombie-green) !important;
 }
 
 /* Quick Actions */
