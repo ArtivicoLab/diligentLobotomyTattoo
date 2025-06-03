@@ -1,0 +1,65 @@
+Error: Bad value Cache-Control for attribute http-equiv on element meta.
+From line 6, column 3; to line 6, column 81
+e=1.0">↩  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">↩  <me
+Error: Bad value Pragma for attribute http-equiv on element meta.
+From line 7, column 3; to line 7, column 47
+idate">↩  <meta http-equiv="Pragma" content="no-cache">↩  <me
+Error: Bad value Expires for attribute http-equiv on element meta.
+From line 8, column 3; to line 8, column 41
+cache">↩  <meta http-equiv="Expires" content="0">↩  <ti
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 369, column 13; to line 369, column 36
+          <div class="nav-avatar">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 372, column 13; to line 372, column 34
+          <div class="nav-info">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 378, column 13; to line 378, column 36
+          <div class="nav-avatar">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 381, column 13; to line 381, column 34
+          <div class="nav-info">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 387, column 13; to line 387, column 36
+          <div class="nav-avatar">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 390, column 13; to line 390, column 34
+          <div class="nav-info">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
+Error: Element div not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+From line 1346, column 5; to line 1346, column 34
+Top">↩    <div class="back-to-top-icon">↩     
+Contexts in which element div may be used:
+Where flow content is expected.
+As a child of a dl element.
+Content model for element button:
+Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.

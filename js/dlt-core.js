@@ -527,7 +527,7 @@ class DiligentLobotomyCore {
     const artistPortfolios = document.querySelectorAll('.artist-portfolio');
 
     artistNavBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      const handleActivation = () => {
         const artistId = btn.dataset.artist;
         
         // Update active navigation button
@@ -543,6 +543,15 @@ class DiligentLobotomyCore {
             }, 150);
           }
         });
+      };
+
+      // Click and keyboard event handlers
+      btn.addEventListener('click', handleActivation);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleActivation();
+        }
       });
     });
 
@@ -618,12 +627,20 @@ class DiligentLobotomyCore {
       }
     });
 
-    // Back to top functionality
-    backToTopBtn.addEventListener('click', () => {
+    // Back to top functionality with keyboard support
+    const scrollToTop = () => {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
+    };
+
+    backToTopBtn.addEventListener('click', scrollToTop);
+    backToTopBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        scrollToTop();
+      }
     });
   }
 
