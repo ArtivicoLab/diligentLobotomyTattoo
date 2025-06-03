@@ -2786,6 +2786,10 @@ section::before {
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
   overflow: hidden;
+  color: var(--cream-white) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .back-to-top.show {
@@ -2802,9 +2806,13 @@ section::before {
 
 .back-to-top-icon {
   font-size: 1.2rem;
-  color: var(--warm-black);
+  color: var(--cream-white) !important;
   animation: bounce 2s ease-in-out infinite;
   flex-shrink: 0;
+}
+
+.back-to-top-icon i {
+  color: var(--cream-white) !important;
 }
 
 .business-status-indicator {
@@ -2820,7 +2828,7 @@ section::before {
   font-family: var(--font-modern);
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--cream-white);
+  color: var(--cream-white) !important;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2830,11 +2838,21 @@ section::before {
 .status-time {
   font-family: var(--font-elegant);
   font-size: 0.55rem;
-  color: var(--cream-white);
+  color: var(--cream-white) !important;
   line-height: 1;
   margin-top: 2px;
   opacity: 0.9;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Force white text on all elements in back-to-top button for iOS Safari */
+.back-to-top * {
+  color: var(--cream-white) !important;
+}
+
+.back-to-top, .back-to-top:visited, .back-to-top:hover, .back-to-top:active {
+  color: var(--cream-white) !important;
+  text-decoration: none !important;
 }
 
 /* Status color variations */
