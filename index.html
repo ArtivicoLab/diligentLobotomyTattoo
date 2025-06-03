@@ -207,84 +207,269 @@
       </div>
     </div>
 
-    <!-- Artists Section -->
-    <section id="artists" class="artists">
+    <!-- Artist Showcase Section -->
+    <section id="artists" class="artist-showcase">
       <div class="container">
         <div class="section-title">
-          <h2>Our Expert Artists</h2>
+          <h2>Artist Portfolios</h2>
         </div>
-        <p class="section-subtitle">Meet our 4 talented tattoo artists and 1 professional piercer - each with unique specializations to bring your vision to life</p>
+        <p class="section-subtitle">Explore each artist's unique style and extensive portfolio - from horror masterpieces to fine line art</p>
         
-        <div class="artists-grid">
-          <div class="artist-card">
-            <div class="artist-image">
-              <img src="images/tattoos/IMG_8684.jpeg" alt="Master Artist - Zombie Specialist">
-              <div class="artist-overlay">
-                <div class="artist-social">
-                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="Portfolio"><i class="fas fa-images"></i></a>
+        <!-- Artist Navigation -->
+        <div class="artist-nav">
+          <button class="artist-nav-btn active" data-artist="eddy">
+            <div class="nav-avatar">
+              <img src="images/tattoos/IMG_8684.jpeg" alt="Eddy Argibay">
+            </div>
+            <div class="nav-info">
+              <h4>Eddy Argibay</h4>
+              <span>New School • Horror • Color</span>
+            </div>
+          </button>
+          <button class="artist-nav-btn" data-artist="derrick">
+            <div class="nav-avatar">
+              <img src="images/tattoos/IMG_8685.jpeg" alt="Derrick Akins">
+            </div>
+            <div class="nav-info">
+              <h4>Derrick Akins</h4>
+              <span>Blackwork • Piercing • Horror</span>
+            </div>
+          </button>
+          <button class="artist-nav-btn" data-artist="anna">
+            <div class="nav-avatar">
+              <img src="images/tattoos/IMG_8686.jpeg" alt="Anna Cramer Schinelli">
+            </div>
+            <div class="nav-info">
+              <h4>Anna Cramer</h4>
+              <span>Traditional • Fine Line • Script</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Artist Portfolios -->
+        <div class="artist-portfolios">
+          
+          <!-- Eddy Argibay Portfolio -->
+          <div class="artist-portfolio active" id="eddy-portfolio" data-artist="eddy">
+            <div class="portfolio-header">
+              <div class="artist-profile">
+                <div class="profile-image">
+                  <img src="images/tattoos/IMG_8684.jpeg" alt="Eddy Argibay">
+                  <div class="profile-badge">$250/hr</div>
+                </div>
+                <div class="profile-info">
+                  <h3>Eddy Argibay</h3>
+                  <p class="profile-title">Owner & Lead Artist</p>
+                  <p class="profile-bio">20+ years creating bright, bold, cartoony new school art. From nerd culture to horror, bringing imagination to life with exceptional color work and creativity.</p>
+                  <div class="profile-specialties">
+                    <span class="specialty-tag">New School</span>
+                    <span class="specialty-tag">Horror Color</span>
+                    <span class="specialty-tag">Nerd Culture</span>
+                    <span class="specialty-tag">Cartoon</span>
+                  </div>
+                  <a href="mailto:DiligentLobotomy@gmail.com" class="profile-contact">Book with Eddy</a>
                 </div>
               </div>
             </div>
-            <div class="artist-info">
-              <h3>Eddy Argibay</h3>
-              <p class="artist-specialty">Owner & Artist</p>
-              <p class="artist-description">20+ years experience. Specializes in bright, bold, cartoony, new school nerdtastic art. Also skilled in black and gray realism to neo-traditional. Kid at heart who loves tattooing!</p>
-              <div class="artist-stats">
-                <span><i class="fas fa-award"></i> Multiple Awards</span>
-                <span><i class="fas fa-gamepad"></i> Nerd Culture Expert</span>
+            
+            <div class="portfolio-filters">
+              <button class="filter-btn active" data-filter="all">All Work</button>
+              <button class="filter-btn" data-filter="horror">Horror</button>
+              <button class="filter-btn" data-filter="color">Color Work</button>
+              <button class="filter-btn" data-filter="cartoon">Cartoon</button>
+            </div>
+            
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="horror color">
+                <img src="images/tattoos/IMG_8684.jpeg" alt="Eddy's Horror Color Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Vibrant Horror</h5>
+                    <p>Color realism with horror elements</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
               </div>
-              <div class="artist-contact">
-                <a href="mailto:DiligentLobotomy@gmail.com" class="contact-btn">Email Eddy</a>
+              <div class="portfolio-item" data-category="cartoon color">
+                <img src="images/tattoos/IMG_8678.png" alt="Eddy's Cartoon Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>New School Art</h5>
+                    <p>Bold cartoon character design</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="horror">
+                <img src="images/tattoos/IMG_8679.png" alt="Eddy's Horror Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Dark Fantasy</h5>
+                    <p>Horror character design</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="color cartoon">
+                <img src="images/tattoos/IMG_8680.png" alt="Eddy's Color Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Bright Colors</h5>
+                    <p>Vibrant character art</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="artist-card">
-            <div class="artist-image">
-              <img src="images/tattoos/IMG_8685.jpeg" alt="Master Artist - Horror Portrait Expert">
-              <div class="artist-overlay">
-                <div class="artist-social">
-                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="Portfolio"><i class="fas fa-images"></i></a>
+          <!-- Derrick Akins Portfolio -->
+          <div class="artist-portfolio" id="derrick-portfolio" data-artist="derrick">
+            <div class="portfolio-header">
+              <div class="artist-profile">
+                <div class="profile-image">
+                  <img src="images/tattoos/IMG_8685.jpeg" alt="Derrick Akins">
+                  <div class="profile-badge">$150/hr</div>
+                </div>
+                <div class="profile-info">
+                  <h3>Derrick Akins</h3>
+                  <p class="profile-title">Body Piercer & Tattoo Artist</p>
+                  <p class="profile-bio">10+ years piercing experience specializing in unusual piercings and bold blackwork tattoos. Horror and comics enthusiast from Panama City Beach, FL.</p>
+                  <div class="profile-specialties">
+                    <span class="specialty-tag">Blackwork</span>
+                    <span class="specialty-tag">Horror</span>
+                    <span class="specialty-tag">Body Piercing</span>
+                    <span class="specialty-tag">Comics</span>
+                  </div>
+                  <a href="mailto:bigpiercer@gmail.com" class="profile-contact">Email Derrick</a>
                 </div>
               </div>
             </div>
-            <div class="artist-info">
-              <h3>Derrick Akins</h3>
-              <p class="artist-specialty">Body Piercer & Tattoo Artist</p>
-              <p class="artist-description">10+ years piercing experience from Panama City Beach, FL. Specializes in unusual piercings, needle playing, large scale dermals, and bold blackwork tattoos. Horror and comics enthusiast.</p>
-              <div class="artist-stats">
-                <span><i class="fas fa-skull"></i> Horror Expert</span>
-                <span><i class="fas fa-bold"></i> Blackwork Specialist</span>
+            
+            <div class="portfolio-filters">
+              <button class="filter-btn active" data-filter="all">All Work</button>
+              <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+              <button class="filter-btn" data-filter="horror">Horror</button>
+              <button class="filter-btn" data-filter="piercing">Piercings</button>
+            </div>
+            
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="blackwork horror">
+                <img src="images/tattoos/IMG_8685.jpeg" alt="Derrick's Blackwork">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Bold Blackwork</h5>
+                    <p>Heavy black ink horror design</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
               </div>
-              <div class="artist-contact">
-                <a href="mailto:bigpiercer@gmail.com" class="contact-btn">Email Derrick</a>
+              <div class="portfolio-item" data-category="horror">
+                <img src="images/tattoos/IMG_8681.png" alt="Derrick's Horror Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Dark Horror</h5>
+                    <p>Sinister character design</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="blackwork">
+                <img src="images/tattoos/IMG_8682.png" alt="Derrick's Blackwork">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Traditional Black</h5>
+                    <p>Classic blackwork style</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="horror blackwork">
+                <img src="images/tattoos/IMG_8683.png" alt="Derrick's Horror Blackwork">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Gothic Design</h5>
+                    <p>Dark gothic blackwork</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="artist-card">
-            <div class="artist-image">
-              <img src="images/tattoos/IMG_8686.jpeg" alt="Master Artist - Traditional Specialist">
-              <div class="artist-overlay">
-                <div class="artist-social">
-                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="Portfolio"><i class="fas fa-images"></i></a>
+          <!-- Anna Cramer Portfolio -->
+          <div class="artist-portfolio" id="anna-portfolio" data-artist="anna">
+            <div class="portfolio-header">
+              <div class="artist-profile">
+                <div class="profile-image">
+                  <img src="images/tattoos/IMG_8686.jpeg" alt="Anna Cramer Schinelli">
+                  <div class="profile-badge">$150/hr</div>
+                </div>
+                <div class="profile-info">
+                  <h3>Anna Cramer Schinelli</h3>
+                  <p class="profile-title">Versatile Tattoo Artist</p>
+                  <p class="profile-bio">Specializes in Traditional, Neo-Traditional, Fine Line, Script, and Black and Gray styles. Exceptional attention to detail across multiple techniques.</p>
+                  <div class="profile-specialties">
+                    <span class="specialty-tag">Fine Line</span>
+                    <span class="specialty-tag">Traditional</span>
+                    <span class="specialty-tag">Script</span>
+                    <span class="specialty-tag">Black & Gray</span>
+                  </div>
+                  <a href="mailto:diligentlobotomy@gmail.com" class="profile-contact">Book with Anna</a>
                 </div>
               </div>
             </div>
-            <div class="artist-info">
-              <h3>Anna Cramer Schinelli</h3>
-              <p class="artist-specialty">Tattoo Artist</p>
-              <p class="artist-description">Specializes in Traditional, Neo-Traditional, Fine Line, Script, and Black and Gray tattoo styles. Versatile artist with exceptional attention to detail across multiple techniques.</p>
-              <div class="artist-stats">
-                <span><i class="fas fa-pen-fancy"></i> Fine Line Expert</span>
-                <span><i class="fas fa-font"></i> Script Specialist</span>
+            
+            <div class="portfolio-filters">
+              <button class="filter-btn active" data-filter="all">All Work</button>
+              <button class="filter-btn" data-filter="fineline">Fine Line</button>
+              <button class="filter-btn" data-filter="traditional">Traditional</button>
+              <button class="filter-btn" data-filter="script">Script</button>
+            </div>
+            
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="traditional">
+                <img src="images/tattoos/IMG_8686.jpeg" alt="Anna's Traditional Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Neo-Traditional</h5>
+                    <p>Modern traditional style</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="fineline">
+                <img src="images/tattoos/IMG_8687.jpeg" alt="Anna's Fine Line Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Fine Line Detail</h5>
+                    <p>Delicate line work art</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="script">
+                <img src="images/tattoos/IMG_8688.jpeg" alt="Anna's Script Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Custom Script</h5>
+                    <p>Beautiful lettering design</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+              </div>
+              <div class="portfolio-item" data-category="traditional fineline">
+                <img src="images/tattoos/IMG_8689.jpeg" alt="Anna's Mixed Style Work">
+                <div class="item-overlay">
+                  <div class="item-info">
+                    <h5>Mixed Technique</h5>
+                    <p>Traditional with fine details</p>
+                  </div>
+                  <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
               </div>
             </div>
           </div>
-
 
         </div>
       </div>

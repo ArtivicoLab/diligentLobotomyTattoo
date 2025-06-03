@@ -31,6 +31,7 @@ class DiligentLobotomyCore {
     this.initGalleryFilters();
     this.initFAQ();
     this.initGalleryModal();
+    this.initArtistShowcase();
   }
 
   initBusinessStatus() {
@@ -414,6 +415,89 @@ class DiligentLobotomyCore {
       }
     };
     document.addEventListener('keydown', escHandler);
+  }
+
+  initArtistShowcase() {
+    // Artist navigation functionality
+    const artistNavBtns = document.querySelectorAll('.artist-nav-btn');
+    const artistPortfolios = document.querySelectorAll('.artist-portfolio');
+
+    artistNavBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const artistId = btn.dataset.artist;
+        
+        // Update active navigation button
+        artistNavBtns.forEach(navBtn => navBtn.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Show corresponding portfolio with animation
+        artistPortfolios.forEach(portfolio => {
+          portfolio.classList.remove('active');
+          if (portfolio.dataset.artist === artistId) {
+            setTimeout(() => {
+              portfolio.classList.add('active');
+            }, 150);
+          }
+        });
+      });
+    });
+
+    // Portfolio filtering functionality
+    const initPortfolioFilters = (portfolioElement) => {
+      const filterBtns = portfolioElement.querySelectorAll('.portfolio-filters .filter-btn');
+      const portfolioItems = portfolioElement.querySelectorAll('.portfolio-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          
+          // Update active filter button
+          filterBtns.forEach(filterBtn => filterBtn.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Filter portfolio items
+          portfolioItems.forEach(item => {
+            const categories = item.dataset.category.split(' ');
+            const shouldShow = filter === 'all' || categories.includes(filter);
+            
+            if (shouldShow) {
+              item.style.display = 'block';
+              item.style.animation = 'fadeInUp 0.5s ease-out';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    };
+
+    // Initialize filters for each portfolio
+    artistPortfolios.forEach(portfolio => {
+      initPortfolioFilters(portfolio);
+    });
+
+    // Portfolio item expand functionality
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    portfolioItems.forEach(item => {
+      const expandBtn = item.querySelector('.expand-btn');
+      if (expandBtn) {
+        expandBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const img = item.querySelector('img');
+          if (img) {
+            this.openGalleryModal(img.src, img.alt);
+          }
+        });
+      }
+      
+      // Also allow clicking on the item itself
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (img) {
+          this.openGalleryModal(img.src, img.alt);
+        }
+      });
+    });
   }
 }
 

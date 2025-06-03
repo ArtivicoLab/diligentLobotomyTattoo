@@ -1791,3 +1791,367 @@ section::before {
   color: var(--zombie-green);
   font-weight: bold;
 }
+
+/* Artist Showcase Section */
+.artist-showcase {
+  padding: var(--space-xxl) 0;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.8));
+  position: relative;
+}
+
+.artist-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2390EE90" opacity="0.1"/></svg>') repeat;
+  animation: float 20s ease-in-out infinite;
+}
+
+/* Artist Navigation */
+.artist-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xxl);
+  flex-wrap: wrap;
+}
+
+.artist-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: rgba(10, 10, 10, 0.8);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+}
+
+.artist-nav-btn:hover {
+  border-color: var(--zombie-green);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(144, 238, 144, 0.2);
+}
+
+.artist-nav-btn.active {
+  border-color: var(--zombie-green);
+  background: rgba(144, 238, 144, 0.1);
+  box-shadow: 0 0 30px rgba(144, 238, 144, 0.3);
+}
+
+.nav-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--zombie-green);
+  position: relative;
+}
+
+.nav-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-info h4 {
+  color: var(--zombie-green);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.nav-info span {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Artist Portfolios */
+.artist-portfolios {
+  position: relative;
+}
+
+.artist-portfolio {
+  display: none;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.artist-portfolio.active {
+  display: block;
+}
+
+/* Portfolio Header */
+.portfolio-header {
+  margin-bottom: var(--space-xxl);
+}
+
+.artist-profile {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: flex-start;
+  background: rgba(10, 10, 10, 0.6);
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(144, 238, 144, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+.profile-image {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--zombie-green);
+  box-shadow: 0 0 30px rgba(144, 238, 144, 0.4);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background: var(--accent-gold);
+  color: var(--bg-dark);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h3 {
+  color: var(--zombie-green);
+  font-size: 2rem;
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 0 20px rgba(144, 238, 144, 0.5);
+}
+
+.profile-title {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.profile-bio {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  font-size: 1.1rem;
+}
+
+.profile-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.specialty-tag {
+  background: rgba(144, 238, 144, 0.1);
+  color: var(--zombie-green);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(144, 238, 144, 0.3);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.specialty-tag:hover {
+  background: rgba(144, 238, 144, 0.2);
+  transform: scale(1.05);
+}
+
+.profile-contact {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--zombie-green), #7FFF7F);
+  color: var(--bg-dark);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(144, 238, 144, 0.3);
+}
+
+.profile-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(144, 238, 144, 0.5);
+}
+
+/* Portfolio Filters */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.portfolio-filters .filter-btn {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(144, 238, 144, 0.3);
+  color: var(--text-light);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-filters .filter-btn:hover,
+.portfolio-filters .filter-btn.active {
+  background: rgba(144, 238, 144, 0.1);
+  border-color: var(--zombie-green);
+  color: var(--zombie-green);
+  box-shadow: 0 0 20px rgba(144, 238, 144, 0.3);
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xxl);
+}
+
+.portfolio-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.8);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  border-color: var(--zombie-green);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(144, 238, 144, 0.2);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1);
+}
+
+.item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(144, 238, 144, 0.1) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.portfolio-item:hover .item-overlay {
+  opacity: 1;
+}
+
+.item-info {
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .item-info {
+  transform: translateY(0);
+}
+
+.item-info h5 {
+  color: var(--zombie-green);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-sm);
+  text-shadow: 0 0 10px rgba(144, 238, 144, 0.5);
+}
+
+.item-info p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+}
+
+.expand-btn {
+  background: rgba(144, 238, 144, 0.2);
+  border: 1px solid var(--zombie-green);
+  color: var(--zombie-green);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.expand-btn:hover {
+  background: var(--zombie-green);
+  color: var(--bg-dark);
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .artist-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .artist-nav-btn {
+    min-width: 100%;
+    max-width: 400px;
+  }
+  
+  .artist-profile {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    align-self: center;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+  }
+}
