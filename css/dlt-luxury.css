@@ -3,8 +3,8 @@
  * Inspired by the zombie mascot with premium aesthetics
  */
 
-/* Import premium fonts */
-@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Griffy:wght@400&family=Nosifer&family=Metal+Mania&family=Kalam:wght@300;400;700&family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+/* Import premium fonts with optimized loading */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Griffy:wght@400&family=Metal+Mania&family=Kalam:wght@300;400;700&family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
 
 /* CSS Custom Properties - Vibrant Color Palette from Image */
 :root {
@@ -46,12 +46,12 @@
   --wood-gray: #696969;
   
   /* Typography - Luxury meets Horror */
-  --font-display: 'Creepster', cursive;
-  --font-heading: 'Griffy', cursive;
-  --font-accent: 'Metal Mania', cursive;
-  --font-elegant: 'Cinzel', serif;
-  --font-modern: 'Orbitron', sans-serif;
-  --font-body: 'Kalam', cursive;
+  --font-display: 'Creepster', 'Chiller', 'Papyrus', cursive, fantasy;
+  --font-heading: 'Griffy', 'Georgia', 'Times New Roman', serif;
+  --font-accent: 'Metal Mania', 'Impact', 'Arial Black', cursive, fantasy;
+  --font-elegant: 'Cinzel', 'Georgia', 'Times New Roman', serif;
+  --font-modern: 'Orbitron', 'Arial', 'Helvetica', sans-serif;
+  --font-body: 'Kalam', 'Comic Sans MS', 'Trebuchet MS', sans-serif;
   
   /* Spacing System */
   --space-xs: 0.5rem;
