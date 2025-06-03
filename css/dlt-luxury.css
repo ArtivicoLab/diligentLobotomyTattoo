@@ -373,8 +373,8 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(10, 10, 10, 0.8);
-  border: 2px solid var(--zombie-green);
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--zombie-green);
   border-radius: var(--border-radius);
   cursor: pointer;
   padding: var(--space-sm);
@@ -383,18 +383,24 @@ p {
   position: relative;
   z-index: 1001;
   backdrop-filter: blur(5px);
-  box-shadow: 0 2px 10px rgba(144, 238, 144, 0.3);
+  box-shadow: 0 4px 15px rgba(144, 238, 144, 0.6), 0 0 20px rgba(144, 238, 144, 0.3);
 }
 
 .menu-toggle span {
-  width: 28px;
-  height: 3px;
-  background: var(--zombie-green);
-  margin: 3px 0;
+  width: 26px;
+  height: 4px;
+  background: var(--warm-black);
+  margin: 4px 0;
   transition: all 0.3s ease;
   border-radius: 2px;
   display: block;
-  box-shadow: 0 0 5px rgba(144, 238, 144, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 /* Dropdown Styles */
