@@ -115,12 +115,213 @@ h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-family: var(--font-display);
   color: var(--cream-white);
-  text-shadow: 
-    2px 2px 8px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(144, 238, 144, 0.3);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: var(--space-md);
+}
+
+.hero-title {
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.title-word {
+  display: inline-block;
+  position: relative;
+  color: var(--cream-white);
+  text-shadow: 
+    2px 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(144, 238, 144, 0.4),
+    0 0 60px rgba(144, 238, 144, 0.2);
+  animation: glitchText 4s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.title-word::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--coral-pink);
+  animation: glitchBefore 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+.title-word::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--electric-yellow);
+  animation: glitchAfter 4s ease-in-out infinite;
+  z-index: -2;
+}
+
+.title-highlight {
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(45deg, var(--zombie-green), var(--electric-yellow), var(--coral-pink), var(--zombie-green));
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowFlow 3s ease-in-out infinite, letterBounce 2s ease-in-out infinite;
+  text-shadow: none;
+  font-size: 1.1em;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.title-highlight::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, var(--zombie-green), var(--electric-yellow), var(--coral-pink));
+  border-radius: 8px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.title-highlight:hover::before {
+  opacity: 0.3;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes glitchText {
+  0%, 90%, 100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  30% {
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  50% {
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitchBefore {
+  0%, 90%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-3px, 3px);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translate(3px, -3px);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translate(-3px, -3px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes glitchAfter {
+  0%, 90%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(4px, -4px);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(-4px, 4px);
+    opacity: 0.5;
+  }
+  35% {
+    transform: translate(4px, 4px);
+    opacity: 0.3;
+  }
+}
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1.2);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg) brightness(1.4);
+  }
+  50% {
+    background-position: 200% 50%;
+    filter: hue-rotate(180deg) brightness(1.1);
+  }
+  75% {
+    background-position: 300% 50%;
+    filter: hue-rotate(270deg) brightness(1.3);
+  }
+  100% {
+    background-position: 400% 50%;
+    filter: hue-rotate(360deg) brightness(1.2);
+  }
+}
+
+@keyframes letterBounce {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.02);
+  }
+  75% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+.title-word:hover {
+  transform: scale(1.05) rotateX(10deg);
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.9),
+    0 0 40px var(--zombie-green),
+    0 0 80px var(--electric-yellow);
+}
+
+.title-highlight:hover {
+  transform: scale(1.1) rotateY(5deg);
+  letter-spacing: 4px;
 }
 
 /* Hero Contact Info Animations */
