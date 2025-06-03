@@ -123,25 +123,41 @@
   }
   </script>
   
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/dlt-luxury.css?v=37.0&t=1733242388">
+  <!-- Critical CSS (inline for performance) -->
+  <style>
+    /* Critical above-the-fold styles */
+    :root{--zombie-green:#7FB069;--text-light:#dedede;--warm-black:#1A1A1A;--cream-white:#FFF8DC;--font-display:'Creepster',cursive;--font-body:'Kalam',sans-serif;--space-lg:2rem;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:var(--font-body);background:var(--warm-black);color:var(--text-light);line-height:1.6;}
+    .hero{min-height:100vh;background:linear-gradient(135deg,rgba(10,10,10,0.8),rgba(26,26,26,0.9));display:flex;align-items:center;justify-content:center;}
+    .hero-content{text-align:center;padding:var(--space-lg);}
+    .hero h1{font-family:var(--font-display);font-size:clamp(2rem,8vw,4rem);color:var(--zombie-green);margin-bottom:1rem;}
+    .nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);}
+  </style>
   
-  <!-- Google Fonts Preconnect -->
+  <!-- Load main CSS asynchronously -->
+  <link rel="preload" href="css/dlt-luxury.css?v=37.0&t=1733242388" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/dlt-luxury.css?v=37.0&t=1733242388"></noscript>
+  
+  <!-- Resource hints for performance -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  
+  <!-- Preconnect to critical domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- Preload critical fonts -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Critical resources - load asynchronously to avoid render blocking -->
+  <link rel="preload" href="js/dlt-core.js?v=10.0&t=1733240188" as="script">
   
-  <!-- Fallback for no-JS -->
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap">
-  </noscript>
+  <!-- Non-critical stylesheets loaded asynchronously -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Cinzel:wght@400;600;700&family=Creepster&family=Griffy&family=Metal+Mania&family=Orbitron:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Cinzel:wght@400;600;700&family=Creepster&family=Griffy&family=Metal+Mania&family=Orbitron:wght@400;700;900&display=swap"></noscript>
   
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome loaded after critical content -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://diligentlobotomytattoo.com/">
@@ -1307,7 +1323,7 @@
     </div>
   </button>
 
-  <!-- JavaScript -->
-  <script src="js/dlt-core.js?v=10.0&t=1733240188"></script>
+  <!-- JavaScript - deferred for performance -->
+  <script src="js/dlt-core.js?v=10.0&t=1733240188" defer></script>
 </body>
 </html>
