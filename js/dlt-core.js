@@ -32,6 +32,67 @@ class DiligentLobotomyCore {
     this.initFAQ();
     this.initGalleryModal();
     this.initArtistShowcase();
+    this.initTouchInteractions();
+  }
+
+  initTouchInteractions() {
+    // Add touch event listeners for mobile interactions
+    const touchElements = document.querySelectorAll('.service-card, .friend-card, .gallery-item, .btn, .artist-nav-btn, .booking-card');
+    
+    touchElements.forEach(element => {
+      // Add touch start event for immediate feedback
+      element.addEventListener('touchstart', (e) => {
+        element.classList.add('touch-active');
+      }, { passive: true });
+      
+      // Remove touch active class on touch end
+      element.addEventListener('touchend', (e) => {
+        setTimeout(() => {
+          element.classList.remove('touch-active');
+        }, 150);
+      }, { passive: true });
+      
+      // Remove touch active class if touch is cancelled
+      element.addEventListener('touchcancel', (e) => {
+        element.classList.remove('touch-active');
+      }, { passive: true });
+    });
+    
+    // Add touch feedback for navigation menu
+    const navLinks = document.querySelectorAll('.nav-links li a');
+    navLinks.forEach(link => {
+      link.addEventListener('touchstart', (e) => {
+        link.style.backgroundColor = 'rgba(144, 238, 144, 0.2)';
+        link.style.color = '#7FB069';
+      }, { passive: true });
+      
+      link.addEventListener('touchend', (e) => {
+        setTimeout(() => {
+          link.style.backgroundColor = '';
+          link.style.color = '';
+        }, 150);
+      }, { passive: true });
+    });
+    
+    // Add touch feedback for gallery filters
+    const galleryFilters = document.querySelectorAll('.filter-btn');
+    galleryFilters.forEach(filter => {
+      filter.addEventListener('touchstart', (e) => {
+        if (!filter.classList.contains('active')) {
+          filter.style.backgroundColor = 'rgba(144, 238, 144, 0.3)';
+          filter.style.transform = 'scale(0.95)';
+        }
+      }, { passive: true });
+      
+      filter.addEventListener('touchend', (e) => {
+        setTimeout(() => {
+          if (!filter.classList.contains('active')) {
+            filter.style.backgroundColor = '';
+            filter.style.transform = '';
+          }
+        }, 150);
+      }, { passive: true });
+    });
   }
 
   initBusinessStatus() {

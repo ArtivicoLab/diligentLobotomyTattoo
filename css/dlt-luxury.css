@@ -11,6 +11,9 @@
   /* Smooth scrolling performance */
   scroll-behavior: smooth;
   
+  /* Touch-friendly interactions */
+  touch-action: manipulation;
+  
   /* Primary Colors from the Zombie Mascot */
   --zombie-green: #7FB069;
   --zombie-green-light: #A4D17A;
@@ -2623,6 +2626,92 @@ section::before {
 .footer-disclaimer {
   opacity: 0.8;
   font-size: 0.8rem !important;
+}
+
+/* Touch-friendly interactions for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .service-card:active {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--electric-yellow);
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .friend-card:active {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--electric-yellow);
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .gallery-item:active {
+    transform: scale(0.98);
+  }
+  
+  .btn:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .artist-nav-btn:active {
+    background: var(--zombie-green);
+    color: var(--warm-black);
+    transform: translateY(-2px);
+  }
+  
+  .booking-card:active {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--electric-yellow);
+  }
+  
+  .nav-links li a:active {
+    color: var(--zombie-green);
+    background: rgba(144, 238, 144, 0.2);
+  }
+}
+
+/* Add touch-action for interactive elements */
+.service-card,
+.friend-card,
+.gallery-item,
+.btn,
+.artist-nav-btn,
+.booking-card,
+.nav-links li a,
+.hero-indicator {
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* Touch-active states for immediate feedback */
+.service-card.touch-active {
+  transform: translateY(-5px) scale(1.01);
+  border-color: var(--electric-yellow);
+  box-shadow: var(--shadow-luxury);
+}
+
+.friend-card.touch-active {
+  transform: translateY(-5px) scale(1.01);
+  border-color: var(--electric-yellow);
+  box-shadow: var(--shadow-luxury);
+}
+
+.gallery-item.touch-active {
+  transform: scale(0.98);
+}
+
+.btn.touch-active {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-luxury);
+}
+
+.artist-nav-btn.touch-active {
+  background: var(--zombie-green);
+  color: var(--warm-black);
+  transform: translateY(-2px);
+}
+
+.booking-card.touch-active {
+  transform: translateY(-5px) scale(1.01);
+  border-color: var(--electric-yellow);
 }
 
 /* Enhanced Mobile Responsiveness */
