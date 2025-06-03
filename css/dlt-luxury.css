@@ -2768,11 +2768,11 @@ section::before {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 60px;
   background: linear-gradient(135deg, var(--zombie-green), var(--zombie-green-dark));
   border: 3px solid var(--electric-yellow);
-  border-radius: 50%;
+  border-radius: 30px;
   cursor: pointer;
   z-index: 1000;
   opacity: 0;
@@ -2781,11 +2781,11 @@ section::before {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 8px 25px rgba(144, 238, 144, 0.4), 0 0 30px rgba(144, 238, 144, 0.2);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 0;
-  overflow: visible;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  overflow: hidden;
 }
 
 .back-to-top.show {
@@ -2801,45 +2801,40 @@ section::before {
 }
 
 .back-to-top-icon {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--warm-black);
-  margin-bottom: 2px;
   animation: bounce 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .business-status-indicator {
-  position: absolute;
-  top: -15px;
-  right: -40px;
-  background: rgba(10, 10, 10, 0.95);
-  border: 2px solid var(--zombie-green);
-  border-radius: var(--border-radius);
-  padding: var(--space-xs) var(--space-sm);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 100px;
-  text-align: center;
+  align-items: flex-end;
+  text-align: right;
+  flex-grow: 1;
+  margin-left: var(--space-xs);
 }
 
 .status-text {
   font-family: var(--font-modern);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  color: var(--zombie-green);
+  color: var(--warm-black);
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .status-time {
   font-family: var(--font-elegant);
-  font-size: 0.6rem;
-  color: var(--electric-yellow);
+  font-size: 0.55rem;
+  color: var(--warm-black);
   line-height: 1;
   margin-top: 2px;
+  opacity: 0.8;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 /* Status color variations */
@@ -2878,21 +2873,16 @@ section::before {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .back-to-top {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     bottom: 20px;
     right: 20px;
+    border-radius: 25px;
+    padding: var(--space-xs) var(--space-sm);
   }
   
   .back-to-top-icon {
-    font-size: 1.2rem;
-  }
-  
-  .business-status-indicator {
-    top: -12px;
-    right: -35px;
-    min-width: 80px;
-    padding: 4px 8px;
+    font-size: 1rem;
   }
   
   .status-text {
