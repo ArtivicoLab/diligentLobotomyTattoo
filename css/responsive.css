@@ -1,0 +1,195 @@
+/*
+ * Diligent Lobotomy Tattoo - Responsive Styles
+ * Mobile-first responsive design for all screen sizes
+ */
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .back-to-top-icon {
+    font-size: 1.1rem;
+  }
+}
+
+/* Touch-action for interactive elements */
+.service-card,
+.friend-card,
+.gallery-item,
+.btn,
+.artist-nav-btn,
+.booking-card,
+.nav-links li a,
+.hero-indicator {
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* Touch interactions for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .service-card:active {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .gallery-item:active {
+    transform: scale(0.98);
+  }
+  
+  .btn:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .artist-nav-btn:active {
+    background: var(--zombie-green);
+    color: var(--warm-black);
+    transform: translateY(-2px);
+  }
+  
+  .booking-card:active {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--electric-yellow);
+  }
+  
+  .nav-links li a:active {
+    color: var(--zombie-green);
+    background: rgba(144, 238, 144, 0.2);
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+  }
+  
+  .hero-content {
+    padding: var(--space-xxl) var(--space-lg);
+  }
+  
+  .artist-nav {
+    gap: var(--space-md);
+  }
+  
+  .artist-nav-btn {
+    min-width: 180px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .hero-slider {
+    min-height: 100vh;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .artist-portfolios .portfolio-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large desktop styles */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .hero h1 {
+    font-size: 5rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav,
+  .back-to-top,
+  .hero-slider,
+  .footer-bg-animation {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --zombie-green: #00ff00;
+    --coral-pink: #ff1493;
+    --electric-yellow: #ffff00;
+    --cream-white: #ffffff;
+    --warm-black: #000000;
+  }
+  
+  .btn,
+  .service-card,
+  .gallery-item {
+    border-width: 3px !important;
+  }
+}
+
+/* Dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-light: #ffffff;
+    --warm-black: #000000;
+    --deep-charcoal: #1a1a1a;
+  }
+}
