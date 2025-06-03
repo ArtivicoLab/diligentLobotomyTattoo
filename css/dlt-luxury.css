@@ -2754,6 +2754,26 @@ section::before {
   text-align: right;
 }
 
+.footer-credit {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: var(--space-sm);
+  opacity: 0.8;
+}
+
+.footer-credit a {
+  color: var(--zombie-green) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.footer-credit a:hover {
+  color: var(--electric-yellow) !important;
+  text-shadow: 0 0 10px rgba(255, 248, 144, 0.3);
+}
+}
+
 .footer-copyright p {
   color: var(--text-light);
   margin: 0;
