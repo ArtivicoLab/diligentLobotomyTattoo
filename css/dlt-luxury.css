@@ -137,6 +137,77 @@ h1 {
   text-shadow: 0 0 10px var(--electric-yellow);
 }
 
+/* Special animation for phone button when store is open */
+.hero-contact-item.store-open {
+  position: relative;
+  overflow: hidden;
+  animation: callNowPulse 3s ease-in-out infinite;
+}
+
+.hero-contact-item.store-open::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(127, 176, 105, 0.3) 50%,
+    transparent 70%
+  );
+  animation: colorWave 2.5s linear infinite;
+  pointer-events: none;
+}
+
+.hero-contact-item.store-open .fa-phone-alt {
+  animation: phoneRing 1.5s ease-in-out infinite, iconGlow 2s ease-in-out infinite alternate;
+  color: var(--zombie-green-light);
+  text-shadow: 0 0 15px var(--zombie-green), 0 0 25px var(--electric-yellow);
+}
+
+@keyframes callNowPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(127, 176, 105, 0.7);
+    border-color: var(--zombie-green);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(127, 176, 105, 0);
+    border-color: var(--electric-yellow);
+  }
+}
+
+@keyframes colorWave {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes phoneRing {
+  0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+    transform: rotate(-8deg) scale(1.1);
+  }
+  2%, 12%, 22%, 32%, 42%, 52%, 62%, 72%, 82%, 92% {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+@keyframes iconGlow {
+  0% {
+    text-shadow: 0 0 15px var(--zombie-green), 0 0 25px var(--electric-yellow);
+  }
+  100% {
+    text-shadow: 0 0 25px var(--zombie-green), 0 0 35px var(--electric-yellow), 0 0 45px var(--coral-pink);
+  }
+}
+
 @keyframes phoneShake {
   0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
     transform: rotate(0deg);

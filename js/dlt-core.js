@@ -143,9 +143,24 @@ class DiligentLobotomyCore {
       nextChange = `Closes at ${closeTime}`;
       statusIndicator.style.background = '#7FB069';
       statusIndicator.style.boxShadow = '0 0 15px #7FB069';
+      
+      // Add special animation to phone button when store is open
+      const phoneButton = document.querySelector('.hero-contact-item:has(.fa-phone-alt)') || 
+                         document.querySelector('a[href^="tel:"]').closest('.hero-contact-item');
+      if (phoneButton) {
+        phoneButton.classList.add('store-open');
+      }
     } else {
       // Currently closed
       status = 'CLOSED';
+      
+      // Remove animation from phone button when store is closed
+      const phoneButton = document.querySelector('.hero-contact-item:has(.fa-phone-alt)') || 
+                         document.querySelector('a[href^="tel:"]').closest('.hero-contact-item');
+      if (phoneButton) {
+        phoneButton.classList.remove('store-open');
+      }
+      
       if (currentTime < todayHours.open) {
         // Will open today
         const openTime = this.formatTime(todayHours.open);
