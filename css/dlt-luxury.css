@@ -2573,15 +2573,26 @@ section::before {
 .social-link {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
   background: rgba(20, 20, 20, 0.8);
-  border-radius: var(--border-radius);
+  border-radius: 50%;
   text-decoration: none;
   border: 2px solid transparent;
   transition: all 0.3s ease;
-  flex: 1;
-  min-width: 120px;
+}
+
+.social-link i {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .social-link.facebook:hover {
@@ -2589,9 +2600,26 @@ section::before {
   background: rgba(24, 119, 242, 0.1);
 }
 
+.social-link.facebook:hover i {
+  color: #1877f2;
+}
+
 .social-link.instagram:hover {
   border-color: #E4405F;
   background: rgba(228, 64, 95, 0.1);
+}
+
+.social-link.instagram:hover i {
+  color: #E4405F;
+}
+
+.social-link.email:hover {
+  border-color: var(--zombie-green);
+  background: rgba(144, 238, 144, 0.1);
+}
+
+.social-link.email:hover i {
+  color: var(--zombie-green);
 }
 
 .social-link.email:hover {
