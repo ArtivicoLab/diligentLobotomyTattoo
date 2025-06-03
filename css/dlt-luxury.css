@@ -2890,16 +2890,6 @@ section::before {
   60% { transform: translateY(-4px); }
 }
 
-@keyframes openPulse {
-  0%, 100% { box-shadow: 0 8px 25px rgba(144, 238, 144, 0.4), 0 0 30px rgba(144, 238, 144, 0.2); }
-  50% { box-shadow: 0 12px 35px rgba(144, 238, 144, 0.8), 0 0 50px rgba(144, 238, 144, 0.4); }
-}
-
-@keyframes openingSoon {
-  0%, 100% { box-shadow: 0 8px 25px rgba(255, 235, 59, 0.4), 0 0 30px rgba(255, 235, 59, 0.2); }
-  50% { box-shadow: 0 12px 35px rgba(255, 235, 59, 0.8), 0 0 50px rgba(255, 235, 59, 0.4); }
-}
-
 /* Mobile responsive */
 @media (max-width: 768px) {
   .back-to-top {
